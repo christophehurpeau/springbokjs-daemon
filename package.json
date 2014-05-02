@@ -2,7 +2,7 @@
   "name": "springbokjs-daemon",
   "description": "Springbok Daemon, usable with Gulp and Grunt to restart your server on watch",
   "keywords": ["springbokjs", "utils", "gulp", "grunt"],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "springbokjs.org",
   "license": "MIT",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",

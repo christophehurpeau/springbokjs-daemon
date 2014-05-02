@@ -1,49 +1,64 @@
 var child_process = require('child_process');
-var sys = require("sys");
+var util = require('util');
+var EventEmitter = require('events').EventEmitter;
 
-module.exports = function(command, args) {
-    return {
-        process: null,
-        restarting: false,
+function SpringbokDaemon(command, args) {
+    EventEmitter.call(this);
+    this.command = command;
+    this.args = args;
+    this.process = null;
+    this.restarting = false;
+};
 
-        restart: function() {
-            if (this.process) {
-                sys.debug('[springbokjs-dameon] Stopping for restart');
-                this.restarting = true;
-                this.process.kill();
-            } else {
+util.inherits(SpringbokDaemon, EventEmitter);
+
+var prototype = {
+    start: function() {
+        util.debug('[springbokjs-daemon] Starting');
+        this.stop();
+
+        this.process = child_process.spawn(this.command, this.args);
+        this.process.stdout.addListener('data', function(data) {
+            this.emit('stdout', data);
+            process.stdout.write('[springbokjs-daemon] ' + data);
+        }.bind(this));
+        this.process.stderr.addListener('data', function(data) {
+            this.emit('stderr', data);
+            process.stderr.write('[springbokjs-daemon] ' + data);
+        }.bind(this));
+        this.process.addListener('exit', function(code) {
+            util.debug('[springbokjs-daemon] exited (status='+code+')');
+            this.process = null;
+            if (this.restarting) {
                 this.start();
             }
-        },
+        }.bind(this));
+    },
 
-        start: function() {
-            sys.debug('[springbokjs-dameon] Starting');
-            var t=this;
-            this.stop();
-
-            t.process = child_process.spawn('node', args);
-            t.process.stdout.addListener('data', function(data){
-                process.stdout.write(data);
-            });
-            t.process.stderr.addListener('data', function(data){
-                sys.print(data);
-            });
-            t.process.addListener('exit', function(code){
-                sys.debug('[springbokjs-dameon] exited (status='+code+')');
-                t.process = null;
-                if (t.restarting) {
-                    t.start();
-                }
-            });
-        },
-
-        stop: function() {
-            this.restarting = false;
-            if (this.process) {
-                this.process.kill();
-            }
+    stop: function() {
+        this.restarting = false;
+        if (this.process) {
+            this.process.kill();
         }
-    };
+    },
+
+    restart: function() {
+        if (this.process) {
+            util.debug('[springbokjs-daemon] Stopping for restart');
+            this.restarting = true;
+            this.process.kill();
+        } else {
+            this.start();
+        }
+    }
+};
+
+SpringbokDaemon.prototype.start = prototype.start;
+SpringbokDaemon.prototype.stop = prototype.stop;
+SpringbokDaemon.prototype.restart = prototype.restart;
+
+module.exports = function(command, args) {
+    return new SpringbokDaemon(command, args);
 };
 
 module.exports.node = function(args) {
