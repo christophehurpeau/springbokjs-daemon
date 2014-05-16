@@ -20,11 +20,11 @@ var prototype = {
         this.process = child_process.spawn(this.command, this.args);
         this.process.stdout.addListener('data', function(data) {
             this.emit('stdout', data);
-            process.stdout.write('[springbokjs-daemon] ' + data);
+            process.stdout.write(data);
         }.bind(this));
         this.process.stderr.addListener('data', function(data) {
             this.emit('stderr', data);
-            process.stderr.write('[springbokjs-daemon] ' + data);
+            process.stderr.write(data);
         }.bind(this));
         this.process.addListener('exit', function(code) {
             util.debug('[springbokjs-daemon] exited (status='+code+')');
