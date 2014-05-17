@@ -1,5 +1,6 @@
 var child_process = require('child_process');
 var util = require('util');
+var ConsoleLogger = require('springbokjs-logger/console');
 var EventEmitter = require('events').EventEmitter;
 
 function SpringbokDaemon(command, args) {
@@ -8,13 +9,16 @@ function SpringbokDaemon(command, args) {
     this.args = args;
     this.process = null;
     this.restarting = false;
+    this.logger = new ConsoleLogger();
+    this.logger.setPrefix('springbokjs-damon: ', this.logger.blue.bold);
+    this.logger.debug(command + (args && args.join(' ')));
 };
 
 util.inherits(SpringbokDaemon, EventEmitter);
 
 var prototype = {
     start: function() {
-        util.debug('[springbokjs-daemon] Starting');
+        this.logger.debug('Starting');
         this.stop();
 
         this.process = child_process.spawn(this.command, this.args);
@@ -27,7 +31,7 @@ var prototype = {
             process.stderr.write(data);
         }.bind(this));
         this.process.addListener('exit', function(code) {
-            util.debug('[springbokjs-daemon] exited (status='+code+')');
+            this.logger.debug('exited (status='+code+')');
             this.process = null;
             if (this.restarting) {
                 this.start();
@@ -44,7 +48,7 @@ var prototype = {
 
     restart: function() {
         if (this.process) {
-            util.debug('[springbokjs-daemon] Stopping for restart');
+            this.logger.debug('Stopping for restart');
             this.restarting = true;
             this.process.kill();
         } else {

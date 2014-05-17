@@ -1,13 +1,21 @@
 {
   "name": "springbokjs-daemon",
   "description": "Springbok Daemon, usable with Gulp and Grunt to restart your server on watch",
-  "keywords": ["springbokjs", "utils", "gulp", "grunt"],
-  "version": "0.1.1",
+  "keywords": [
+    "springbokjs",
+    "utils",
+    "gulp",
+    "grunt"
+  ],
+  "version": "0.1.2",
   "homepage": "springbokjs.org",
   "license": "MIT",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "repository": {
     "type": "git",
     "url": "https://github.com/christophehurpeau/springbokjs-dameon.git"
+  },
+  "dependencies": {
+    "springbokjs-logger": "^1.0.2"
   }
 }
