@@ -16,7 +16,7 @@ npm install springbokjs-daemon --save-dev
 
 ### Use case
 
-```
+```js
 var gulp = require('gulp');
 var daemon = require('springbokjs-daemon').node([ 'src/server/server.js' ]);
 process.on('exit', function(code) {
