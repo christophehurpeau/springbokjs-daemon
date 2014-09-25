@@ -10,7 +10,7 @@ function SpringbokDaemon(command, args) {
     this.process = null;
     this.restarting = false;
     this.logger = new ConsoleLogger();
-    this.logger.setPrefix('springbokjs-damon: ', this.logger.blue.bold);
+    this.logger.setPrefix('springbokjs-daemon: ', this.logger.blue.bold);
     this.logger.debug(command + (args && args.join(' ')));
 };
 
