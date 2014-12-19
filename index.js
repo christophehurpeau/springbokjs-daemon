@@ -11,8 +11,8 @@ function SpringbokDaemon(command, args) {
     this.restarting = false;
     this.logger = new ConsoleLogger();
     this.logger.setPrefix('springbokjs-daemon: ', this.logger.blue.bold);
-    this.logger.debug(command + (args && args.join(' ')));
-};
+    this.logger.debug(command + (args && (' ' + args.join(' '))));
+}
 
 util.inherits(SpringbokDaemon, EventEmitter);
 
@@ -23,12 +23,12 @@ var prototype = {
 
         this.process = child_process.spawn(this.command, this.args);
         this.process.stdout.addListener('data', function(data) {
-            this.emit('stdout', data);
             process.stdout.write(data);
+            this.emit('stdout', data);
         }.bind(this));
         this.process.stderr.addListener('data', function(data) {
-            this.emit('stderr', data);
             process.stderr.write(data);
+            this.emit('stderr', data);
         }.bind(this));
         this.process.addListener('exit', function(code) {
             this.logger.debug('exited (status='+code+')');
@@ -67,4 +67,4 @@ module.exports = function(command, args) {
 
 module.exports.node = function(args) {
     return module.exports('node', args);
-}
+};

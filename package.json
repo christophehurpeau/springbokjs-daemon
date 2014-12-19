@@ -7,15 +7,12 @@
     "gulp",
     "grunt"
   ],
-  "version": "0.1.4",
-  "homepage": "springbokjs.org",
+  "version": "0.1.5",
+  "homepage": "http://springbokjs.org",
   "license": "MIT",
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/christophehurpeau/springbokjs-dameon.git"
-  },
+  "repository": "git://github.com/christophehurpeau/springbokjs-dameon.git",
   "dependencies": {
-    "springbokjs-logger": "^1.4.0"
+    "springbokjs-logger": "^1.4.1"
   }
 }
