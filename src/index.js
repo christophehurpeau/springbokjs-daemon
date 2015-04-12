@@ -1,27 +1,24 @@
-var child_process = require('child_process');
-var util = require('util');
+var childProcess = require('child_process');
 var ConsoleLogger = require('springbokjs-logger/console');
 var EventEmitter = require('events').EventEmitter;
 
-function SpringbokDaemon(command, args) {
-    EventEmitter.call(this);
-    this.command = command;
-    this.args = args;
-    this.process = null;
-    this.restarting = false;
-    this.logger = new ConsoleLogger();
-    this.logger.setPrefix('springbokjs-daemon: ', this.logger.blue.bold);
-    this.logger.debug(command + (args && (' ' + args.join(' '))));
-}
+class SpringbokDaemon extends EventEmitter {
+    constructor(command, args) {
+        super();
+        this.command = command;
+        this.args = args;
+        this.process = null;
+        this.restarting = false;
+        this.logger = new ConsoleLogger();
+        this.logger.setPrefix('springbokjs-daemon: ', this.logger.blue.bold);
+        this.logger.debug(command + (args && (' ' + args.join(' '))));
+    }
 
-util.inherits(SpringbokDaemon, EventEmitter);
-
-var prototype = {
-    start: function() {
+    start() {
         this.logger.debug('Starting');
         this.stop();
 
-        this.process = child_process.spawn(this.command, this.args);
+        this.process = childProcess.spawn(this.command, this.args);
         this.process.stdout.addListener('data', function(data) {
             process.stdout.write(data);
             this.emit('stdout', data);
@@ -31,22 +28,22 @@ var prototype = {
             this.emit('stderr', data);
         }.bind(this));
         this.process.addListener('exit', function(code) {
-            this.logger.debug('exited (status='+code+')');
+            this.logger.debug('exited (status=' + code + ')');
             this.process = null;
             if (this.restarting) {
                 this.start();
             }
         }.bind(this));
-    },
+    }
 
-    stop: function() {
+    stop() {
         this.restarting = false;
         if (this.process) {
             this.process.kill();
         }
-    },
+    }
 
-    restart: function() {
+    restart() {
         if (this.process) {
             this.logger.debug('Stopping for restart');
             this.restarting = true;
@@ -55,16 +52,14 @@ var prototype = {
             this.start();
         }
     }
-};
+}
 
-SpringbokDaemon.prototype.start = prototype.start;
-SpringbokDaemon.prototype.stop = prototype.stop;
-SpringbokDaemon.prototype.restart = prototype.restart;
-
-module.exports = function(command, args) {
+var createDaemon = function(command, args) {
     return new SpringbokDaemon(command, args);
 };
 
-module.exports.node = function(args) {
-    return module.exports('node', args);
+export default createDaemon;
+
+createDaemon.node = function(args) {
+    return createDaemon('node', args);
 };
