@@ -44,8 +44,6 @@ var SpringbokDaemon = function (_EventEmitter) {
         _this.command = command;
         _this.args = args;
         _this.process = null;
-        _this.restarting = false;
-        _this.stopping = false;
         _this.logger = new _nightingale2.default('springbokjs-daemon');
         _this.logger.info(command + (args && ' ' + args.join(' ')));
         return _this;
@@ -56,9 +54,11 @@ var SpringbokDaemon = function (_EventEmitter) {
         value: function start() {
             var _this2 = this;
 
-            this.stopping = false;
-            this.logger.debug('Starting...');
-            this.stop();
+            if (this.process) {
+                throw new Error('Process already started');
+            }
+
+            this.logger.info('Starting...');
 
             this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
             this.process.stdout.addListener('data', function (data) {
@@ -69,51 +69,47 @@ var SpringbokDaemon = function (_EventEmitter) {
                 process.stderr.write(data);
                 _this2.emit('stderr', data);
             });
-            this.process.addListener('exit', function (code) {
-                if (_this2.stopping) {
-                    _this2.logger.info('Stopped', { exitStatus: code });
-                } else {
-                    _this2.logger.warn('Exited', { exitStatus: code });
-                }
 
+            this.process.addListener('exit', function (code) {
+                _this2.logger.warn('Exited', { exitStatus: code });
                 _this2.process = null;
-                if (_this2.restarting) {
-                    _this2.start();
-                }
             });
         }
     }, {
         key: 'stop',
         value: function stop() {
-            this.restarting = false;
+            var _this3 = this;
+
             if (this.process) {
-                this.stopping = true;
                 this.logger.info('Stopping...');
-                this.process.kill();
+                var _process = this.process;
+                this.process = null;
+
+                _process.removeAllListeners();
+                _process.addListener('exit', function (code) {
+                    _this3.logger.info('Stopped', { exitStatus: code });
+                });
+                _process.kill();
             }
         }
     }, {
         key: 'restart',
         value: function restart() {
             this.logger.info('Restarting...');
-            if (this.process) {
-                this.restarting = true;
-                this.process.kill();
-            } else {
-                this.start();
-            }
+            this.stop();
+            this.start();
         }
     }, {
         key: 'restartTimeout',
         value: function restartTimeout(timeout) {
-            var _this3 = this;
+            var _this4 = this;
 
             if (!(typeof timeout === 'number')) {
                 throw new TypeError('Value of argument "timeout" violates contract.\n\nExpected:\nnumber\n\nGot:\n' + _inspect(timeout));
             }
 
             return setTimeout(function () {
-                return _this3.restart();
+                return _this4.restart();
             }, timeout);
         }
     }]);

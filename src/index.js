@@ -11,16 +11,16 @@ class SpringbokDaemon extends EventEmitter {
         this.command = command;
         this.args = args;
         this.process = null;
-        this.restarting = false;
-        this.stopping = false;
         this.logger = new Logger('springbokjs-daemon');
         this.logger.info(command + (args && (` ${args.join(' ')}`)));
     }
 
     start() {
-        this.stopping = false;
-        this.logger.debug('Starting...');
-        this.stop();
+        if (this.process) {
+            throw new Error('Process already started');
+        }
+
+        this.logger.info('Starting...');
 
         this.process = spawn(this.command, this.args, { env: process.env });
         this.process.stdout.addListener('data', (data) => {
@@ -31,37 +31,31 @@ class SpringbokDaemon extends EventEmitter {
             process.stderr.write(data);
             this.emit('stderr', data);
         });
-        this.process.addListener('exit', (code) => {
-            if (this.stopping) {
-                this.logger.info('Stopped', { exitStatus: code });
-            } else {
-                this.logger.warn('Exited', { exitStatus: code });
-            }
 
+        this.process.addListener('exit', (code) => {
+            this.logger.warn('Exited', { exitStatus: code });
             this.process = null;
-            if (this.restarting) {
-                this.start();
-            }
         });
     }
 
     stop() {
-        this.restarting = false;
         if (this.process) {
-            this.stopping = true;
             this.logger.info('Stopping...');
-            this.process.kill();
+            const process = this.process;
+            this.process = null;
+
+            process.removeAllListeners();
+            process.addListener('exit', (code) => {
+                this.logger.info('Stopped', { exitStatus: code });
+            });
+            process.kill();
         }
     }
 
     restart() {
         this.logger.info('Restarting...');
-        if (this.process) {
-            this.restarting = true;
-            this.process.kill();
-        } else {
-            this.start();
-        }
+        this.stop();
+        this.start();
     }
 
     restartTimeout(timeout: number) {
