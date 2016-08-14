@@ -1,20 +1,23 @@
-## springbokjs-daemon
+# springbokjs-daemon [![NPM version][npm-image]][npm-url]
 
-Use this with grunt or gulp to restart your server on changes
+Springbok Daemon, usable with Gulp and Grunt to restart your server on watch
 
-### Install
+[![Dependency Status][daviddm-image]][daviddm-url]
 
-```
-npm install springbokjs-daemon --save
+
+## Install
+
+```sh
+npm install --save springbokjs-daemon
 ```
 
 or
 
 ```
-npm install springbokjs-daemon --save-dev
+npm install --save-dev springbokjs-daemon
 ```
 
-### Use case
+## Use case
 
 ```js
 var gulp = require('gulp');
@@ -29,6 +32,9 @@ gulp.task('watch', ['default'], function() {
         daemon.restart();
     });
 });
-
-
 ```
+
+[npm-image]: https://img.shields.io/npm/v/springbokjs-daemon.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/springbokjs-daemon
+[daviddm-image]: https://david-dm.org//springbokjs-daemon.svg?style=flat-square
+[daviddm-url]: https://david-dm.org//springbokjs-daemon

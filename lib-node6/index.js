@@ -1,11 +1,28 @@
-import { spawn } from 'child_process';
-import Logger, { addConfig } from 'nightingale';
-import ConsoleLogger from 'nightingale-console';
-import { EventEmitter } from 'events';
+'use strict';
 
-addConfig({ key: 'springbokjs-daemon', handler: new ConsoleLogger() });
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.node = undefined;
+exports.default = createDaemon;
 
-class SpringbokDaemon extends EventEmitter {
+var _child_process = require('child_process');
+
+var _nightingale = require('nightingale');
+
+var _nightingale2 = _interopRequireDefault(_nightingale);
+
+var _nightingaleConsole = require('nightingale-console');
+
+var _nightingaleConsole2 = _interopRequireDefault(_nightingaleConsole);
+
+var _events = require('events');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default() });
+
+class SpringbokDaemon extends _events.EventEmitter {
     constructor(command, args) {
         super();
         this.command = command;
@@ -13,8 +30,8 @@ class SpringbokDaemon extends EventEmitter {
         this.process = null;
         this.restarting = false;
         this.stopping = false;
-        this.logger = new Logger('springbokjs-daemon');
-        this.logger.info(command + (args && (` ${args.join(' ')}`)));
+        this.logger = new _nightingale2.default('springbokjs-daemon');
+        this.logger.info(command + (args && ` ${ args.join(' ') }`));
     }
 
     start() {
@@ -22,16 +39,16 @@ class SpringbokDaemon extends EventEmitter {
         this.logger.debug('Starting...');
         this.stop();
 
-        this.process = spawn(this.command, this.args, { env: process.env });
-        this.process.stdout.addListener('data', (data) => {
+        this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
+        this.process.stdout.addListener('data', data => {
             process.stdout.write(data);
             this.emit('stdout', data);
         });
-        this.process.stderr.addListener('data', (data) => {
+        this.process.stderr.addListener('data', data => {
             process.stderr.write(data);
             this.emit('stderr', data);
         });
-        this.process.addListener('exit', (code) => {
+        this.process.addListener('exit', code => {
             if (this.stopping) {
                 this.logger.info('Stopped', { exitStatus: code });
             } else {
@@ -64,14 +81,15 @@ class SpringbokDaemon extends EventEmitter {
         }
     }
 
-    restartTimeout(timeout: number) {
+    restartTimeout(timeout) {
         return setTimeout(() => this.restart(), timeout);
     }
 }
 
-export default function createDaemon(command, args) {
+function createDaemon(command, args) {
     return new SpringbokDaemon(command, args);
 }
 
-export const node = args => createDaemon('node', args);
+const node = exports.node = args => createDaemon('node', args);
 createDaemon.node = node;
+//# sourceMappingURL=index.js.map
