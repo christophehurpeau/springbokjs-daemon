@@ -86,8 +86,8 @@ var SpringbokDaemon = function (_EventEmitter) {
                 this.process = null;
 
                 _process.removeAllListeners();
-                _process.addListener('exit', function (code) {
-                    _this3.logger.info('Stopped', { exitStatus: code });
+                _process.addListener('exit', function (code, signal) {
+                    _this3.logger.info('Stopped', { code: code, signal: signal });
                 });
                 _process.kill();
             }
