@@ -1,3 +1,7 @@
+### v1.1.0
+
+- [`fa41b15`](https://github.com/christophehurpeau/springbokjs-daemon/commit/fa41b155ae6c8492a2d9c8c2ad067ee1c3cbe134) exit add signal (Christophe Hurpeau)
+
 ### v1.0.1
 
 - [`31a7b35`](https://github.com/christophehurpeau/springbokjs-daemon/commit/31a7b35214c3bbd7780e7baa4be3a1489ae17961) no more weird states (Christophe Hurpeau)
