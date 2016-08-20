@@ -32,8 +32,8 @@ class SpringbokDaemon extends EventEmitter {
             this.emit('stderr', data);
         });
 
-        this.process.addListener('exit', (code) => {
-            this.logger.warn('Exited', { exitStatus: code });
+        this.process.addListener('exit', (code, signal) => {
+            this.logger.warn('Exited', { code, signal });
             this.process = null;
         });
     }

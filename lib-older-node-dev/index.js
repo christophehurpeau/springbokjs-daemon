@@ -70,8 +70,8 @@ var SpringbokDaemon = function (_EventEmitter) {
                 _this2.emit('stderr', data);
             });
 
-            this.process.addListener('exit', function (code) {
-                _this2.logger.warn('Exited', { exitStatus: code });
+            this.process.addListener('exit', function (code, signal) {
+                _this2.logger.warn('Exited', { code: code, signal: signal });
                 _this2.process = null;
             });
         }
