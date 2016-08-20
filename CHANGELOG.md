@@ -1,3 +1,7 @@
+### v1.1.1
+
+- [`31adddd`](https://github.com/christophehurpeau/springbokjs-daemon/commit/31adddd0241ea841feff4f521e367b45036e426c) exit add signal (Christophe Hurpeau)
+
 ### v1.1.0
 
 - [`fa41b15`](https://github.com/christophehurpeau/springbokjs-daemon/commit/fa41b155ae6c8492a2d9c8c2ad067ee1c3cbe134) exit add signal (Christophe Hurpeau)
