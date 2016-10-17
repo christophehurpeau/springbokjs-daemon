@@ -1,3 +1,7 @@
+### v1.3.0
+
+- [`39a680d`](https://github.com/christophehurpeau/springbokjs-daemon/commit/39a680d6a958e04659349558d11aed136c49256b) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
+
 ### v1.2.0
 
 - [`7ef04bb`](https://github.com/christophehurpeau/springbokjs-daemon/commit/7ef04bb8bb0f237d0d7cd6f31e3f6634abb0ea4c) send SIGKILL after 4s, and add nightingale 5.0.0 support (Christophe Hurpeau)
