@@ -1,9 +1,9 @@
 import { spawn } from 'child_process';
-import Logger, { addConfig } from 'nightingale';
+import Logger, { addConfig, levels } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
 import { EventEmitter } from 'events';
 
-addConfig({ key: 'springbokjs-daemon', handler: new ConsoleLogger() });
+addConfig({ key: 'springbokjs-daemon', handler: new ConsoleLogger(levels.INFO) });
 
 class SpringbokDaemon extends EventEmitter {
     constructor(command, args) {
@@ -11,6 +11,7 @@ class SpringbokDaemon extends EventEmitter {
         this.command = command;
         this.args = args;
         this.process = null;
+        this.stopPromise = null;
         this.logger = new Logger('springbokjs-daemon');
         this.logger.info(command + (args && (` ${args.join(' ')}`)));
     }
@@ -39,23 +40,32 @@ class SpringbokDaemon extends EventEmitter {
     }
 
     stop() {
-        if (this.process) {
-            this.logger.info('Stopping...');
+        if (!this.process) return Promise.resolve(this.stopPromise);
+
+        this.logger.info('Stopping...');
+        return this.stopPromise = new Promise(resolve => {
             const process = this.process;
             this.process = null;
+
+            const killTimeout = setTimeout(() => {
+                this.logger.warn('Timeout: sending SIGKILL...');
+                process.kill('SIGKILL');
+            }, 4000);
 
             process.removeAllListeners();
             process.addListener('exit', (code, signal) => {
                 this.logger.info('Stopped', { code, signal });
+                if (killTimeout) clearTimeout(killTimeout);
+                this.stopPromise = null;
+                resolve();
             });
             process.kill();
-        }
+        });
     }
 
     restart() {
         this.logger.info('Restarting...');
-        this.stop();
-        this.start();
+        return this.stop().then(() => this.start());
     }
 
     restartTimeout(timeout: number) {

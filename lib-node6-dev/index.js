@@ -20,7 +20,7 @@ var _events = require('events');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default() });
+(0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
 class SpringbokDaemon extends _events.EventEmitter {
     constructor(command, args) {
@@ -28,6 +28,7 @@ class SpringbokDaemon extends _events.EventEmitter {
         this.command = command;
         this.args = args;
         this.process = null;
+        this.stopPromise = null;
         this.logger = new _nightingale2.default('springbokjs-daemon');
         this.logger.info(command + (args && ` ${ args.join(' ') }`));
     }
@@ -56,23 +57,34 @@ class SpringbokDaemon extends _events.EventEmitter {
     }
 
     stop() {
-        if (this.process) {
-            this.logger.info('Stopping...');
+        if (!this.process) return Promise.resolve(this.stopPromise);
+
+        this.logger.info('Stopping...');
+        return this.stopPromise = new Promise(resolve => {
             const process = this.process;
             this.process = null;
+
+            const killTimeout = setTimeout(() => {
+                this.logger.warn('Timeout: sending SIGKILL...');
+                process.kill('SIGKILL');
+            }, 4000);
 
             process.removeAllListeners();
             process.addListener('exit', (code, signal) => {
                 this.logger.info('Stopped', { code, signal });
+                if (killTimeout) clearTimeout(killTimeout);
+                this.stopPromise = null;
+                resolve();
             });
             process.kill();
-        }
+        });
     }
 
     restart() {
         this.logger.info('Restarting...');
-        this.stop();
-        this.start();
+        return this.stop().then(() => {
+            return this.start();
+        });
     }
 
     restartTimeout(timeout) {

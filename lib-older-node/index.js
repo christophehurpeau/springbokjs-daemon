@@ -29,7 +29,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-(0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default() });
+(0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
 var SpringbokDaemon = function (_EventEmitter) {
     _inherits(SpringbokDaemon, _EventEmitter);
@@ -42,6 +42,7 @@ var SpringbokDaemon = function (_EventEmitter) {
         _this.command = command;
         _this.args = args;
         _this.process = null;
+        _this.stopPromise = null;
         _this.logger = new _nightingale2.default('springbokjs-daemon');
         _this.logger.info(command + (args && ' ' + args.join(' ')));
         return _this;
@@ -78,32 +79,45 @@ var SpringbokDaemon = function (_EventEmitter) {
         value: function stop() {
             var _this3 = this;
 
-            if (this.process) {
-                this.logger.info('Stopping...');
-                var _process = this.process;
-                this.process = null;
+            if (!this.process) return Promise.resolve(this.stopPromise);
 
-                _process.removeAllListeners();
-                _process.addListener('exit', function (code, signal) {
+            this.logger.info('Stopping...');
+            return this.stopPromise = new Promise(function (resolve) {
+                var process = _this3.process;
+                _this3.process = null;
+
+                var killTimeout = setTimeout(function () {
+                    _this3.logger.warn('Timeout: sending SIGKILL...');
+                    process.kill('SIGKILL');
+                }, 4000);
+
+                process.removeAllListeners();
+                process.addListener('exit', function (code, signal) {
                     _this3.logger.info('Stopped', { code: code, signal: signal });
+                    if (killTimeout) clearTimeout(killTimeout);
+                    _this3.stopPromise = null;
+                    resolve();
                 });
-                _process.kill();
-            }
+                process.kill();
+            });
         }
     }, {
         key: 'restart',
         value: function restart() {
+            var _this4 = this;
+
             this.logger.info('Restarting...');
-            this.stop();
-            this.start();
+            return this.stop().then(function () {
+                return _this4.start();
+            });
         }
     }, {
         key: 'restartTimeout',
         value: function restartTimeout(timeout) {
-            var _this4 = this;
+            var _this5 = this;
 
             return setTimeout(function () {
-                return _this4.restart();
+                return _this5.restart();
             }, timeout);
         }
     }]);
