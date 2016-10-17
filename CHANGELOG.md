@@ -1,3 +1,7 @@
+### v1.2.0
+
+- [`7ef04bb`](https://github.com/christophehurpeau/springbokjs-daemon/commit/7ef04bb8bb0f237d0d7cd6f31e3f6634abb0ea4c) send SIGKILL after 4s, and add nightingale 5.0.0 support (Christophe Hurpeau)
+
 ### v1.1.1
 
 - [`31adddd`](https://github.com/christophehurpeau/springbokjs-daemon/commit/31adddd0241ea841feff4f521e367b45036e426c) exit add signal (Christophe Hurpeau)
