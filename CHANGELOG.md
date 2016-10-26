@@ -1,3 +1,7 @@
+### v1.4.0
+
+- [`cdf1ef9`](https://github.com/christophehurpeau/springbokjs-daemon/commit/cdf1ef9371d4e1a95180568f6cd5f20f72217a54) nightingale (Christophe Hurpeau)
+
 ### v1.3.0
 
 - [`39a680d`](https://github.com/christophehurpeau/springbokjs-daemon/commit/39a680d6a958e04659349558d11aed136c49256b) chore(package): nightingale-logger@^1.6.0 (Christophe Hurpeau)
