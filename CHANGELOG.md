@@ -1,3 +1,7 @@
+### v1.5.0
+
+- [`4a59221`](https://github.com/christophehurpeau/springbokjs-daemon/commit/4a592214db5319f95342335a458c2951a67a2ec9) refactor: upgrade pob and add autorestart option (Christophe Hurpeau)
+
 ### v1.4.0
 
 - [`cdf1ef9`](https://github.com/christophehurpeau/springbokjs-daemon/commit/cdf1ef9371d4e1a95180568f6cd5f20f72217a54) nightingale (Christophe Hurpeau)
