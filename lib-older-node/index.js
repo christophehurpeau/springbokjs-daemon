@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.node = undefined;
 
@@ -11,6 +11,8 @@ exports.default = createDaemon;
 
 var _child_process = require('child_process');
 
+var _events = require('events');
+
 var _nightingale = require('nightingale');
 
 var _nightingale2 = _interopRequireDefault(_nightingale);
@@ -18,8 +20,6 @@ var _nightingale2 = _interopRequireDefault(_nightingale);
 var _nightingaleConsole = require('nightingale-console');
 
 var _nightingaleConsole2 = _interopRequireDefault(_nightingaleConsole);
-
-var _events = require('events');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,105 +32,113 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 (0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
 var SpringbokDaemon = function (_EventEmitter) {
-    _inherits(SpringbokDaemon, _EventEmitter);
+  _inherits(SpringbokDaemon, _EventEmitter);
 
-    function SpringbokDaemon(command, args) {
-        _classCallCheck(this, SpringbokDaemon);
+  function SpringbokDaemon(command, args) {
+    var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+        autorestart = _ref.autorestart;
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SpringbokDaemon).call(this));
+    _classCallCheck(this, SpringbokDaemon);
 
-        _this.command = command;
-        _this.args = args;
-        _this.process = null;
-        _this.stopPromise = null;
-        _this.logger = new _nightingale2.default('springbokjs-daemon');
-        _this.logger.info(command + (args && ' ' + args.join(' ')));
-        return _this;
+    var _this = _possibleConstructorReturn(this, (SpringbokDaemon.__proto__ || Object.getPrototypeOf(SpringbokDaemon)).call(this));
+
+    _this.command = command;
+    _this.args = args;
+    _this.process = null;
+    _this.stopPromise = null;
+    _this.logger = new _nightingale2.default('springbokjs-daemon');
+    _this.logger.info(command + (args && ' ' + args.join(' ')));
+    _this.autorestart = autorestart || false;
+    return _this;
+  }
+
+  _createClass(SpringbokDaemon, [{
+    key: 'start',
+    value: function start() {
+      var _this2 = this;
+
+      if (this.process) {
+        throw new Error('Process already started');
+      }
+
+      this.logger.info('Starting...');
+
+      this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
+      this.process.stdout.addListener('data', function (data) {
+        process.stdout.write(data);
+        _this2.emit('stdout', data);
+      });
+      this.process.stderr.addListener('data', function (data) {
+        process.stderr.write(data);
+        _this2.emit('stderr', data);
+      });
+
+      this.process.addListener('exit', function (code, signal) {
+        _this2.logger.warn('Exited', { code: code, signal: signal });
+        _this2.process = null;
+        if (_this2.autorestart) {
+          _this2.logger.debug('Autorestart');
+          _this2.start();
+        }
+      });
     }
+  }, {
+    key: 'stop',
+    value: function stop() {
+      var _this3 = this;
 
-    _createClass(SpringbokDaemon, [{
-        key: 'start',
-        value: function start() {
-            var _this2 = this;
+      if (!this.process) return Promise.resolve(this.stopPromise);
 
-            if (this.process) {
-                throw new Error('Process already started');
-            }
+      this.logger.info('Stopping...');
+      return this.stopPromise = new Promise(function (resolve) {
+        var process = _this3.process;
+        _this3.process = null;
 
-            this.logger.info('Starting...');
+        var killTimeout = setTimeout(function () {
+          _this3.logger.warn('Timeout: sending SIGKILL...');
+          process.kill('SIGKILL');
+        }, 4000);
 
-            this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
-            this.process.stdout.addListener('data', function (data) {
-                process.stdout.write(data);
-                _this2.emit('stdout', data);
-            });
-            this.process.stderr.addListener('data', function (data) {
-                process.stderr.write(data);
-                _this2.emit('stderr', data);
-            });
+        process.removeAllListeners();
+        process.addListener('exit', function (code, signal) {
+          _this3.logger.info('Stopped', { code: code, signal: signal });
+          if (killTimeout) clearTimeout(killTimeout);
+          _this3.stopPromise = null;
+          resolve();
+        });
+        process.kill();
+      });
+    }
+  }, {
+    key: 'restart',
+    value: function restart() {
+      var _this4 = this;
 
-            this.process.addListener('exit', function (code, signal) {
-                _this2.logger.warn('Exited', { code: code, signal: signal });
-                _this2.process = null;
-            });
-        }
-    }, {
-        key: 'stop',
-        value: function stop() {
-            var _this3 = this;
+      this.logger.info('Restarting...');
+      return this.stop().then(function () {
+        return _this4.start();
+      });
+    }
+  }, {
+    key: 'restartTimeout',
+    value: function restartTimeout(timeout) {
+      var _this5 = this;
 
-            if (!this.process) return Promise.resolve(this.stopPromise);
+      return setTimeout(function () {
+        return _this5.restart();
+      }, timeout);
+    }
+  }]);
 
-            this.logger.info('Stopping...');
-            return this.stopPromise = new Promise(function (resolve) {
-                var process = _this3.process;
-                _this3.process = null;
-
-                var killTimeout = setTimeout(function () {
-                    _this3.logger.warn('Timeout: sending SIGKILL...');
-                    process.kill('SIGKILL');
-                }, 4000);
-
-                process.removeAllListeners();
-                process.addListener('exit', function (code, signal) {
-                    _this3.logger.info('Stopped', { code: code, signal: signal });
-                    if (killTimeout) clearTimeout(killTimeout);
-                    _this3.stopPromise = null;
-                    resolve();
-                });
-                process.kill();
-            });
-        }
-    }, {
-        key: 'restart',
-        value: function restart() {
-            var _this4 = this;
-
-            this.logger.info('Restarting...');
-            return this.stop().then(function () {
-                return _this4.start();
-            });
-        }
-    }, {
-        key: 'restartTimeout',
-        value: function restartTimeout(timeout) {
-            var _this5 = this;
-
-            return setTimeout(function () {
-                return _this5.restart();
-            }, timeout);
-        }
-    }]);
-
-    return SpringbokDaemon;
+  return SpringbokDaemon;
 }(_events.EventEmitter);
 
 function createDaemon(command, args) {
-    return new SpringbokDaemon(command, args);
+  return new SpringbokDaemon(command, args);
 }
 
 var node = exports.node = function node(args) {
-    return createDaemon('node', args);
+  return createDaemon('node', args);
 };
 createDaemon.node = node;
 //# sourceMappingURL=index.js.map

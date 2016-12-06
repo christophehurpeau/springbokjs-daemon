@@ -1,17 +1,21 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.node = undefined;
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 exports.default = createDaemon;
 
+var _tcombForked = require('tcomb-forked');
+
+var _tcombForked2 = _interopRequireDefault(_tcombForked);
+
 var _child_process = require('child_process');
+
+var _events = require('events');
 
 var _nightingale = require('nightingale');
 
@@ -20,8 +24,6 @@ var _nightingale2 = _interopRequireDefault(_nightingale);
 var _nightingaleConsole = require('nightingale-console');
 
 var _nightingaleConsole2 = _interopRequireDefault(_nightingaleConsole);
-
-var _events = require('events');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,183 +35,145 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 (0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
+var OptionsType = _tcombForked2.default.interface({
+  autorestart: _tcombForked2.default.maybe(_tcombForked2.default.Boolean)
+}, {
+  name: 'OptionsType',
+  strict: true
+});
+
 var SpringbokDaemon = function (_EventEmitter) {
-    _inherits(SpringbokDaemon, _EventEmitter);
+  _inherits(SpringbokDaemon, _EventEmitter);
 
-    function SpringbokDaemon(command, args) {
-        _classCallCheck(this, SpringbokDaemon);
+  function SpringbokDaemon(command, args) {
+    var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+        autorestart = _ref.autorestart;
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SpringbokDaemon).call(this));
+    _assert({
+      autorestart: autorestart
+    }, OptionsType, '{ autorestart }');
 
-        _this.command = command;
-        _this.args = args;
-        _this.process = null;
-        _this.stopPromise = null;
-        _this.logger = new _nightingale2.default('springbokjs-daemon');
-        _this.logger.info(command + (args && ' ' + args.join(' ')));
-        return _this;
+    _classCallCheck(this, SpringbokDaemon);
+
+    var _this = _possibleConstructorReturn(this, (SpringbokDaemon.__proto__ || Object.getPrototypeOf(SpringbokDaemon)).call(this));
+
+    _this.command = command;
+    _this.args = args;
+    _this.process = null;
+    _this.stopPromise = null;
+    _this.logger = new _nightingale2.default('springbokjs-daemon');
+    _this.logger.info(command + (args && ' ' + args.join(' ')));
+    _this.autorestart = autorestart || false;
+    return _this;
+  }
+
+  _createClass(SpringbokDaemon, [{
+    key: 'start',
+    value: function start() {
+      var _this2 = this;
+
+      if (this.process) {
+        throw new Error('Process already started');
+      }
+
+      this.logger.info('Starting...');
+
+      this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
+      this.process.stdout.addListener('data', function (data) {
+        process.stdout.write(data);
+        _this2.emit('stdout', data);
+      });
+      this.process.stderr.addListener('data', function (data) {
+        process.stderr.write(data);
+        _this2.emit('stderr', data);
+      });
+
+      this.process.addListener('exit', function (code, signal) {
+        _this2.logger.warn('Exited', { code: code, signal: signal });
+        _this2.process = null;
+        if (_this2.autorestart) {
+          _this2.logger.debug('Autorestart');
+          _this2.start();
+        }
+      });
     }
+  }, {
+    key: 'stop',
+    value: function stop() {
+      var _this3 = this;
 
-    _createClass(SpringbokDaemon, [{
-        key: 'start',
-        value: function start() {
-            var _this2 = this;
+      if (!this.process) return Promise.resolve(this.stopPromise);
 
-            if (this.process) {
-                throw new Error('Process already started');
-            }
+      this.logger.info('Stopping...');
+      return this.stopPromise = new Promise(function (resolve) {
+        var process = _this3.process;
+        _this3.process = null;
 
-            this.logger.info('Starting...');
+        var killTimeout = setTimeout(function () {
+          _this3.logger.warn('Timeout: sending SIGKILL...');
+          process.kill('SIGKILL');
+        }, 4000);
 
-            this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
-            this.process.stdout.addListener('data', function (data) {
-                process.stdout.write(data);
-                _this2.emit('stdout', data);
-            });
-            this.process.stderr.addListener('data', function (data) {
-                process.stderr.write(data);
-                _this2.emit('stderr', data);
-            });
+        process.removeAllListeners();
+        process.addListener('exit', function (code, signal) {
+          _this3.logger.info('Stopped', { code: code, signal: signal });
+          if (killTimeout) clearTimeout(killTimeout);
+          _this3.stopPromise = null;
+          resolve();
+        });
+        process.kill();
+      });
+    }
+  }, {
+    key: 'restart',
+    value: function restart() {
+      var _this4 = this;
 
-            this.process.addListener('exit', function (code, signal) {
-                _this2.logger.warn('Exited', { code: code, signal: signal });
-                _this2.process = null;
-            });
-        }
-    }, {
-        key: 'stop',
-        value: function stop() {
-            var _this3 = this;
+      this.logger.info('Restarting...');
+      return this.stop().then(function () {
+        return _this4.start();
+      });
+    }
+  }, {
+    key: 'restartTimeout',
+    value: function restartTimeout(timeout) {
+      var _this5 = this;
 
-            if (!this.process) return Promise.resolve(this.stopPromise);
+      _assert(timeout, _tcombForked2.default.Number, 'timeout');
 
-            this.logger.info('Stopping...');
-            return this.stopPromise = new Promise(function (resolve) {
-                var process = _this3.process;
-                _this3.process = null;
+      return setTimeout(function () {
+        return _this5.restart();
+      }, timeout);
+    }
+  }]);
 
-                var killTimeout = setTimeout(function () {
-                    _this3.logger.warn('Timeout: sending SIGKILL...');
-                    process.kill('SIGKILL');
-                }, 4000);
-
-                process.removeAllListeners();
-                process.addListener('exit', function (code, signal) {
-                    _this3.logger.info('Stopped', { code: code, signal: signal });
-                    if (killTimeout) clearTimeout(killTimeout);
-                    _this3.stopPromise = null;
-                    resolve();
-                });
-                process.kill();
-            });
-        }
-    }, {
-        key: 'restart',
-        value: function restart() {
-            var _this4 = this;
-
-            this.logger.info('Restarting...');
-            return this.stop().then(function () {
-                return _this4.start();
-            });
-        }
-    }, {
-        key: 'restartTimeout',
-        value: function restartTimeout(timeout) {
-            var _this5 = this;
-
-            if (!(typeof timeout === 'number')) {
-                throw new TypeError('Value of argument "timeout" violates contract.\n\nExpected:\nnumber\n\nGot:\n' + _inspect(timeout));
-            }
-
-            return setTimeout(function () {
-                return _this5.restart();
-            }, timeout);
-        }
-    }]);
-
-    return SpringbokDaemon;
+  return SpringbokDaemon;
 }(_events.EventEmitter);
 
 function createDaemon(command, args) {
-    return new SpringbokDaemon(command, args);
+  return new SpringbokDaemon(command, args);
 }
 
 var node = exports.node = function node(args) {
-    return createDaemon('node', args);
+  return createDaemon('node', args);
 };
 createDaemon.node = node;
 
-function _inspect(input, depth) {
-    var maxDepth = 4;
-    var maxKeys = 15;
+function _assert(x, type, name) {
+  function message() {
+    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
+  }
 
-    if (depth === undefined) {
-        depth = 0;
+  if (_tcombForked2.default.isType(type)) {
+    if (!type.is(x)) {
+      type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
+
+      _tcombForked2.default.fail(message());
     }
+  } else if (!(x instanceof type)) {
+    _tcombForked2.default.fail(message());
+  }
 
-    depth += 1;
-
-    if (input === null) {
-        return 'null';
-    } else if (input === undefined) {
-        return 'void';
-    } else if (typeof input === 'string' || typeof input === 'number' || typeof input === 'boolean') {
-        return typeof input === 'undefined' ? 'undefined' : _typeof(input);
-    } else if (Array.isArray(input)) {
-        if (input.length > 0) {
-            var _ret = function () {
-                if (depth > maxDepth) return {
-                        v: '[...]'
-                    };
-
-                var first = _inspect(input[0], depth);
-
-                if (input.every(function (item) {
-                    return _inspect(item, depth) === first;
-                })) {
-                    return {
-                        v: first.trim() + '[]'
-                    };
-                } else {
-                    return {
-                        v: '[' + input.slice(0, maxKeys).map(function (item) {
-                            return _inspect(item, depth);
-                        }).join(', ') + (input.length >= maxKeys ? ', ...' : '') + ']'
-                    };
-                }
-            }();
-
-            if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-        } else {
-            return 'Array';
-        }
-    } else {
-        var keys = Object.keys(input);
-
-        if (!keys.length) {
-            if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-                return input.constructor.name;
-            } else {
-                return 'Object';
-            }
-        }
-
-        if (depth > maxDepth) return '{...}';
-        var indent = '  '.repeat(depth - 1);
-        var entries = keys.slice(0, maxKeys).map(function (key) {
-            return (/^([A-Z_$][A-Z0-9_$]*)$/i.test(key) ? key : JSON.stringify(key)) + ': ' + _inspect(input[key], depth) + ';';
-        }).join('\n  ' + indent);
-
-        if (keys.length >= maxKeys) {
-            entries += '\n  ' + indent + '...';
-        }
-
-        if (input.constructor && input.constructor.name && input.constructor.name !== 'Object') {
-            return input.constructor.name + ' {\n  ' + indent + entries + '\n' + indent + '}';
-        } else {
-            return '{\n  ' + indent + entries + '\n' + indent + '}';
-        }
-    }
+  return x;
 }
 //# sourceMappingURL=index.js.map
