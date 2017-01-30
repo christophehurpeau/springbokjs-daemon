@@ -498,8 +498,8 @@ babel-plugin-transform-exponentiation-operator@^6.22.0:
     babel-runtime "^6.22.0"
 
 babel-plugin-transform-export-default-name-forked@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-export-default-name-forked/-/babel-plugin-transform-export-default-name-forked-1.2.1.tgz#38a49dc64543088f7cce94c54c5d2a5b7852a5c9"
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-export-default-name-forked/-/babel-plugin-transform-export-default-name-forked-1.2.2.tgz#43efdd18b5c6f9cd0aa432165df3f90afad7b950"
   dependencies:
     lodash.camelcase "^4.3.0"
 
@@ -1778,8 +1778,8 @@ jodid25519@^1.0.0:
     jsbn "~0.1.0"
 
 js-tokens@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.0.tgz#a2f2a969caae142fb3cd56228358c89366957bd1"
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
 
 js-yaml@^3.5.1, js-yaml@^3.7.0:
   version "3.7.0"
