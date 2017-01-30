@@ -1,3 +1,7 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v1.5.0...v2.0.0) (2017-01-30)
+
+
 ### v1.5.0
 
 - [`4a59221`](https://github.com/christophehurpeau/springbokjs-daemon/commit/4a592214db5319f95342335a458c2951a67a2ec9) refactor: upgrade pob and add autorestart option (Christophe Hurpeau)
