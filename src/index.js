@@ -9,8 +9,8 @@ type OptionsType = {|
   displayName: ?string,
   command: ?string,
   args: ?Array<string | number>,
-  autorestart: ?boolean,
-  killTimeout: ?number,
+  autoRestart: ?boolean,
+  SIGTERMTimeout: ?number,
 |};
 
 export default ({
@@ -18,7 +18,7 @@ export default ({
   displayName,
   command = global.process.argv[0],
   args = [],
-  autorestart = false,
+  autoRestart = false,
   SIGTERMTimeout = 4000,
 }: OptionsType = {}) => {
   let process = null;
@@ -42,7 +42,7 @@ export default ({
         process.on('exit', (code, signal) => {
           logger.warn('Exited', { code, signal });
           process = null;
-          if (autorestart) {
+          if (autoRestart) {
             logger.debug('Autorestart');
             this.start().then(resolve, reject);
           } else {

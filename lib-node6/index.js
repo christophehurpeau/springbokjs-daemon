@@ -23,7 +23,7 @@ exports.default = ({
   displayName,
   command = global.process.argv[0],
   args = [],
-  autorestart = false,
+  autoRestart = false,
   SIGTERMTimeout = 4000
 } = {}) => {
   let process = null;
@@ -47,7 +47,7 @@ exports.default = ({
         process.on('exit', (code, signal) => {
           logger.warn('Exited', { code, signal });
           process = null;
-          if (autorestart) {
+          if (autoRestart) {
             logger.debug('Autorestart');
             this.start().then(resolve, reject);
           } else {

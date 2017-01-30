@@ -27,8 +27,8 @@ const OptionsType = _tcombForked2.default.interface({
   displayName: _tcombForked2.default.maybe(_tcombForked2.default.String),
   command: _tcombForked2.default.maybe(_tcombForked2.default.String),
   args: _tcombForked2.default.maybe(_tcombForked2.default.list(_tcombForked2.default.union([_tcombForked2.default.String, _tcombForked2.default.Number]))),
-  autorestart: _tcombForked2.default.maybe(_tcombForked2.default.Boolean),
-  killTimeout: _tcombForked2.default.maybe(_tcombForked2.default.Number)
+  autoRestart: _tcombForked2.default.maybe(_tcombForked2.default.Boolean),
+  SIGTERMTimeout: _tcombForked2.default.maybe(_tcombForked2.default.Number)
 }, {
   name: 'OptionsType',
   strict: true
@@ -39,7 +39,7 @@ exports.default = function index({
   displayName,
   command = global.process.argv[0],
   args = [],
-  autorestart = false,
+  autoRestart = false,
   SIGTERMTimeout = 4000
 } = {}) {
   _assert({
@@ -47,9 +47,9 @@ exports.default = function index({
     displayName,
     command,
     args,
-    autorestart,
+    autoRestart,
     SIGTERMTimeout
-  }, OptionsType, '{ key, displayName, command = global.process.argv[0], args = [], autorestart = false, SIGTERMTimeout = 4000 }');
+  }, OptionsType, '{ key, displayName, command = global.process.argv[0], args = [], autoRestart = false, SIGTERMTimeout = 4000 }');
 
   let process = null;
   let stopPromise = null;
@@ -72,7 +72,7 @@ exports.default = function index({
         process.on('exit', (code, signal) => {
           logger.warn('Exited', { code, signal });
           process = null;
-          if (autorestart) {
+          if (autoRestart) {
             logger.debug('Autorestart');
             this.start().then(resolve, reject);
           } else {
@@ -129,6 +129,12 @@ exports.default = function index({
 };
 
 function _assert(x, type, name) {
+  if (false) {
+    _tcombForked2.default.fail = function (message) {
+      console.warn(message);
+    };
+  }
+
   if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
