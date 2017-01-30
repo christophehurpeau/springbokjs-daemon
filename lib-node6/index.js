@@ -16,7 +16,7 @@ var _nightingaleConsole2 = _interopRequireDefault(_nightingaleConsole);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
+(0, _nightingale.addConfig)({ pattern: /^springbokjs-daemon/, handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
 exports.default = ({
   key,
@@ -40,7 +40,6 @@ exports.default = ({
       logger.info('Starting...');
       return new Promise((resolve, reject) => {
         process = (0, _child_process.spawn)(command, args, {
-          env: process.env,
           stdio: ['pipe', 'pipe', 'pipe', 'ipc']
         });
 

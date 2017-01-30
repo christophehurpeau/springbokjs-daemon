@@ -35,7 +35,6 @@ export default ({
       logger.info('Starting...');
       return new Promise((resolve, reject) => {
         process = spawn(command, args, {
-          env: process.env,
           stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
         });
 
