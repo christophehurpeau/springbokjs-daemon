@@ -62,17 +62,17 @@ exports.default = function index({
         throw new Error('Process already started');
       }
 
-      logger.info('Starting...');
+      logger.info('starting...');
       return new Promise((resolve, reject) => {
         process = (0, _child_process.spawn)(command, args, {
           stdio: ['pipe', 'pipe', 'pipe', 'ipc']
         });
 
         process.on('exit', (code, signal) => {
-          logger.warn('Exited', { code, signal });
+          logger.warn('exited', { code, signal });
           process = null;
           if (autoRestart) {
-            logger.debug('Autorestart');
+            logger.debug('autorestart');
             this.start().then(resolve, reject);
           } else {
             reject();
@@ -81,7 +81,7 @@ exports.default = function index({
 
         process.on('message', message => {
           if (message === 'ready') {
-            logger.info('Ready !');
+            logger.success('ready');
             resolve();
           } else if (message === 'restart') {
             this.restart();
@@ -95,19 +95,19 @@ exports.default = function index({
     stop() {
       if (!process) return Promise.resolve(stopPromise);
 
-      logger.info('Stopping...');
+      logger.info('stopping...');
       return stopPromise = new Promise(resolve => {
         const runningProcess = process;
         process = null;
 
         const killTimeout = setTimeout(() => {
-          logger.warn('Timeout: sending SIGKILL...');
+          logger.warn('timeout: sending SIGKILL...');
           runningProcess.kill('SIGKILL');
         }, SIGTERMTimeout);
 
         runningProcess.removeAllListeners();
         runningProcess.once('exit', (code, signal) => {
-          logger.info('Stopped', { code, signal });
+          logger.info('stopped', { code, signal });
           if (killTimeout) clearTimeout(killTimeout);
           stopPromise = null;
           resolve();
@@ -117,7 +117,7 @@ exports.default = function index({
     },
 
     restart() {
-      logger.info('Restarting...');
+      logger.info('restarting...');
       return this.stop().then(() => this.start());
     },
 
