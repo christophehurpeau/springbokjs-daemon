@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 import Logger, { addConfig, levels } from 'nightingale/src';
 import ConsoleLogger from 'nightingale-console/src';
 
-addConfig({ key: 'springbokjs-daemon', handler: new ConsoleLogger(levels.INFO) });
+addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(levels.INFO) });
 
 type OptionsType = {|
   key: ?string,
