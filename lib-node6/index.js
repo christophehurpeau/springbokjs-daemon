@@ -31,69 +31,75 @@ exports.default = ({
   const logger = new _nightingale2.default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
   logger.info('created', { command, args });
 
+  const start = () => {
+    if (process) {
+      throw new Error('Process already started');
+    }
+
+    return new Promise((resolve, reject) => {
+      process = (0, _child_process.spawn)(command, args, {
+        stdio: ['inherit', 'inherit', 'inherit', 'ipc']
+      });
+
+      process.on('exit', (code, signal) => {
+        logger.warn('exited', { code, signal });
+        process = null;
+        if (autoRestart) {
+          logger.debug('autorestart');
+          undefined.start().then(resolve, reject);
+        } else {
+          reject();
+        }
+      });
+
+      process.on('message', message => {
+        if (message === 'ready') {
+          logger.success('ready');
+          resolve();
+        } else if (message === 'restart') {
+          undefined.restart();
+        } else {
+          logger.info('message', { message });
+        }
+      });
+    });
+  };
+
+  const stop = () => stopPromise = new Promise(resolve => {
+    const runningProcess = process;
+    process = null;
+
+    const killTimeout = setTimeout(() => {
+      logger.warn('timeout: sending SIGKILL...');
+      runningProcess.kill('SIGKILL');
+    }, SIGTERMTimeout);
+
+    runningProcess.removeAllListeners();
+    runningProcess.once('exit', (code, signal) => {
+      logger.info('stopped', { code, signal });
+      if (killTimeout) clearTimeout(killTimeout);
+      stopPromise = null;
+      resolve();
+    });
+    runningProcess.kill();
+  });
+
   return {
     start() {
-      if (process) {
-        throw new Error('Process already started');
-      }
-
       logger.info('starting...');
-      return new Promise((resolve, reject) => {
-        process = (0, _child_process.spawn)(command, args, {
-          stdio: ['inherit', 'inherit', 'inherit', 'ipc']
-        });
-
-        process.on('exit', (code, signal) => {
-          logger.warn('exited', { code, signal });
-          process = null;
-          if (autoRestart) {
-            logger.debug('autorestart');
-            this.start().then(resolve, reject);
-          } else {
-            reject();
-          }
-        });
-
-        process.on('message', message => {
-          if (message === 'ready') {
-            logger.success('ready');
-            resolve();
-          } else if (message === 'restart') {
-            this.restart();
-          } else {
-            logger.info('message', { message });
-          }
-        });
-      });
+      return start();
     },
 
     stop() {
       if (!process) return Promise.resolve(stopPromise);
 
       logger.info('stopping...');
-      return stopPromise = new Promise(resolve => {
-        const runningProcess = process;
-        process = null;
-
-        const killTimeout = setTimeout(() => {
-          logger.warn('timeout: sending SIGKILL...');
-          runningProcess.kill('SIGKILL');
-        }, SIGTERMTimeout);
-
-        runningProcess.removeAllListeners();
-        runningProcess.once('exit', (code, signal) => {
-          logger.info('stopped', { code, signal });
-          if (killTimeout) clearTimeout(killTimeout);
-          stopPromise = null;
-          resolve();
-        });
-        runningProcess.kill();
-      });
+      return stop();
     },
 
     restart() {
       logger.info('restarting...');
-      return this.stop().then(() => this.start());
+      return stop().then(() => start());
     },
 
     sendSIGUSR2() {
