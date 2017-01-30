@@ -71,7 +71,7 @@ exports.default = function index({
         process = null;
         if (autoRestart) {
           logger.debug('autorestart');
-          undefined.start().then(resolve, reject);
+          start().then(resolve, reject);
         } else {
           reject();
         }

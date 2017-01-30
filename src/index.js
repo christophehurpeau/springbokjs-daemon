@@ -41,7 +41,7 @@ export default ({
         process = null;
         if (autoRestart) {
           logger.debug('autorestart');
-          this.start().then(resolve, reject);
+          start().then(resolve, reject);
         } else {
           reject();
         }
