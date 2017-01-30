@@ -1,6 +1,11 @@
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v1.5.0...v2.0.0) (2017-01-30)
 
+BREAKING CHANGES:
+- new api
+- drop support for node < 6
+- drop support nightingale < 6
+
 
 ### v1.5.0
 
