@@ -31,6 +31,25 @@ exports.default = ({
   const logger = new _nightingale2.default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
   logger.info('created', { command, args });
 
+  const stop = () => stopPromise = new Promise(resolve => {
+    const runningProcess = process;
+    process = null;
+
+    const killTimeout = setTimeout(() => {
+      logger.warn('timeout: sending SIGKILL...');
+      runningProcess.kill('SIGKILL');
+    }, SIGTERMTimeout);
+
+    runningProcess.removeAllListeners();
+    runningProcess.once('exit', (code, signal) => {
+      logger.info('stopped', { code, signal });
+      if (killTimeout) clearTimeout(killTimeout);
+      stopPromise = null;
+      resolve();
+    });
+    runningProcess.kill();
+  });
+
   const start = () => {
     if (process) {
       throw new Error('Process already started');
@@ -57,32 +76,14 @@ exports.default = ({
           logger.success('ready');
           resolve();
         } else if (message === 'restart') {
-          undefined.restart();
+          logger.info('restarting...');
+          stop().then(() => start());
         } else {
           logger.info('message', { message });
         }
       });
     });
   };
-
-  const stop = () => stopPromise = new Promise(resolve => {
-    const runningProcess = process;
-    process = null;
-
-    const killTimeout = setTimeout(() => {
-      logger.warn('timeout: sending SIGKILL...');
-      runningProcess.kill('SIGKILL');
-    }, SIGTERMTimeout);
-
-    runningProcess.removeAllListeners();
-    runningProcess.once('exit', (code, signal) => {
-      logger.info('stopped', { code, signal });
-      if (killTimeout) clearTimeout(killTimeout);
-      stopPromise = null;
-      resolve();
-    });
-    runningProcess.kill();
-  });
 
   return {
     start() {
