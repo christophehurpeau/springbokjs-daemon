@@ -65,7 +65,7 @@ exports.default = function index({
       logger.info('starting...');
       return new Promise((resolve, reject) => {
         process = (0, _child_process.spawn)(command, args, {
-          stdio: ['pipe', 'pipe', 'pipe', 'ipc']
+          stdio: ['inherit', 'inherit', 'inherit', 'ipc']
         });
 
         process.on('exit', (code, signal) => {

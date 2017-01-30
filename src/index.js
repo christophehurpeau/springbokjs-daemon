@@ -35,7 +35,7 @@ export default ({
       logger.info('starting...');
       return new Promise((resolve, reject) => {
         process = spawn(command, args, {
-          stdio: ['pipe', 'pipe', 'pipe', 'ipc'],
+          stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
         });
 
         process.on('exit', (code, signal) => {
