@@ -3,16 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.node = undefined;
-exports.default = createDaemon;
 
 var _tcombForked = require('tcomb-forked');
 
 var _tcombForked2 = _interopRequireDefault(_tcombForked);
 
 var _child_process = require('child_process');
-
-var _events = require('events');
 
 var _nightingale = require('nightingale');
 
@@ -27,111 +23,118 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
 const OptionsType = _tcombForked2.default.interface({
-  autorestart: _tcombForked2.default.maybe(_tcombForked2.default.Boolean)
+  key: _tcombForked2.default.maybe(_tcombForked2.default.String),
+  displayName: _tcombForked2.default.maybe(_tcombForked2.default.String),
+  command: _tcombForked2.default.maybe(_tcombForked2.default.String),
+  args: _tcombForked2.default.maybe(_tcombForked2.default.list(_tcombForked2.default.union([_tcombForked2.default.String, _tcombForked2.default.Number]))),
+  autorestart: _tcombForked2.default.maybe(_tcombForked2.default.Boolean),
+  killTimeout: _tcombForked2.default.maybe(_tcombForked2.default.Number)
 }, {
   name: 'OptionsType',
   strict: true
 });
 
-class SpringbokDaemon extends _events.EventEmitter {
-  constructor(command, args, { autorestart } = {}) {
-    _assert({
-      autorestart
-    }, OptionsType, '{ autorestart }');
+exports.default = function index({
+  key,
+  displayName,
+  command = global.process.argv[0],
+  args = [],
+  autorestart = false,
+  SIGTERMTimeout = 4000
+} = {}) {
+  _assert({
+    key,
+    displayName,
+    command,
+    args,
+    autorestart,
+    SIGTERMTimeout
+  }, OptionsType, '{ key, displayName, command = global.process.argv[0], args = [], autorestart = false, SIGTERMTimeout = 4000 }');
 
-    super();
-    this.command = command;
-    this.args = args;
-    this.process = null;
-    this.stopPromise = null;
-    this.logger = new _nightingale2.default('springbokjs-daemon');
-    this.logger.info(command + (args && ` ${ args.join(' ') }`));
-    this.autorestart = autorestart || false;
-  }
+  let process = null;
+  let stopPromise = null;
+  const logger = new _nightingale2.default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
+  logger.info('created', { command, args });
 
-  start() {
-    if (this.process) {
-      throw new Error('Process already started');
-    }
-
-    this.logger.info('Starting...');
-
-    this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
-    this.process.stdout.addListener('data', data => {
-      process.stdout.write(data);
-      this.emit('stdout', data);
-    });
-    this.process.stderr.addListener('data', data => {
-      process.stderr.write(data);
-      this.emit('stderr', data);
-    });
-
-    this.process.addListener('exit', (code, signal) => {
-      this.logger.warn('Exited', { code, signal });
-      this.process = null;
-      if (this.autorestart) {
-        this.logger.debug('Autorestart');
-        this.start();
+  return {
+    start() {
+      if (process) {
+        throw new Error('Process already started');
       }
-    });
-  }
 
-  stop() {
-    if (!this.process) return Promise.resolve(this.stopPromise);
+      logger.info('Starting...');
+      return new Promise((resolve, reject) => {
+        process = (0, _child_process.spawn)(command, args, {
+          env: process.env,
+          stdio: ['pipe', 'pipe', 'pipe', 'ipc']
+        });
 
-    this.logger.info('Stopping...');
-    return this.stopPromise = new Promise(resolve => {
-      const process = this.process;
-      this.process = null;
+        process.on('exit', (code, signal) => {
+          logger.warn('Exited', { code, signal });
+          process = null;
+          if (autorestart) {
+            logger.debug('Autorestart');
+            this.start().then(resolve, reject);
+          } else {
+            reject();
+          }
+        });
 
-      const killTimeout = setTimeout(() => {
-        this.logger.warn('Timeout: sending SIGKILL...');
-        process.kill('SIGKILL');
-      }, 4000);
-
-      process.removeAllListeners();
-      process.addListener('exit', (code, signal) => {
-        this.logger.info('Stopped', { code, signal });
-        if (killTimeout) clearTimeout(killTimeout);
-        this.stopPromise = null;
-        resolve();
+        process.on('message', message => {
+          if (message === 'ready') {
+            logger.info('Ready !');
+            resolve();
+          } else if (message === 'restart') {
+            this.restart();
+          } else {
+            logger.info('message', { message });
+          }
+        });
       });
-      process.kill();
-    });
-  }
+    },
 
-  restart() {
-    this.logger.info('Restarting...');
-    return this.stop().then(() => this.start());
-  }
+    stop() {
+      if (!process) return Promise.resolve(stopPromise);
 
-  restartTimeout(timeout) {
-    _assert(timeout, _tcombForked2.default.Number, 'timeout');
+      logger.info('Stopping...');
+      return stopPromise = new Promise(resolve => {
+        const runningProcess = process;
+        process = null;
 
-    return setTimeout(() => this.restart(), timeout);
-  }
-}
+        const killTimeout = setTimeout(() => {
+          logger.warn('Timeout: sending SIGKILL...');
+          runningProcess.kill('SIGKILL');
+        }, SIGTERMTimeout);
 
-function createDaemon(command, args) {
-  return new SpringbokDaemon(command, args);
-}
+        runningProcess.removeAllListeners();
+        runningProcess.once('exit', (code, signal) => {
+          logger.info('Stopped', { code, signal });
+          if (killTimeout) clearTimeout(killTimeout);
+          stopPromise = null;
+          resolve();
+        });
+        runningProcess.kill();
+      });
+    },
 
-const node = exports.node = args => createDaemon('node', args);
-createDaemon.node = node;
+    restart() {
+      logger.info('Restarting...');
+      return this.stop().then(() => this.start());
+    },
+
+    sendSIGUSR2() {
+      process.kill('SIGUSR2');
+    }
+  };
+};
 
 function _assert(x, type, name) {
-  function message() {
-    return 'Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')';
-  }
-
-  if (_tcombForked2.default.isType(type)) {
+  if (_tcombForked2.default.isType(type) && type.meta.kind !== 'struct') {
     if (!type.is(x)) {
       type(x, [name + ': ' + _tcombForked2.default.getTypeName(type)]);
-
-      _tcombForked2.default.fail(message());
     }
   } else if (!(x instanceof type)) {
-    _tcombForked2.default.fail(message());
+    _tcombForked2.default.fail('Invalid value ' + _tcombForked2.default.stringify(x) + ' supplied to ' + name + ' (expected a ' + _tcombForked2.default.getTypeName(type) + ')');
   }
 
   return x;

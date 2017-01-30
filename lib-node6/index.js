@@ -3,12 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.node = undefined;
-exports.default = createDaemon;
 
 var _child_process = require('child_process');
-
-var _events = require('events');
 
 var _nightingale = require('nightingale');
 
@@ -22,83 +18,88 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _nightingale.addConfig)({ key: 'springbokjs-daemon', handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
-class SpringbokDaemon extends _events.EventEmitter {
-  constructor(command, args, { autorestart } = {}) {
-    super();
-    this.command = command;
-    this.args = args;
-    this.process = null;
-    this.stopPromise = null;
-    this.logger = new _nightingale2.default('springbokjs-daemon');
-    this.logger.info(command + (args && ` ${ args.join(' ') }`));
-    this.autorestart = autorestart || false;
-  }
+exports.default = ({
+  key,
+  displayName,
+  command = global.process.argv[0],
+  args = [],
+  autorestart = false,
+  SIGTERMTimeout = 4000
+} = {}) => {
+  let process = null;
+  let stopPromise = null;
+  const logger = new _nightingale2.default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
+  logger.info('created', { command, args });
 
-  start() {
-    if (this.process) {
-      throw new Error('Process already started');
-    }
-
-    this.logger.info('Starting...');
-
-    this.process = (0, _child_process.spawn)(this.command, this.args, { env: process.env });
-    this.process.stdout.addListener('data', data => {
-      process.stdout.write(data);
-      this.emit('stdout', data);
-    });
-    this.process.stderr.addListener('data', data => {
-      process.stderr.write(data);
-      this.emit('stderr', data);
-    });
-
-    this.process.addListener('exit', (code, signal) => {
-      this.logger.warn('Exited', { code, signal });
-      this.process = null;
-      if (this.autorestart) {
-        this.logger.debug('Autorestart');
-        this.start();
+  return {
+    start() {
+      if (process) {
+        throw new Error('Process already started');
       }
-    });
-  }
 
-  stop() {
-    if (!this.process) return Promise.resolve(this.stopPromise);
+      logger.info('Starting...');
+      return new Promise((resolve, reject) => {
+        process = (0, _child_process.spawn)(command, args, {
+          env: process.env,
+          stdio: ['pipe', 'pipe', 'pipe', 'ipc']
+        });
 
-    this.logger.info('Stopping...');
-    return this.stopPromise = new Promise(resolve => {
-      const process = this.process;
-      this.process = null;
+        process.on('exit', (code, signal) => {
+          logger.warn('Exited', { code, signal });
+          process = null;
+          if (autorestart) {
+            logger.debug('Autorestart');
+            this.start().then(resolve, reject);
+          } else {
+            reject();
+          }
+        });
 
-      const killTimeout = setTimeout(() => {
-        this.logger.warn('Timeout: sending SIGKILL...');
-        process.kill('SIGKILL');
-      }, 4000);
-
-      process.removeAllListeners();
-      process.addListener('exit', (code, signal) => {
-        this.logger.info('Stopped', { code, signal });
-        if (killTimeout) clearTimeout(killTimeout);
-        this.stopPromise = null;
-        resolve();
+        process.on('message', message => {
+          if (message === 'ready') {
+            logger.info('Ready !');
+            resolve();
+          } else if (message === 'restart') {
+            this.restart();
+          } else {
+            logger.info('message', { message });
+          }
+        });
       });
-      process.kill();
-    });
-  }
+    },
 
-  restart() {
-    this.logger.info('Restarting...');
-    return this.stop().then(() => this.start());
-  }
+    stop() {
+      if (!process) return Promise.resolve(stopPromise);
 
-  restartTimeout(timeout) {
-    return setTimeout(() => this.restart(), timeout);
-  }
-}
+      logger.info('Stopping...');
+      return stopPromise = new Promise(resolve => {
+        const runningProcess = process;
+        process = null;
 
-function createDaemon(command, args) {
-  return new SpringbokDaemon(command, args);
-}
+        const killTimeout = setTimeout(() => {
+          logger.warn('Timeout: sending SIGKILL...');
+          runningProcess.kill('SIGKILL');
+        }, SIGTERMTimeout);
 
-const node = exports.node = args => createDaemon('node', args);
-createDaemon.node = node;
+        runningProcess.removeAllListeners();
+        runningProcess.once('exit', (code, signal) => {
+          logger.info('Stopped', { code, signal });
+          if (killTimeout) clearTimeout(killTimeout);
+          stopPromise = null;
+          resolve();
+        });
+        runningProcess.kill();
+      });
+    },
+
+    restart() {
+      logger.info('Restarting...');
+      return this.stop().then(() => this.start());
+    },
+
+    sendSIGUSR2() {
+      process.kill('SIGUSR2');
+    }
+  };
+};
 //# sourceMappingURL=index.js.map
