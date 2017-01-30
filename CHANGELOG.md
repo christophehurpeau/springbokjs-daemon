@@ -1,3 +1,22 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.0.0...v2.0.1) (2017-01-30)
+
+
+### Bug Fixes
+
+* autorestart ([532727d](https://github.com/christophehurpeau/springbokjs-daemon/commit/532727d))
+* child message restart ([984adc8](https://github.com/christophehurpeau/springbokjs-daemon/commit/984adc8))
+* env ([b595fbb](https://github.com/christophehurpeau/springbokjs-daemon/commit/b595fbb))
+* nightingale config ([5d5fec7](https://github.com/christophehurpeau/springbokjs-daemon/commit/5d5fec7))
+* rename autoRestart and fix SIGTERMTimeout type ([9e98dc2](https://github.com/christophehurpeau/springbokjs-daemon/commit/9e98dc2))
+* spawn stdio use inherit ([27730ad](https://github.com/christophehurpeau/springbokjs-daemon/commit/27730ad))
+
+### Features
+
+* logger ready success and use lowercase ([b952710](https://github.com/christophehurpeau/springbokjs-daemon/commit/b952710))
+* reduce log when restarting ([9cfe5b1](https://github.com/christophehurpeau/springbokjs-daemon/commit/9cfe5b1))
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v1.5.0...v2.0.0) (2017-01-30)
 
