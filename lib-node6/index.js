@@ -31,24 +31,28 @@ exports.default = ({
   const logger = new _nightingale2.default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
   logger.info('created', { command, args });
 
-  const stop = () => stopPromise = new Promise(resolve => {
-    const runningProcess = process;
-    process = null;
+  const stop = () => {
+    if (!process) return Promise.resolve(stopPromise);
 
-    const killTimeout = setTimeout(() => {
-      logger.warn('timeout: sending SIGKILL...');
-      runningProcess.kill('SIGKILL');
-    }, SIGTERMTimeout);
+    stopPromise = new Promise(resolve => {
+      const runningProcess = process;
+      process = null;
 
-    runningProcess.removeAllListeners();
-    runningProcess.once('exit', (code, signal) => {
-      logger.info('stopped', { code, signal });
-      if (killTimeout) clearTimeout(killTimeout);
-      stopPromise = null;
-      resolve();
+      const killTimeout = setTimeout(() => {
+        logger.warn('timeout: sending SIGKILL...');
+        runningProcess.kill('SIGKILL');
+      }, SIGTERMTimeout);
+
+      runningProcess.removeAllListeners();
+      runningProcess.once('exit', (code, signal) => {
+        logger.info('stopped', { code, signal });
+        if (killTimeout) clearTimeout(killTimeout);
+        stopPromise = null;
+        resolve();
+      });
+      runningProcess.kill();
     });
-    runningProcess.kill();
-  });
+  };
 
   const start = () => {
     if (process) {
@@ -92,9 +96,7 @@ exports.default = ({
     },
 
     stop() {
-      if (!process) return Promise.resolve(stopPromise);
-
-      logger.info('stopping...');
+      if (!process) logger.info('stopping...');
       return stop();
     },
 

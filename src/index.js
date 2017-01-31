@@ -26,7 +26,9 @@ export default ({
   const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
   logger.info('created', { command, args });
 
-  const stop = () => (
+  const stop = () => {
+    if (!process) return Promise.resolve(stopPromise);
+
     stopPromise = new Promise(resolve => {
       const runningProcess = process;
       process = null;
@@ -44,8 +46,8 @@ export default ({
         resolve();
       });
       runningProcess.kill();
-    })
-  );
+    });
+  };
 
   const start = () => {
     if (process) {
@@ -89,9 +91,7 @@ export default ({
     },
 
     stop() {
-      if (!process) return Promise.resolve(stopPromise);
-
-      logger.info('stopping...');
+      if (!process) logger.info('stopping...');
       return stop();
     },
 
