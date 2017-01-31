@@ -1,3 +1,12 @@
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.0.2...v2.0.3) (2017-01-31)
+
+
+### Bug Fixes
+
+* missing stop return Promise ([f0fb991](https://github.com/christophehurpeau/springbokjs-daemon/commit/f0fb991))
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.0.1...v2.0.2) (2017-01-31)
 
