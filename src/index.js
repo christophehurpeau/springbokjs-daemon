@@ -29,7 +29,7 @@ export default ({
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
 
-    stopPromise = new Promise(resolve => {
+    return stopPromise = new Promise(resolve => {
       const runningProcess = process;
       process = null;
 
