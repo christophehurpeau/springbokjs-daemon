@@ -1,3 +1,12 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.0.1...v2.0.2) (2017-01-31)
+
+
+### Bug Fixes
+
+* stop called but not started ([df12161](https://github.com/christophehurpeau/springbokjs-daemon/commit/df12161))
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.0.0...v2.0.1) (2017-01-30)
 
