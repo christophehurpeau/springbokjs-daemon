@@ -9,6 +9,7 @@ type OptionsType = {|
   displayName: ?string,
   command: ?string,
   args: ?Array<string | number>,
+  cwd: ?string,
   autoRestart: ?boolean,
   SIGTERMTimeout: ?number,
 |};
@@ -18,6 +19,7 @@ export default ({
   displayName,
   command = global.process.argv[0],
   args = [],
+  cwd,
   autoRestart = false,
   SIGTERMTimeout = 4000,
 }: OptionsType = {}) => {
@@ -56,6 +58,7 @@ export default ({
 
     return new Promise((resolve, reject) => {
       process = spawn(command, args, {
+        cwd,
         stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
       });
 

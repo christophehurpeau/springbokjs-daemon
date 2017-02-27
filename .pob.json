@@ -1,6 +1,7 @@
 {
   "envs": [
-    "node6"
+    "node6",
+    "node7"
   ],
   "react": false,
   "documentation": false,
