@@ -42,12 +42,12 @@
     "eslint-config-pob": "^11.1.0",
     "eslint-plugin-babel": "^4.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "flow-runtime": "^0.6.0",
+    "flow-runtime": "^0.6.1",
     "jsdoc": "^3.4.1",
     "komet": "^0.1.4",
     "komet-karma": "^0.2.5",
     "minami": "^1.1.1",
-    "pob-babel": "^16.0.0",
+    "pob-babel": "^16.1.0",
     "pob-release": "^3.1.0"
   }
 }
