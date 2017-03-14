@@ -1,5 +1,7 @@
 # springbokjs-daemon [![NPM version][npm-image]][npm-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/christophehurpeau/springbokjs-daemon.svg)](https://greenkeeper.io/)
+
 Springbok Daemon, usable with Gulp and Grunt to restart your server on watch
 
 [![Dependency ci Status][dependencyci-image]][dependencyci-url]
