@@ -24,18 +24,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('key', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('displayName', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('command', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('args', _flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())))), _flowRuntime2.default.property('cwd', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('autoRestart', _flowRuntime2.default.nullable(_flowRuntime2.default.boolean())), _flowRuntime2.default.property('SIGTERMTimeout', _flowRuntime2.default.nullable(_flowRuntime2.default.number()))));
 
-exports.default = function index({
-  key,
-  displayName,
-  command = global.process.argv[0],
-  args = [],
-  cwd,
-  autoRestart = false,
-  SIGTERMTimeout = 4000
-} = {}) {
-  if (arguments[0] !== undefined) {
-    _flowRuntime2.default.param('arguments[0]', OptionsType).assert(arguments[0]);
-  }
+exports.default = function index(_arg = {}) {
+  let {
+    key,
+    displayName,
+    command = global.process.argv[0],
+    args = [],
+    cwd,
+    autoRestart = false,
+    SIGTERMTimeout = 4000
+  } = OptionsType.assert(_arg);
 
   let process = null;
   let stopPromise = null;
