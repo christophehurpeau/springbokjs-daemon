@@ -1,3 +1,12 @@
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.1.0...v2.1.1) (2017-06-08)
+
+
+### Bug Fixes
+
+* update dependencies and support node 8 ([574ba13](https://github.com/christophehurpeau/springbokjs-daemon/commit/574ba13))
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.0.3...v2.1.0) (2017-02-27)
 
