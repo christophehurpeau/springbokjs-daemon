@@ -1,4 +1,5 @@
 import { spawn } from 'child_process';
+import gracefulKill from 'graceful-kill';
 import Logger, { addConfig, levels } from 'nightingale/src';
 import ConsoleLogger from 'nightingale-console/src';
 
@@ -31,23 +32,12 @@ export default ({
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
 
-    return stopPromise = new Promise((resolve) => {
-      const runningProcess = process;
-      process = null;
+    const runningProcess = process;
+    process = null;
 
-      const killTimeout = setTimeout(() => {
-        logger.warn('timeout: sending SIGKILL...');
-        runningProcess.kill('SIGKILL');
-      }, SIGTERMTimeout);
-
-      runningProcess.removeAllListeners();
-      runningProcess.once('exit', (code, signal) => {
-        logger.info('stopped', { code, signal });
-        if (killTimeout) clearTimeout(killTimeout);
-        stopPromise = null;
-        resolve();
-      });
-      runningProcess.kill();
+    runningProcess.removeAllListeners();
+    return stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
+      stopPromise = null;
     });
   };
 
