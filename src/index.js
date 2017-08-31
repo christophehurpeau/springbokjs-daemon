@@ -6,24 +6,26 @@ import ConsoleLogger from 'nightingale-console/src';
 addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(levels.INFO) });
 
 type OptionsType = {|
-  key: ?string,
-  displayName: ?string,
-  command: ?string,
-  args: ?Array<string | number>,
-  cwd: ?string,
-  autoRestart: ?boolean,
-  SIGTERMTimeout: ?number,
+  key?: ?string,
+  displayName?: ?string,
+  command?: string,
+  args?: Array<string | number>,
+  cwd?: string,
+  autoRestart?: boolean,
+  SIGTERMTimeout?: number,
 |};
 
-export default ({
-  key,
-  displayName,
-  command = global.process.argv[0],
-  args = [],
-  cwd,
-  autoRestart = false,
-  SIGTERMTimeout = 4000,
-}: OptionsType = {}) => {
+export default (
+  {
+    key,
+    displayName,
+    command = global.process.argv[0],
+    args = [],
+    cwd,
+    autoRestart = false,
+    SIGTERMTimeout = 4000,
+  }: ?OptionsType = {},
+) => {
   let process = null;
   let stopPromise = null;
   const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
@@ -36,9 +38,9 @@ export default ({
     process = null;
 
     runningProcess.removeAllListeners();
-    return stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
+    return (stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
       stopPromise = null;
-    });
+    }));
   };
 
   const start = () => {
@@ -63,7 +65,7 @@ export default ({
         }
       });
 
-      process.on('message', (message) => {
+      process.on('message', message => {
         if (message === 'ready') {
           logger.success('ready');
           resolve();

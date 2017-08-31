@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _child_process = require('child_process');
 
+var _gracefulKill = require('graceful-kill');
+
+var _gracefulKill2 = _interopRequireDefault(_gracefulKill);
+
 var _nightingale = require('nightingale');
 
 var _nightingale2 = _interopRequireDefault(_nightingale);
@@ -35,23 +39,12 @@ exports.default = ({
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
 
-    return stopPromise = new Promise(resolve => {
-      const runningProcess = process;
-      process = null;
+    const runningProcess = process;
+    process = null;
 
-      const killTimeout = setTimeout(() => {
-        logger.warn('timeout: sending SIGKILL...');
-        runningProcess.kill('SIGKILL');
-      }, SIGTERMTimeout);
-
-      runningProcess.removeAllListeners();
-      runningProcess.once('exit', (code, signal) => {
-        logger.info('stopped', { code, signal });
-        if (killTimeout) clearTimeout(killTimeout);
-        stopPromise = null;
-        resolve();
-      });
-      runningProcess.kill();
+    runningProcess.removeAllListeners();
+    return stopPromise = (0, _gracefulKill2.default)(runningProcess, SIGTERMTimeout).then(() => {
+      stopPromise = null;
     });
   };
 

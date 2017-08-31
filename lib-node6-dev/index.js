@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _child_process = require('child_process');
 
+var _gracefulKill = require('graceful-kill');
+
+var _gracefulKill2 = _interopRequireDefault(_gracefulKill);
+
 var _nightingale = require('nightingale');
 
 var _nightingale2 = _interopRequireDefault(_nightingale);
@@ -22,7 +26,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _nightingale.addConfig)({ pattern: /^springbokjs-daemon/, handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
-const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('key', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('displayName', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('command', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('args', _flowRuntime2.default.nullable(_flowRuntime2.default.array(_flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())))), _flowRuntime2.default.property('cwd', _flowRuntime2.default.nullable(_flowRuntime2.default.string())), _flowRuntime2.default.property('autoRestart', _flowRuntime2.default.nullable(_flowRuntime2.default.boolean())), _flowRuntime2.default.property('SIGTERMTimeout', _flowRuntime2.default.nullable(_flowRuntime2.default.number()))));
+const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('key', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('displayName', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('command', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('args', _flowRuntime2.default.array(_flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())), true), _flowRuntime2.default.property('cwd', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('autoRestart', _flowRuntime2.default.boolean(), true), _flowRuntime2.default.property('SIGTERMTimeout', _flowRuntime2.default.number(), true)));
 
 exports.default = function index(_arg = {}) {
   let {
@@ -33,7 +37,7 @@ exports.default = function index(_arg = {}) {
     cwd,
     autoRestart = false,
     SIGTERMTimeout = 4000
-  } = OptionsType.assert(_arg);
+  } = _flowRuntime2.default.nullable(OptionsType).assert(_arg);
 
   let process = null;
   let stopPromise = null;
@@ -43,23 +47,12 @@ exports.default = function index(_arg = {}) {
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
 
-    return stopPromise = new Promise(resolve => {
-      const runningProcess = process;
-      process = null;
+    const runningProcess = process;
+    process = null;
 
-      const killTimeout = setTimeout(() => {
-        logger.warn('timeout: sending SIGKILL...');
-        runningProcess.kill('SIGKILL');
-      }, SIGTERMTimeout);
-
-      runningProcess.removeAllListeners();
-      runningProcess.once('exit', (code, signal) => {
-        logger.info('stopped', { code, signal });
-        if (killTimeout) clearTimeout(killTimeout);
-        stopPromise = null;
-        resolve();
-      });
-      runningProcess.kill();
+    runningProcess.removeAllListeners();
+    return stopPromise = (0, _gracefulKill2.default)(runningProcess, SIGTERMTimeout).then(() => {
+      stopPromise = null;
     });
   };
 
