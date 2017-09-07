@@ -48,7 +48,8 @@
     "graceful-kill": "^1.0.1",
     "nightingale": "^6.2.1",
     "nightingale-console": "^2.5.1",
-    "nightingale-logger": "^3.4.0"
+    "nightingale-logger": "^3.4.0",
+    "split": "^1.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

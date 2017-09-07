@@ -1,5 +1,6 @@
 import { spawn } from 'child_process';
 import gracefulKill from 'graceful-kill';
+import split from 'split';
 import Logger, { addConfig, levels } from 'nightingale/src';
 import ConsoleLogger from 'nightingale-console/src';
 
@@ -8,6 +9,7 @@ addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(levels.IN
 type OptionsType = {|
   key?: ?string,
   displayName?: ?string,
+  prefixStdout?: ?boolean,
   command?: string,
   args?: Array<string | number>,
   cwd?: string,
@@ -19,6 +21,7 @@ export default (
   {
     key,
     displayName,
+    prefixStdout = false,
     command = global.process.argv[0],
     args = [],
     cwd,
@@ -49,10 +52,31 @@ export default (
     }
 
     return new Promise((resolve, reject) => {
+      const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
       process = spawn(command, args, {
         cwd,
-        stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
+        stdio: ['ignore', stdoutOption, stdoutOption, 'ipc'],
       });
+
+      if (prefixStdout) {
+        const logStreamInLogger = (stream, loggerType) => {
+          stream.pipe(split()).on('data', line => {
+            if (line.length === 0) return;
+            if (line.startsWith('{') && line.endsWith('}')) {
+              try {
+                const json = JSON.parse(line);
+                logger[loggerType]('', json);
+                return;
+              } catch (err) {}
+            }
+
+            logger[loggerType](line);
+          });
+        };
+
+        logStreamInLogger(process.stdout, 'info');
+        logStreamInLogger(process.stderr, 'error');
+      }
 
       process.on('exit', (code, signal) => {
         logger.warn('exited', { code, signal });

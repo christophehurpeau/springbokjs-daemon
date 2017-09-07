@@ -10,6 +10,10 @@ var _gracefulKill = require('graceful-kill');
 
 var _gracefulKill2 = _interopRequireDefault(_gracefulKill);
 
+var _split = require('split');
+
+var _split2 = _interopRequireDefault(_split);
+
 var _nightingale = require('nightingale');
 
 var _nightingale2 = _interopRequireDefault(_nightingale);
@@ -25,6 +29,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = ({
   key,
   displayName,
+  prefixStdout = false,
   command = global.process.argv[0],
   args = [],
   cwd,
@@ -54,10 +59,31 @@ exports.default = ({
     }
 
     return new Promise((resolve, reject) => {
+      const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
       process = (0, _child_process.spawn)(command, args, {
         cwd,
-        stdio: ['inherit', 'inherit', 'inherit', 'ipc']
+        stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
       });
+
+      if (prefixStdout) {
+        const logStreamInLogger = (stream, loggerType) => {
+          stream.pipe((0, _split2.default)()).on('data', line => {
+            if (line.length === 0) return;
+            if (line.startsWith('{') && line.endsWith('}')) {
+              try {
+                const json = JSON.parse(line);
+                logger[loggerType]('', json);
+                return;
+              } catch (err) {}
+            }
+
+            logger[loggerType](line);
+          });
+        };
+
+        logStreamInLogger(process.stdout, 'info');
+        logStreamInLogger(process.stderr, 'error');
+      }
 
       process.on('exit', (code, signal) => {
         logger.warn('exited', { code, signal });

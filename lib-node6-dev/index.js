@@ -10,6 +10,10 @@ var _gracefulKill = require('graceful-kill');
 
 var _gracefulKill2 = _interopRequireDefault(_gracefulKill);
 
+var _split = require('split');
+
+var _split2 = _interopRequireDefault(_split);
+
 var _nightingale = require('nightingale');
 
 var _nightingale2 = _interopRequireDefault(_nightingale);
@@ -26,12 +30,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _nightingale.addConfig)({ pattern: /^springbokjs-daemon/, handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
 
-const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('key', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('displayName', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('command', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('args', _flowRuntime2.default.array(_flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())), true), _flowRuntime2.default.property('cwd', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('autoRestart', _flowRuntime2.default.boolean(), true), _flowRuntime2.default.property('SIGTERMTimeout', _flowRuntime2.default.number(), true)));
+const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('key', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('displayName', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('prefixStdout', _flowRuntime2.default.nullable(_flowRuntime2.default.boolean()), true), _flowRuntime2.default.property('command', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('args', _flowRuntime2.default.array(_flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())), true), _flowRuntime2.default.property('cwd', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('autoRestart', _flowRuntime2.default.boolean(), true), _flowRuntime2.default.property('SIGTERMTimeout', _flowRuntime2.default.number(), true)));
 
 exports.default = function index(_arg = {}) {
   let {
     key,
     displayName,
+    prefixStdout = false,
     command = global.process.argv[0],
     args = [],
     cwd,
@@ -62,10 +67,31 @@ exports.default = function index(_arg = {}) {
     }
 
     return new Promise((resolve, reject) => {
+      const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
       process = (0, _child_process.spawn)(command, args, {
         cwd,
-        stdio: ['inherit', 'inherit', 'inherit', 'ipc']
+        stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
       });
+
+      if (prefixStdout) {
+        const logStreamInLogger = (stream, loggerType) => {
+          stream.pipe((0, _split2.default)()).on('data', line => {
+            if (line.length === 0) return;
+            if (line.startsWith('{') && line.endsWith('}')) {
+              try {
+                const json = JSON.parse(line);
+                logger[loggerType]('', json);
+                return;
+              } catch (err) {}
+            }
+
+            logger[loggerType](line);
+          });
+        };
+
+        logStreamInLogger(process.stdout, 'info');
+        logStreamInLogger(process.stderr, 'error');
+      }
 
       process.on('exit', (code, signal) => {
         logger.warn('exited', { code, signal });
