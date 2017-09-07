@@ -1,3 +1,12 @@
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.2.0...v2.3.0) (2017-09-07)
+
+
+### Features
+
+* option "prefixStdout" ([8d4110b](https://github.com/christophehurpeau/springbokjs-daemon/commit/8d4110b))
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.1.1...v2.2.0) (2017-08-31)
 
