@@ -103,7 +103,7 @@ var index = ((_arg = {}) => {
 
   return {
     hasExited() {
-      return process.exitCode !== null || process.signalCode !== null;
+      return process === null;
     },
 
     start() {
