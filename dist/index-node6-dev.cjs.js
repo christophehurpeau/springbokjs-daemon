@@ -1,38 +1,21 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var _child_process = require('child_process');
+var child_process = require('child_process');
+var gracefulKill = _interopDefault(require('graceful-kill'));
+var split = _interopDefault(require('split'));
+var Logger = require('nightingale');
+var Logger__default = _interopDefault(Logger);
+var ConsoleLogger = _interopDefault(require('nightingale-console'));
+var t = _interopDefault(require('flow-runtime'));
 
-var _gracefulKill = require('graceful-kill');
+Logger.addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(Logger.levels.INFO) });
 
-var _gracefulKill2 = _interopRequireDefault(_gracefulKill);
+const OptionsType = t.type('OptionsType', t.exactObject(t.property('key', t.nullable(t.string()), true), t.property('displayName', t.nullable(t.string()), true), t.property('prefixStdout', t.nullable(t.boolean()), true), t.property('command', t.string(), true), t.property('args', t.array(t.union(t.string(), t.number())), true), t.property('cwd', t.string(), true), t.property('autoRestart', t.boolean(), true), t.property('SIGTERMTimeout', t.number(), true)));
 
-var _split = require('split');
 
-var _split2 = _interopRequireDefault(_split);
-
-var _nightingale = require('nightingale');
-
-var _nightingale2 = _interopRequireDefault(_nightingale);
-
-var _nightingaleConsole = require('nightingale-console');
-
-var _nightingaleConsole2 = _interopRequireDefault(_nightingaleConsole);
-
-var _flowRuntime = require('flow-runtime');
-
-var _flowRuntime2 = _interopRequireDefault(_flowRuntime);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-(0, _nightingale.addConfig)({ pattern: /^springbokjs-daemon/, handler: new _nightingaleConsole2.default(_nightingale.levels.INFO) });
-
-const OptionsType = _flowRuntime2.default.type('OptionsType', _flowRuntime2.default.exactObject(_flowRuntime2.default.property('key', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('displayName', _flowRuntime2.default.nullable(_flowRuntime2.default.string()), true), _flowRuntime2.default.property('prefixStdout', _flowRuntime2.default.nullable(_flowRuntime2.default.boolean()), true), _flowRuntime2.default.property('command', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('args', _flowRuntime2.default.array(_flowRuntime2.default.union(_flowRuntime2.default.string(), _flowRuntime2.default.number())), true), _flowRuntime2.default.property('cwd', _flowRuntime2.default.string(), true), _flowRuntime2.default.property('autoRestart', _flowRuntime2.default.boolean(), true), _flowRuntime2.default.property('SIGTERMTimeout', _flowRuntime2.default.number(), true)));
-
-exports.default = function index(_arg = {}) {
+var index = ((_arg = {}) => {
   let {
     key,
     displayName,
@@ -42,11 +25,11 @@ exports.default = function index(_arg = {}) {
     cwd,
     autoRestart = false,
     SIGTERMTimeout = 4000
-  } = _flowRuntime2.default.nullable(OptionsType).assert(_arg);
+  } = t.nullable(OptionsType).assert(_arg);
 
   let process = null;
   let stopPromise = null;
-  const logger = new _nightingale2.default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
+  const logger = new Logger__default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
   logger.info('created', { command, args });
 
   const stop = () => {
@@ -56,7 +39,7 @@ exports.default = function index(_arg = {}) {
     process = null;
 
     runningProcess.removeAllListeners();
-    return stopPromise = (0, _gracefulKill2.default)(runningProcess, SIGTERMTimeout).then(() => {
+    return stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
       stopPromise = null;
     });
   };
@@ -68,14 +51,14 @@ exports.default = function index(_arg = {}) {
 
     return new Promise((resolve, reject) => {
       const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
-      process = (0, _child_process.spawn)(command, args, {
+      process = child_process.spawn(command, args, {
         cwd,
         stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
       });
 
       if (prefixStdout) {
         const logStreamInLogger = (stream, loggerType) => {
-          stream.pipe((0, _split2.default)()).on('data', line => {
+          stream.pipe(split()).on('data', line => {
             if (line.length === 0) return;
             if (line.startsWith('{') && line.endsWith('}')) {
               try {
@@ -119,6 +102,10 @@ exports.default = function index(_arg = {}) {
   };
 
   return {
+    hasExited() {
+      return process.exitCode !== null || process.signalCode !== null;
+    },
+
     start() {
       logger.info('starting...');
       return start();
@@ -138,5 +125,7 @@ exports.default = function index(_arg = {}) {
       process.kill('SIGUSR2');
     }
   };
-};
-//# sourceMappingURL=index.js.map
+});
+
+module.exports = index;
+//# sourceMappingURL=index-node6-dev.cjs.js.map

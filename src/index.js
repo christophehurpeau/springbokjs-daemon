@@ -17,18 +17,16 @@ type OptionsType = {|
   SIGTERMTimeout?: number,
 |};
 
-export default (
-  {
-    key,
-    displayName,
-    prefixStdout = false,
-    command = global.process.argv[0],
-    args = [],
-    cwd,
-    autoRestart = false,
-    SIGTERMTimeout = 4000,
-  }: ?OptionsType = {},
-) => {
+export default ({
+  key,
+  displayName,
+  prefixStdout = false,
+  command = global.process.argv[0],
+  args = [],
+  cwd,
+  autoRestart = false,
+  SIGTERMTimeout = 4000,
+}: ?OptionsType = {}) => {
   let process = null;
   let stopPromise = null;
   const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
@@ -104,6 +102,10 @@ export default (
   };
 
   return {
+    hasExited() {
+      return process.exitCode !== null || process.signalCode !== null;
+    },
+
     start() {
       logger.info('starting...');
       return start();
