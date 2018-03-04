@@ -1,3 +1,12 @@
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.3.0...v2.4.0) (2018-03-04)
+
+
+### Features
+
+* add hasExited ([38019e9](https://github.com/christophehurpeau/springbokjs-daemon/commit/38019e9))
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.2.0...v2.3.0) (2017-09-07)
 
