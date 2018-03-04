@@ -1,3 +1,12 @@
+<a name="2.4.1"></a>
+## [2.4.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.4.0...v2.4.1) (2018-03-04)
+
+
+### Bug Fixes
+
+* hasExited ([94f0605](https://github.com/christophehurpeau/springbokjs-daemon/commit/94f0605))
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.3.0...v2.4.0) (2018-03-04)
 
