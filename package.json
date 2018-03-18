@@ -2,19 +2,12 @@
   "name": "springbokjs-daemon",
   "version": "2.4.1",
   "description": "Springbok Daemon, usable with Gulp and Grunt to restart your server on watch",
-  "keywords": [
-    "springbokjs",
-    "utils",
-    "gulp",
-    "grunt"
-  ],
+  "keywords": ["springbokjs", "utils", "gulp", "grunt"],
   "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
   "license": "ISC",
   "repository": "git@github.com:christophehurpeau/springbokjs-daemon.git",
   "homepage": "http://springbokjs.org",
-  "engines": {
-    "node": ">=6.5.0"
-  },
+  "engines": { "node": ">=6.5.0" },
   "main": "lib/index.js",
   "scripts": {
     "build": "pob-build",
@@ -32,29 +25,12 @@
     "watch": "pob-watch"
   },
   "lint-staged": {
-    "{README.md,package.json,.eslintrc.json}": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/**/*.js": [
-      "eslint --fix --quiet",
-      "git add"
-    ]
+    "{package.json,.eslintrc.json}": ["prettier --write", "git add"],
+    "src/**/*.json": ["prettier --write", "git add"],
+    "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
-  "prettier": {
-    "trailingComma": "all",
-    "singleQuote": true,
-    "printWidth": 100
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
+  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
+  "commitlint": { "extends": ["@commitlint/config-conventional"] },
   "dependencies": {
     "flow-runtime": "^0.17.0",
     "graceful-kill": "^1.0.1",
@@ -67,19 +43,18 @@
     "@commitlint/cli": "^6.1.3",
     "@commitlint/config-conventional": "^6.1.3",
     "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.2.2",
     "babel-preset-latest-node": "^1.0.0",
-    "eslint": "4.13.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-pob": "^17.1.0",
-    "eslint-config-prettier": "^2.9.0",
+    "eslint": "^4.18.2",
+    "eslint-config-pob": "^18.0.0",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^2.39.1",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "flow-bin": "^0.68.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
-    "pob-babel": "^19.1.4",
+    "pob-babel": "^20.0.0",
     "pob-release": "^3.1.0",
     "prettier": "^1.11.1",
     "yarnhook": "^0.1.1"

@@ -1,9 +1,16 @@
-# springbokjs-daemon [![NPM version][npm-image]][npm-url]
+<h3 align="center">
+  springbokjs-daemon
+</h3>
 
-Springbok Daemon, usable with Gulp and Grunt to restart your server on watch
+<p align="center">
+  Springbok Daemon, usable with Gulp and Grunt to restart your server on watch
+</p>
 
-[![Dependency Status][daviddm-image]][daviddm-url]
-[![Dependency ci Status][dependencyci-image]][dependencyci-url]
+<p align="center">
+  <a href="https://npmjs.org/package/springbokjs-daemon"><img src="https://img.shields.io/npm/v/springbokjs-daemon.svg?style=flat-square"></a>
+  <a href="https://david-dm.org/christophehurpeau/springbokjs-daemon"><img src="https://david-dm.org/christophehurpeau/springbokjs-daemon.svg?style=flat-square"></a>
+  <a href="https://dependencyci.com/github/christophehurpeau/springbokjs-daemon"><img src="https://dependencyci.com/github/christophehurpeau/springbokjs-daemon/badge?style=flat-square"></a>
+</p>
 
 ## Install
 
@@ -56,10 +63,3 @@ gulp.task('watch', ['default'], function() {
     });
 });
 ```
-
-[npm-image]: https://img.shields.io/npm/v/springbokjs-daemon.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/springbokjs-daemon
-[daviddm-image]: https://david-dm.org/christophehurpeau/springbokjs-daemon.svg?style=flat-square
-[daviddm-url]: https://david-dm.org/christophehurpeau/springbokjs-daemon
-[dependencyci-image]: https://dependencyci.com/github/christophehurpeau/springbokjs-daemon/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/christophehurpeau/springbokjs-daemon
