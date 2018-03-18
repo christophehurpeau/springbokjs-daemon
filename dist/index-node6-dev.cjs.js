@@ -10,6 +10,7 @@ var Logger__default = _interopDefault(Logger);
 var ConsoleLogger = _interopDefault(require('nightingale-console'));
 var t = _interopDefault(require('flow-runtime'));
 
+/* eslint-disable flowtype/sort-keys */
 Logger.addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(Logger.levels.INFO) });
 
 const OptionsType = t.type('OptionsType', t.exactObject(t.property('key', t.nullable(t.string()), true), t.property('displayName', t.nullable(t.string()), true), t.property('prefixStdout', t.nullable(t.boolean()), true), t.property('command', t.string(), true), t.property('args', t.array(t.union(t.string(), t.number())), true), t.property('cwd', t.string(), true), t.property('autoRestart', t.boolean(), true), t.property('SIGTERMTimeout', t.number(), true)));
@@ -39,9 +40,10 @@ var index = ((_arg = {}) => {
     process = null;
 
     runningProcess.removeAllListeners();
-    return stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
+    stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
       stopPromise = null;
     });
+    return stopPromise;
   };
 
   const start = () => {

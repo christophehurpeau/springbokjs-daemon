@@ -9,6 +9,8 @@ var Logger = require('nightingale');
 var Logger__default = _interopDefault(Logger);
 var ConsoleLogger = _interopDefault(require('nightingale-console'));
 
+/* eslint-disable flowtype/sort-keys */
+
 Logger.addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(Logger.levels.INFO) });
 
 var index = (({
@@ -33,9 +35,10 @@ var index = (({
     process = null;
 
     runningProcess.removeAllListeners();
-    return stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
+    stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
       stopPromise = null;
     });
+    return stopPromise;
   };
 
   const start = () => {

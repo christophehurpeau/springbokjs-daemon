@@ -1,3 +1,4 @@
+/* eslint-disable flowtype/sort-keys */
 import { spawn } from 'child_process';
 import gracefulKill from 'graceful-kill';
 import split from 'split';
@@ -39,9 +40,10 @@ export default ({
     process = null;
 
     runningProcess.removeAllListeners();
-    return (stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
+    stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
       stopPromise = null;
-    }));
+    });
+    return stopPromise;
   };
 
   const start = () => {
