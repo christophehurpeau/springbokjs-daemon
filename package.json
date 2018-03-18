@@ -7,7 +7,9 @@
   "license": "ISC",
   "repository": "git@github.com:christophehurpeau/springbokjs-daemon.git",
   "homepage": "http://springbokjs.org",
-  "engines": { "node": ">=6.5.0" },
+  "engines": {
+    "node": ">=6.5.0"
+  },
   "main": "lib/index.js",
   "scripts": {
     "build": "pob-build",
@@ -29,14 +31,20 @@
     "src/**/*.json": ["prettier --write", "git add"],
     "src/**/*.js": ["eslint --fix --quiet", "git add"]
   },
-  "prettier": { "trailingComma": "all", "singleQuote": true, "printWidth": 100 },
-  "commitlint": { "extends": ["@commitlint/config-conventional"] },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
   "dependencies": {
     "flow-runtime": "^0.17.0",
     "graceful-kill": "^1.0.1",
-    "nightingale": "^6.2.1",
-    "nightingale-console": "^2.5.1",
-    "nightingale-logger": "^3.4.0",
+    "nightingale": "^7.0.0",
+    "nightingale-console": "^3.0.0",
+    "nightingale-logger": "^4.0.0",
     "split": "^1.0.1"
   },
   "devDependencies": {
