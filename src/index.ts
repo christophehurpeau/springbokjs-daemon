@@ -1,21 +1,24 @@
-'use strict';
+import { spawn, ChildProcess } from 'child_process';
+import { Readable as ReadableStream } from 'stream';
+import gracefulKill from 'graceful-kill';
+import split from 'split';
+import Logger, { addConfig, Level } from 'nightingale';
+import ConsoleLogger from 'nightingale-console';
 
-Object.defineProperty(exports, '__esModule', { value: true });
+addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(Level.INFO) });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+export interface Options {
+  key?: string;
+  displayName?: string;
+  prefixStdout?: boolean;
+  command?: string;
+  args?: Array<string | number>;
+  cwd?: string;
+  autoRestart?: boolean;
+  SIGTERMTimeout?: number;
+}
 
-var child_process = require('child_process');
-var gracefulKill = _interopDefault(require('graceful-kill'));
-var split = _interopDefault(require('split'));
-var Logger = require('nightingale');
-var Logger__default = _interopDefault(Logger);
-var ConsoleLogger = _interopDefault(require('nightingale-console'));
-
-Logger.addConfig({
-  pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Logger.Level.INFO)
-});
-var index = (({
+export default ({
   key,
   displayName,
   prefixStdout = false,
@@ -23,25 +26,25 @@ var index = (({
   args = [],
   cwd,
   autoRestart = false,
-  SIGTERMTimeout = 4000
-} = {}) => {
-  let process = null;
-  let stopPromise;
-  const logger = new Logger__default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
-  logger.info('created', {
-    command,
-    args
-  });
+  SIGTERMTimeout = 4000,
+}: Options = {}) => {
+  let process: ChildProcess | null = null;
+  let stopPromise: Promise<void> | void;
+  const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
+  logger.info('created', { command, args });
 
-  const stop = () => {
+  const stop = (): Promise<void> => {
     if (!process) return Promise.resolve(stopPromise);
+
     const runningProcess = process;
     process = null;
+
     runningProcess.removeAllListeners();
     stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
       stopPromise = undefined;
     });
-    return stopPromise;
+
+    return stopPromise as Promise<void>;
   };
 
   const start = () => {
@@ -51,19 +54,18 @@ var index = (({
 
     return new Promise((resolve, reject) => {
       const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
-      process = child_process.spawn(command, args, {
+      process = spawn(command, args as string[], {
         cwd,
-        stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
+        stdio: ['ignore', stdoutOption, stdoutOption, 'ipc'],
       });
 
       if (prefixStdout) {
-        const logStreamInLogger = (stream, loggerLevel) => {
-          stream.pipe(split()).on('data', line => {
+        const logStreamInLogger = (stream: ReadableStream, loggerLevel: Level) => {
+          stream.pipe(split()).on('data', (line: string) => {
             if (line.length === 0) return;
-
             if (line.startsWith('{') && line.endsWith('}')) {
               try {
-                const json = JSON.parse(line);
+                const json: object = JSON.parse(line);
                 logger.log('', json, loggerLevel);
                 return;
               } catch (err) {}
@@ -73,17 +75,13 @@ var index = (({
           });
         };
 
-        logStreamInLogger(process.stdout, Logger.Level.INFO);
-        logStreamInLogger(process.stderr, Logger.Level.ERROR);
+        logStreamInLogger(process.stdout, Level.INFO);
+        logStreamInLogger(process.stderr, Level.ERROR);
       }
 
       process.on('exit', (code, signal) => {
-        logger.warn('exited', {
-          code,
-          signal
-        });
+        logger.warn('exited', { code, signal });
         process = null;
-
         if (autoRestart) {
           logger.debug('autorestart');
           start().then(resolve, reject);
@@ -91,6 +89,7 @@ var index = (({
           reject();
         }
       });
+
       process.on('message', message => {
         if (message === 'ready') {
           logger.success('ready');
@@ -99,9 +98,7 @@ var index = (({
           logger.info('restarting...');
           stop().then(() => start());
         } else {
-          logger.info('message', {
-            message
-          });
+          logger.info('message', { message });
         }
       });
     });
@@ -131,10 +128,6 @@ var index = (({
       if (process) {
         process.kill('SIGUSR2');
       }
-    }
-
+    },
   };
-});
-
-exports.default = index;
-//# sourceMappingURL=index-node6-dev.cjs.js.map
+};
