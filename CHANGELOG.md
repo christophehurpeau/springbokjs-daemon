@@ -1,3 +1,9 @@
+<a name="2.6.0"></a>
+# [2.6.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.5.0...v2.6.0) (2018-04-21)
+
+typescript
+
+
 <a name="2.5.0"></a>
 # [2.5.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.4.1...v2.5.0) (2018-03-18)
 
