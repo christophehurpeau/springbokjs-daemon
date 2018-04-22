@@ -1,3 +1,12 @@
+<a name="2.7.0"></a>
+# [2.7.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.6.0...v2.7.0) (2018-04-22)
+
+
+### Features
+
+* add Daemon interface ([48683e8](https://github.com/christophehurpeau/springbokjs-daemon/commit/48683e8))
+
+
 <a name="2.6.0"></a>
 # [2.6.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.5.0...v2.6.0) (2018-04-21)
 
