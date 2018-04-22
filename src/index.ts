@@ -18,6 +18,15 @@ export interface Options {
   SIGTERMTimeout?: number;
 }
 
+export interface Daemon {
+  hasExited(): boolean;
+  start(): Promise<void>;
+  // eslint-disable-next-line no-restricted-globals
+  stop(): Promise<void>;
+  restart(): Promise<void>;
+  sendSIGUSR2(): void;
+}
+
 export default ({
   key,
   displayName,
@@ -27,7 +36,7 @@ export default ({
   cwd,
   autoRestart = false,
   SIGTERMTimeout = 4000,
-}: Options = {}) => {
+}: Options = {}): Daemon => {
   let process: ChildProcess | null = null;
   let stopPromise: Promise<void> | void;
   const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
@@ -47,7 +56,7 @@ export default ({
     return stopPromise as Promise<void>;
   };
 
-  const start = () => {
+  const start = (): Promise<void> => {
     if (process) {
       throw new Error('Process already started');
     }

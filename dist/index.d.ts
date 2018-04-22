@@ -8,11 +8,12 @@ export interface Options {
     autoRestart?: boolean;
     SIGTERMTimeout?: number;
 }
-declare const _default: ({ key, displayName, prefixStdout, command, args, cwd, autoRestart, SIGTERMTimeout, }?: Options) => {
+export interface Daemon {
     hasExited(): boolean;
-    start(): Promise<{}>;
+    start(): Promise<void>;
     stop(): Promise<void>;
-    restart(): Promise<{}>;
+    restart(): Promise<void>;
     sendSIGUSR2(): void;
-};
+}
+declare const _default: ({ key, displayName, prefixStdout, command, args, cwd, autoRestart, SIGTERMTimeout, }?: Options) => Daemon;
 export default _default;
