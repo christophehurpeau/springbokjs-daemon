@@ -17,3 +17,4 @@ export interface Daemon {
 }
 declare const _default: ({ key, displayName, prefixStdout, command, args, cwd, autoRestart, SIGTERMTimeout, }?: Options) => Daemon;
 export default _default;
+//# sourceMappingURL=index.d.ts.map

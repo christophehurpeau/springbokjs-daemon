@@ -5,7 +5,10 @@ import split from 'split';
 import Logger, { addConfig, Level } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
 
-addConfig({ pattern: /^springbokjs-daemon/, handler: new ConsoleLogger(Level.INFO) });
+addConfig({
+  pattern: /^springbokjs-daemon/,
+  handler: new ConsoleLogger(Level.INFO),
+});
 
 export interface Options {
   key?: string;
@@ -39,7 +42,10 @@ export default ({
 }: Options = {}): Daemon => {
   let process: ChildProcess | null = null;
   let stopPromise: Promise<void> | void;
-  const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
+  const logger = new Logger(
+    `springbokjs-daemon${key ? `:${key}` : ''}`,
+    displayName,
+  );
   logger.info('created', { command, args });
 
   const stop = (): Promise<void> => {
@@ -69,7 +75,10 @@ export default ({
       });
 
       if (prefixStdout) {
-        const logStreamInLogger = (stream: ReadableStream, loggerLevel: Level) => {
+        const logStreamInLogger = (
+          stream: ReadableStream,
+          loggerLevel: Level,
+        ) => {
           stream.pipe(split()).on('data', (line: string) => {
             if (line.length === 0) return;
             if (line.startsWith('{') && line.endsWith('}')) {
@@ -99,7 +108,7 @@ export default ({
         }
       });
 
-      process.on('message', message => {
+      process.on('message', (message) => {
         if (message === 'ready') {
           logger.success('ready');
           resolve();

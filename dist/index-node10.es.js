@@ -1,19 +1,12 @@
-'use strict';
+import { spawn } from 'child_process';
+import gracefulKill from 'graceful-kill';
+import split from 'split';
+import Logger, { addConfig, Level } from 'nightingale';
+import ConsoleLogger from 'nightingale-console';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var child_process = require('child_process');
-var gracefulKill = _interopDefault(require('graceful-kill'));
-var split = _interopDefault(require('split'));
-var Logger = require('nightingale');
-var Logger__default = _interopDefault(Logger);
-var ConsoleLogger = _interopDefault(require('nightingale-console'));
-
-Logger.addConfig({
+addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Logger.Level.INFO)
+  handler: new ConsoleLogger(Level.INFO)
 });
 var index = (({
   key,
@@ -27,7 +20,7 @@ var index = (({
 } = {}) => {
   let process = null;
   let stopPromise;
-  const logger = new Logger__default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
+  const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
   logger.info('created', {
     command,
     args
@@ -51,7 +44,7 @@ var index = (({
 
     return new Promise((resolve, reject) => {
       const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
-      process = child_process.spawn(command, args, {
+      process = spawn(command, args, {
         cwd,
         stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
       });
@@ -73,8 +66,8 @@ var index = (({
           });
         };
 
-        logStreamInLogger(process.stdout, Logger.Level.INFO);
-        logStreamInLogger(process.stderr, Logger.Level.ERROR);
+        logStreamInLogger(process.stdout, Level.INFO);
+        logStreamInLogger(process.stderr, Level.ERROR);
       }
 
       process.on('exit', (code, signal) => {
@@ -136,5 +129,5 @@ var index = (({
   };
 });
 
-exports.default = index;
-//# sourceMappingURL=index-node6-dev.cjs.js.map
+export default index;
+//# sourceMappingURL=index-node10.es.js.map
