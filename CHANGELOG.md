@@ -1,3 +1,10 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.7.0...v3.0.0) (2018-12-09)
+
+Update dependencies
+Drop node 6
+
+
 <a name="2.7.0"></a>
 # [2.7.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.6.0...v2.7.0) (2018-04-22)
 
