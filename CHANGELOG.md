@@ -1,3 +1,9 @@
+<a name="2.7.1"></a>
+## [2.7.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.7.0...v2.7.1) (2018-12-09)
+
+Update dependencies
+
+
 <a name="2.7.0"></a>
 # [2.7.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v2.6.0...v2.7.0) (2018-04-22)
 
