@@ -76,7 +76,7 @@
     "pob-release": "4.6.3",
     "prettier": "1.15.3",
     "typescript": "3.2.4",
-    "typescript-eslint-parser": "21.0.2",
+    "typescript-eslint-parser": "22.0.0",
     "yarnhook": "0.3.0"
   }
 }
