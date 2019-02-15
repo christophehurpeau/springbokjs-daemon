@@ -58,7 +58,7 @@
     "split": "^1.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.2.2",
+    "@babel/core": "7.3.3",
     "@commitlint/cli": "7.3.2",
     "@commitlint/config-conventional": "7.3.1",
     "@types/split": "1.0.0",
