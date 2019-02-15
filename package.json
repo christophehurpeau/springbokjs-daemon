@@ -59,8 +59,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.3.3",
-    "@commitlint/cli": "7.3.2",
-    "@commitlint/config-conventional": "7.3.1",
+    "@commitlint/cli": "7.5.2",
+    "@commitlint/config-conventional": "7.5.0",
     "@types/split": "1.0.0",
     "babel-eslint": "10.0.1",
     "babel-preset-latest-node": "3.0.1",
