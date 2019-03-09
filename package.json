@@ -63,7 +63,7 @@
     "@commitlint/config-conventional": "7.3.1",
     "@types/split": "1.0.0",
     "babel-eslint": "10.0.1",
-    "babel-preset-latest-node": "3.0.1",
+    "babel-preset-latest-node": "3.1.0",
     "eslint": "5.12.1",
     "eslint-config-pob": "25.0.0",
     "eslint-plugin-babel": "5.3.0",
