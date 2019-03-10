@@ -3,7 +3,7 @@ export interface Options {
     displayName?: string;
     prefixStdout?: boolean;
     command?: string;
-    args?: Array<string | number>;
+    args?: (string | number)[];
     cwd?: string;
     autoRestart?: boolean;
     SIGTERMTimeout?: number;

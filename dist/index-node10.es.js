@@ -1,7 +1,7 @@
 import { spawn } from 'child_process';
 import gracefulKill from 'graceful-kill';
 import split from 'split';
-import Logger, { addConfig, Level } from 'nightingale';
+import Logger, { Level, addConfig } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
 
 addConfig({
@@ -51,6 +51,7 @@ var index = (({
 
       if (prefixStdout) {
         const logStreamInLogger = (stream, loggerLevel) => {
+          if (!stream) return;
           stream.pipe(split()).on('data', line => {
             if (line.length === 0) return;
 

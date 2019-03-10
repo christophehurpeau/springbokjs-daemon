@@ -15,7 +15,7 @@ export interface Options {
   displayName?: string;
   prefixStdout?: boolean;
   command?: string;
-  args?: Array<string | number>;
+  args?: (string | number)[];
   cwd?: string;
   autoRestart?: boolean;
   SIGTERMTimeout?: number;
@@ -76,9 +76,10 @@ export default ({
 
       if (prefixStdout) {
         const logStreamInLogger = (
-          stream: ReadableStream,
+          stream: ReadableStream | null,
           loggerLevel: Level,
         ) => {
+          if (!stream) return;
           stream.pipe(split()).on('data', (line: string) => {
             if (line.length === 0) return;
             if (line.startsWith('{') && line.endsWith('}')) {

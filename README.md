@@ -9,7 +9,6 @@
 <p align="center">
   <a href="https://npmjs.org/package/springbokjs-daemon"><img src="https://img.shields.io/npm/v/springbokjs-daemon.svg?style=flat-square"></a>
   <a href="https://david-dm.org/christophehurpeau/springbokjs-daemon"><img src="https://david-dm.org/christophehurpeau/springbokjs-daemon.svg?style=flat-square"></a>
-  <a href="https://dependencyci.com/github/christophehurpeau/springbokjs-daemon"><img src="https://dependencyci.com/github/christophehurpeau/springbokjs-daemon/badge?style=flat-square"></a>
 </p>
 
 ## Install

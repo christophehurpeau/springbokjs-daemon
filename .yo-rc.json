@@ -23,6 +23,14 @@
       "entries": [
         "index"
       ]
+    },
+    "renovate": {
+      "enable": true
+    }
+  },
+  "springbokjs-daemon": {
+    "type": {
+      "type": "lib"
     }
   }
 }

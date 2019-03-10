@@ -58,6 +58,7 @@ var index = (({
 
       if (prefixStdout) {
         const logStreamInLogger = (stream, loggerLevel) => {
+          if (!stream) return;
           stream.pipe(split()).on('data', line => {
             if (line.length === 0) return;
 
