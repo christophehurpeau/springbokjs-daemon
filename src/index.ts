@@ -7,7 +7,7 @@ import ConsoleLogger from 'nightingale-console';
 
 addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Level.INFO),
+  handler: new ConsoleLogger(Level.NOTICE),
 });
 
 export interface Options {
@@ -46,7 +46,7 @@ export default ({
     `springbokjs-daemon${key ? `:${key}` : ''}`,
     displayName,
   );
-  logger.info('created', { command, args });
+  logger.notice('created', { command, args });
 
   const stop = (): Promise<void> => {
     if (!process) return Promise.resolve(stopPromise);

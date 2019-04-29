@@ -13,7 +13,7 @@ var ConsoleLogger = _interopDefault(require('nightingale-console'));
 
 Logger.addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Logger.Level.INFO)
+  handler: new ConsoleLogger(Logger.Level.NOTICE)
 });
 var index = (({
   key,
@@ -28,7 +28,7 @@ var index = (({
   let process = null;
   let stopPromise;
   const logger = new Logger__default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
-  logger.info('created', {
+  logger.notice('created', {
     command,
     args
   });
