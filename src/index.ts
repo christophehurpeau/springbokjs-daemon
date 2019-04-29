@@ -30,7 +30,7 @@ export interface Daemon {
   sendSIGUSR2(): void;
 }
 
-export default ({
+export default function createDaemon({
   key,
   displayName,
   prefixStdout = false,
@@ -39,7 +39,7 @@ export default ({
   cwd,
   autoRestart = false,
   SIGTERMTimeout = 4000,
-}: Options = {}): Daemon => {
+}: Options = {}): Daemon {
   let process: ChildProcess | null = null;
   let stopPromise: Promise<void> | void;
   const logger = new Logger(
@@ -149,4 +149,4 @@ export default ({
       }
     },
   };
-};
+}

@@ -15,6 +15,5 @@ export interface Daemon {
     restart(): Promise<void>;
     sendSIGUSR2(): void;
 }
-declare const _default: ({ key, displayName, prefixStdout, command, args, cwd, autoRestart, SIGTERMTimeout, }?: Options) => Daemon;
-export default _default;
+export default function createDaemon({ key, displayName, prefixStdout, command, args, cwd, autoRestart, SIGTERMTimeout, }?: Options): Daemon;
 //# sourceMappingURL=index.d.ts.map

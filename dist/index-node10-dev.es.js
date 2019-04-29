@@ -8,7 +8,7 @@ addConfig({
   pattern: /^springbokjs-daemon/,
   handler: new ConsoleLogger(Level.NOTICE)
 });
-var index = (({
+function createDaemon({
   key,
   displayName,
   prefixStdout = false,
@@ -17,7 +17,7 @@ var index = (({
   cwd,
   autoRestart = false,
   SIGTERMTimeout = 4000
-} = {}) => {
+} = {}) {
   let process = null;
   let stopPromise;
   const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
@@ -128,7 +128,7 @@ var index = (({
     }
 
   };
-});
+}
 
-export default index;
+export default createDaemon;
 //# sourceMappingURL=index-node10-dev.es.js.map

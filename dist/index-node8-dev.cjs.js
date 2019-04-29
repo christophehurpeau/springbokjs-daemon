@@ -4,18 +4,18 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var child_process = require('child_process');
-var gracefulKill = _interopDefault(require('graceful-kill'));
-var split = _interopDefault(require('split'));
-var Logger = require('nightingale');
-var Logger__default = _interopDefault(Logger);
-var ConsoleLogger = _interopDefault(require('nightingale-console'));
+const child_process = require('child_process');
+const gracefulKill = _interopDefault(require('graceful-kill'));
+const split = _interopDefault(require('split'));
+const Logger = require('nightingale');
+const Logger__default = _interopDefault(Logger);
+const ConsoleLogger = _interopDefault(require('nightingale-console'));
 
 Logger.addConfig({
   pattern: /^springbokjs-daemon/,
   handler: new ConsoleLogger(Logger.Level.NOTICE)
 });
-var index = (({
+function createDaemon({
   key,
   displayName,
   prefixStdout = false,
@@ -24,7 +24,7 @@ var index = (({
   cwd,
   autoRestart = false,
   SIGTERMTimeout = 4000
-} = {}) => {
+} = {}) {
   let process = null;
   let stopPromise;
   const logger = new Logger__default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
@@ -135,7 +135,7 @@ var index = (({
     }
 
   };
-});
+}
 
-exports.default = index;
+exports.default = createDaemon;
 //# sourceMappingURL=index-node8-dev.cjs.js.map
