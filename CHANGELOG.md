@@ -1,3 +1,12 @@
+## [3.2.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.2.0...v3.2.1) (2019-04-29)
+
+
+### Bug Fixes
+
+* switch notice/info ([0fbc778](https://github.com/christophehurpeau/springbokjs-daemon/commit/0fbc778))
+
+
+
 # [3.2.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.1.0...v3.2.0) (2019-04-29)
 
 
