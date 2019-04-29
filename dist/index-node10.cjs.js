@@ -13,7 +13,7 @@ const ConsoleLogger = _interopDefault(require('nightingale-console'));
 
 Logger.addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Logger.Level.NOTICE)
+  handler: new ConsoleLogger(Logger.Level.INFO)
 });
 function createDaemon({
   key,
@@ -28,7 +28,7 @@ function createDaemon({
   let process = null;
   let stopPromise;
   const logger = new Logger__default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
-  logger.notice('created', {
+  logger.info('created', {
     command,
     args
   });
@@ -74,7 +74,7 @@ function createDaemon({
           });
         };
 
-        logStreamInLogger(process.stdout, Logger.Level.INFO);
+        logStreamInLogger(process.stdout, Logger.Level.NOTICE);
         logStreamInLogger(process.stderr, Logger.Level.ERROR);
       }
 
@@ -97,10 +97,10 @@ function createDaemon({
           logger.success('ready');
           resolve();
         } else if (message === 'restart') {
-          logger.info('restarting...');
+          logger.notice('restarting...');
           stop().then(() => start());
         } else {
-          logger.info('message', {
+          logger.notice('message', {
             message
           });
         }
@@ -114,17 +114,17 @@ function createDaemon({
     },
 
     start() {
-      logger.info('starting...');
+      logger.notice('starting...');
       return start();
     },
 
     stop() {
-      if (!process) logger.info('stopping...');
+      if (!process) logger.notice('stopping...');
       return stop();
     },
 
     restart() {
-      logger.info('restarting...');
+      logger.notice('restarting...');
       return stop().then(() => start());
     },
 
