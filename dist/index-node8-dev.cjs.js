@@ -96,6 +96,7 @@ function createDaemon({
       process.on('message', message => {
         if (message === 'ready') {
           logger.success('ready');
+          if (onMessage) onMessage('ready');
           resolve();
         } else if (message === 'restart') {
           logger.notice('restarting...');
