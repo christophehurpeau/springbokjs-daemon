@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.3.1...v3.4.0) (2019-05-01)
+
+
+### Features
+
+* update nightingale ([c55ad55](https://github.com/christophehurpeau/springbokjs-daemon/commit/c55ad55))
+
+
+
 ## [3.3.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.3.0...v3.3.1) (2019-05-01)
 
 
