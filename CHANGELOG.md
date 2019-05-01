@@ -1,3 +1,12 @@
+# [3.6.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.5.0...v3.6.0) (2019-05-01)
+
+
+### Features
+
+* support specific key and displayName for output ([08564d1](https://github.com/christophehurpeau/springbokjs-daemon/commit/08564d1))
+
+
+
 # [3.5.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.4.0...v3.5.0) (2019-05-01)
 
 
