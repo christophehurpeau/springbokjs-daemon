@@ -1,3 +1,12 @@
+# [3.5.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.4.0...v3.5.0) (2019-05-01)
+
+
+### Features
+
+* add option env ([8fa2b7d](https://github.com/christophehurpeau/springbokjs-daemon/commit/8fa2b7d))
+
+
+
 # [3.4.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.3.1...v3.4.0) (2019-05-01)
 
 
