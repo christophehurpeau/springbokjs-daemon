@@ -3,6 +3,8 @@ export interface Options<Messages = any> {
     key?: string;
     displayName?: string;
     prefixStdout?: boolean;
+    outputKey?: string;
+    outputDisplayName?: string;
     command?: string;
     args?: (string | number)[];
     cwd?: string;
@@ -18,5 +20,5 @@ export interface Daemon {
     restart(): Promise<void>;
     sendSIGUSR2(): void;
 }
-export default function createDaemon({ key, displayName, prefixStdout, command, args, cwd, env, autoRestart, SIGTERMTimeout, onMessage, }?: Options): Daemon;
+export default function createDaemon({ key, displayName, prefixStdout, outputKey, outputDisplayName, command, args, cwd, env, autoRestart, SIGTERMTimeout, onMessage, }?: Options): Daemon;
 //# sourceMappingURL=index.d.ts.map

@@ -19,6 +19,8 @@ function createDaemon({
   key,
   displayName,
   prefixStdout = false,
+  outputKey = key,
+  outputDisplayName = displayName,
   command = global.process.argv[0],
   args = [],
   cwd,
@@ -34,6 +36,7 @@ function createDaemon({
     command,
     args
   });
+  const outputLogger = prefixStdout ? new Logger__default(`springbokjs-daemon${outputKey ? `:${outputKey}` : ''}`, outputDisplayName) : undefined;
 
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
@@ -52,14 +55,14 @@ function createDaemon({
     }
 
     return new Promise((resolve, reject) => {
-      const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
+      const stdoutOption = outputLogger ? 'pipe' : 'inherit';
       process = child_process.spawn(command, args, {
         cwd,
         env,
         stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
       });
 
-      if (prefixStdout) {
+      if (outputLogger) {
         const logStreamInLogger = (stream, loggerLevel) => {
           if (!stream) return;
           stream.pipe(split()).on('data', line => {
@@ -73,7 +76,7 @@ function createDaemon({
               } catch (err) {}
             }
 
-            logger.log(line, undefined, loggerLevel);
+            outputLogger.log(line, undefined, loggerLevel);
           });
         };
 
