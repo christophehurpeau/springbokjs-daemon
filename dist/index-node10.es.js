@@ -16,7 +16,8 @@ function createDaemon({
   args = [],
   cwd,
   autoRestart = false,
-  SIGTERMTimeout = 4000
+  SIGTERMTimeout = 4000,
+  onMessage
 } = {}) {
   let process = null;
   let stopPromise;
@@ -92,6 +93,8 @@ function createDaemon({
         } else if (message === 'restart') {
           logger.notice('restarting...');
           stop().then(() => start());
+        } else if (onMessage) {
+          onMessage(message);
         } else {
           logger.notice('message', {
             message

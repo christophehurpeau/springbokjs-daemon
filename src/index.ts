@@ -10,7 +10,7 @@ addConfig({
   handler: new ConsoleLogger(Level.INFO),
 });
 
-export interface Options {
+export interface Options<Messages = any> {
   key?: string;
   displayName?: string;
   prefixStdout?: boolean;
@@ -19,6 +19,7 @@ export interface Options {
   cwd?: string;
   autoRestart?: boolean;
   SIGTERMTimeout?: number;
+  onMessage?: (message: Messages) => void;
 }
 
 export interface Daemon {
@@ -39,6 +40,7 @@ export default function createDaemon({
   cwd,
   autoRestart = false,
   SIGTERMTimeout = 4000,
+  onMessage,
 }: Options = {}): Daemon {
   let process: ChildProcess | null = null;
   let stopPromise: Promise<void> | void;
@@ -116,6 +118,8 @@ export default function createDaemon({
         } else if (message === 'restart') {
           logger.notice('restarting...');
           stop().then(() => start());
+        } else if (onMessage) {
+          onMessage(message);
         } else {
           logger.notice('message', { message });
         }
@@ -124,7 +128,7 @@ export default function createDaemon({
   };
 
   return {
-    hasExited() {
+    hasExited(): boolean {
       return process === null;
     },
 
