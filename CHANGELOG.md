@@ -1,3 +1,12 @@
+# [3.3.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.2.1...v3.3.0) (2019-05-01)
+
+
+### Features
+
+* add onMessage ([2bdd6cf](https://github.com/christophehurpeau/springbokjs-daemon/commit/2bdd6cf))
+
+
+
 ## [3.2.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.2.0...v3.2.1) (2019-04-29)
 
 
