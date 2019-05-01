@@ -913,10 +913,10 @@ babel-plugin-discard-module-references@^1.1.2:
   resolved "https://registry.yarnpkg.com/babel-plugin-discard-module-references/-/babel-plugin-discard-module-references-1.1.2.tgz#898007cbeb472cef76ef11e1af485b41d4241747"
   integrity sha1-iYAHy+tHLO927xHhr0hbQdQkF0c=
 
-babel-plugin-fix-class-properties-uninitialized@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-fix-class-properties-uninitialized/-/babel-plugin-fix-class-properties-uninitialized-1.4.0.tgz#c0767cb735f30de73c6dd150e5cef79676234bce"
-  integrity sha512-juilB9RbNbeCrMQE0eEEzPCesNaBdJBXvulijx6Spzleqn9EXA5cYozcxHaCGCiMNBU9ijDm1BSPDc0z6p3ExA==
+babel-plugin-fix-class-properties-uninitialized@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-fix-class-properties-uninitialized/-/babel-plugin-fix-class-properties-uninitialized-1.4.1.tgz#2be2e2fb648ecbf405c594b51738ac5830b24dfe"
+  integrity sha512-KeRlpbmHNvdRp4hLA/rxd3MJQbHOhqwsTQtYvMX6IvUdW1Ch5Md96P+3c3Fw+jYBrnmcV0AjqIgR44C0rMYYbw==
 
 babel-plugin-import-export-rename@^1.0.1:
   version "1.0.1"
@@ -961,15 +961,15 @@ babel-plugin-minify-simplify@^0.5.0:
     babel-helper-is-nodes-equiv "^0.0.1"
     babel-helper-to-multiple-sequence-expressions "^0.5.0"
 
-babel-plugin-pob-babel@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-pob-babel/-/babel-plugin-pob-babel-0.10.0.tgz#6bab53aadb4b3630f537ceb48eda26120bed3dbf"
-  integrity sha512-GPGQcDUZQnNU2mq2QMrDTPnbqynIK+ixuQFvMHehhFqS2uaRS+gEATrv7OYh3H2A2ssHkx3qaMzbfCCadPJTow==
+babel-plugin-pob-babel@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-pob-babel/-/babel-plugin-pob-babel-0.10.1.tgz#9d2d53d70588a0f15bfb22e5991ebd2929168a41"
+  integrity sha512-YWzqdg84cNJ9pJ6eAaTMN0vgIZLnKsMlFTomdLecrb9As2QXkdk9BEk2rYYffKTcb9VrkscI7dzVFsHvQLDTBg==
 
-babel-plugin-transform-builtins@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-builtins/-/babel-plugin-transform-builtins-1.3.0.tgz#ec6bbe1a7ea30a7f418763425cf26d271f8c766e"
-  integrity sha512-Wls+mFxCTSoWFSbZSU65QPO+hopFbLs1WS6Q0QDJgjmg77iT2m8kOfsUPUSlHu/U43T1KPTiunmn5ikq/UypTg==
+babel-plugin-transform-builtins@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-builtins/-/babel-plugin-transform-builtins-1.3.1.tgz#26eaf949986c77df8241daeffba6c1db2c9cbc75"
+  integrity sha512-ze/evhFQFCnVgv4avpIEu2ui+1ZTbuQEhES0ZdpSn8nMd2WLmpB2M5x4xLZSH/hszO4cvtQ4P2u6MCJ4GnKf2A==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
 
@@ -1029,10 +1029,10 @@ babel-preset-optimizations@^1.7.0:
     babel-plugin-transform-inline-consecutive-adds "^0.4.3"
     babel-plugin-transform-undefined-to-void "^6.9.4"
 
-babel-preset-pob-env@^2.23.0:
-  version "2.23.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-pob-env/-/babel-preset-pob-env-2.23.0.tgz#63bc2604453f39d2004349f4cc6505a9d274225c"
-  integrity sha512-DyBgb7lxNQCCG6/b7NKiEisEI6jepFQAhLat/0r6iWsK8QdiuZa9usgq0J+DJAOdRY0kg+Q83gs/sGVamQFNFA==
+babel-preset-pob-env@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-pob-env/-/babel-preset-pob-env-2.24.0.tgz#dbe670198efd5496cde38c60a1cc2183b97ee982"
+  integrity sha512-4Xj7xpHnbCuaaH/aolbMbu1xUM6IQgcubKhVKYGBBDj8z5rNe2sYwmyvxj7PxBt7FLMs05N8GxqItbbOnEq63g==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.4.0"
     "@babel/plugin-proposal-export-default-from" "^7.2.0"
@@ -1040,10 +1040,10 @@ babel-preset-pob-env@^2.23.0:
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/preset-typescript" "^7.3.3"
     babel-plugin-discard-module-references "^1.1.2"
-    babel-plugin-fix-class-properties-uninitialized "^1.4.0"
+    babel-plugin-fix-class-properties-uninitialized "^1.4.1"
     babel-plugin-import-export-rename "^1.0.1"
     babel-plugin-minify-replace "^0.5.0"
-    babel-plugin-pob-babel "^0.10.0"
+    babel-plugin-pob-babel "^0.10.1"
     babel-plugin-transform-name-export-default "^1.0.0"
     babel-preset-optimizations "^1.7.0"
 
@@ -3598,24 +3598,24 @@ please-upgrade-node@^3.0.2, please-upgrade-node@^3.1.1:
   dependencies:
     semver-compare "^1.0.0"
 
-pob-babel@23.15.0:
-  version "23.15.0"
-  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-23.15.0.tgz#613650e44f284aaf546ef7c272bcb801f112742f"
-  integrity sha512-LZfZsmbLumRglFCZySKxBDr32sK+JnH5qgqfZdcGkL9HsSxQyoAHJgOSwoTdlkxu4wwAsN5ik1vly9lPm44T+g==
+pob-babel@23.16.0:
+  version "23.16.0"
+  resolved "https://registry.yarnpkg.com/pob-babel/-/pob-babel-23.16.0.tgz#9b4a9a3d9ba8ac59e04951e9f41bcd852f6c1570"
+  integrity sha512-3pCr9Cl9NROkJF/qR9t/7ODV8J2a54qKzmkyDJS6r+T7MVU0z2zxcU7loEq6VE8+Ok7h00YXBq9yTEX02GGPkw==
   dependencies:
     "@babel/preset-flow" "^7.0.0"
-    babel-plugin-transform-builtins "^1.3.0"
-    babel-preset-pob-env "^2.23.0"
+    babel-plugin-transform-builtins "^1.3.1"
+    babel-preset-pob-env "^2.24.0"
     rollup "^1.9.0"
     rollup-config-external-dependencies "^0.3.0"
     rollup-plugin-babel "^5.0.0-alpha.0"
     rollup-plugin-ignore-import "^1.1.1"
     rollup-plugin-node-resolve "^4.1.0"
 
-pob-release@4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/pob-release/-/pob-release-4.13.0.tgz#357315c99677fc563439a3cab24a71499342d46e"
-  integrity sha512-cj8xB8leucbQpRU8z28JtCtNwpc1eKYg3pDUdw8x1uh7iQYESbSoa+/j516OPa5c8H0xKpf2k/Vb5Fuuj5ZGlQ==
+pob-release@4.13.1:
+  version "4.13.1"
+  resolved "https://registry.yarnpkg.com/pob-release/-/pob-release-4.13.1.tgz#8ec18c9b0175131e5183cf54570596526b041f55"
+  integrity sha512-dV4J+GDyJzoX9VaPrHUnIeRshPsDnpfYvMp+2S9+zqXypEizoTwVVQJOF0z0V1VQNp3K3kCOQi+TeVHHBMw8qg==
   dependencies:
     conventional-recommended-bump "^4.0.4"
     inquirer "^6.2.1"
@@ -4661,10 +4661,10 @@ yarn-deduplicate@^1.1.1:
     commander "^2.10.0"
     semver "^5.3.0"
 
-yarn-update-lock@0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/yarn-update-lock/-/yarn-update-lock-0.6.0.tgz#fcbdf330d1a7e12ea6da6599f0daee7d0d1214f3"
-  integrity sha512-1zbGhHSphZze+blavFqv4jDpXAB9d9nEC1OrvLrAwcbxk8s91DS9JFfDdrGhw830UDPbNst4n2+9SGYB7TGULg==
+yarn-update-lock@0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/yarn-update-lock/-/yarn-update-lock-0.6.1.tgz#a14dc7e807abcdfc4ab5417e663ddf2494a931a0"
+  integrity sha512-P+2kG+ty+1HqsBB36bfXbvKgMxk35jUfM3SMtE3wE7U2EIbQ3mJdTJAodSthn63flRLDGS43KcA/7yhu4WgNoA==
   dependencies:
     yarn-deduplicate "^1.1.1"
 
