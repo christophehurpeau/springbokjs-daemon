@@ -15,6 +15,7 @@ function createDaemon({
   command = global.process.argv[0],
   args = [],
   cwd,
+  env,
   autoRestart = false,
   SIGTERMTimeout = 4000,
   onMessage
@@ -47,6 +48,7 @@ function createDaemon({
       const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
       process = spawn(command, args, {
         cwd,
+        env,
         stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
       });
 

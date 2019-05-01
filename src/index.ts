@@ -17,6 +17,7 @@ export interface Options<Messages = any> {
   command?: string;
   args?: (string | number)[];
   cwd?: string;
+  env?: NodeJS.ProcessEnv;
   autoRestart?: boolean;
   SIGTERMTimeout?: number;
   onMessage?: (message: Messages) => void;
@@ -38,6 +39,7 @@ export default function createDaemon({
   command = global.process.argv[0],
   args = [],
   cwd,
+  env,
   autoRestart = false,
   SIGTERMTimeout = 4000,
   onMessage,
@@ -73,6 +75,7 @@ export default function createDaemon({
       const stdoutOption = prefixStdout ? 'pipe' : 'inherit';
       process = spawn(command, args as string[], {
         cwd,
+        env,
         stdio: ['ignore', stdoutOption, stdoutOption, 'ipc'],
       });
 
