@@ -54,9 +54,9 @@
   "dependencies": {
     "@types/node": ">=8.0.0",
     "graceful-kill": "^2.0.0",
-    "nightingale": "^9.1.0",
-    "nightingale-console": "^5.1.0",
-    "nightingale-logger": "^6.1.0",
+    "nightingale": "^9.2.3",
+    "nightingale-console": "^6.0.1",
+    "nightingale-logger": "^6.2.2",
     "split": "^1.0.1"
   },
   "devDependencies": {
