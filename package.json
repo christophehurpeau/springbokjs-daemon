@@ -69,7 +69,7 @@
     "@types/split": "1.0.0",
     "babel-preset-latest-node": "3.1.1",
     "eslint": "5.16.0",
-    "husky": "2.7.0",
+    "husky": "3.1.0",
     "lint-staged": "8.1.5",
     "pob-babel": "23.16.0",
     "pob-release": "4.13.1",
