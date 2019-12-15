@@ -8,7 +8,7 @@
   "repository": "https://github.com:christophehurpeau/springbokjs-daemon.git",
   "homepage": "http://springbokjs.org",
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=10.13.0"
   },
   "main": "./index.js",
   "types": "./dist/index.d.ts",
@@ -18,30 +18,12 @@
     "build": "pob-build",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "rm -Rf dist",
-    "lint": "tsc && eslint --ext .ts --quiet src/",
+    "lint": "tsc && eslint --ext .js,.ts --quiet src",
     "postbuild": "tsc -p tsconfig.build.json",
     "preversion": "yarn run lint && yarn run build && repository-check-dirty",
     "release": "repository-check-dirty && pob-release",
     "version": "pob-version",
     "watch": "pob-watch"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-      "post-checkout": "yarnhook",
-      "post-merge": "yarnhook",
-      "post-rewrite": "yarnhook",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "yarn.lock": ["yarn-update-lock", "git add"],
-    "{package.json,.eslintrc.json}": [
-      "prettier --parser json --write",
-      "git add"
-    ],
-    "src/**/*.json": ["prettier --parser json --write", "git add"],
-    "src/**/*.{js,ts}": ["eslint --fix --quiet", "git add"]
   },
   "prettier": {
     "trailingComma": "all",
@@ -51,8 +33,18 @@
   "commitlint": {
     "extends": ["@commitlint/config-conventional"]
   },
+  "pob": {
+    "babelEnvs": [
+      {
+        "target": "node",
+        "version": "10",
+        "formats": ["cjs", "es"]
+      }
+    ],
+    "entries": ["index"]
+  },
   "dependencies": {
-    "@types/node": ">=8.0.0",
+    "@types/node": ">=10.0.0",
     "graceful-kill": "^2.0.0",
     "nightingale": "^9.2.3",
     "nightingale-console": "^6.0.1",
@@ -60,23 +52,19 @@
     "split": "^1.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@commitlint/cli": "7.6.1",
-    "@commitlint/config-conventional": "7.6.0",
-    "@pob/eslint-config-babel": "31.0.0",
-    "@pob/eslint-config-babel-node": "31.0.0",
-    "@pob/eslint-config-typescript": "31.1.0",
+    "@babel/core": "7.7.5",
+    "@pob/eslint-config-babel-node": "33.0.0",
+    "@pob/eslint-config-typescript": "33.0.8",
+    "@pob/repo-config": "1.0.3",
+    "@pob/version": "5.0.0",
     "@types/split": "1.0.0",
-    "babel-preset-latest-node": "3.1.1",
-    "eslint": "5.16.0",
-    "husky": "2.7.0",
-    "lint-staged": "8.1.5",
-    "pob-babel": "23.16.0",
-    "pob-release": "4.13.1",
-    "prettier": "1.17.0",
-    "repository-check-dirty": "1.0.2",
-    "typescript": "3.4.5",
-    "yarn-update-lock": "0.6.1",
-    "yarnhook": "0.4.0"
+    "babel-preset-latest-node": "4.0.1",
+    "eslint": "6.7.2",
+    "husky": "3.1.0",
+    "pob-babel": "24.0.1",
+    "pob-release": "5.0.0",
+    "prettier": "1.19.1",
+    "repository-check-dirty": "1.0.3",
+    "typescript": "3.7.3"
   }
 }

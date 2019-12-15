@@ -4,6 +4,8 @@
   "compilerOptions": {
     "noEmit": false,
     "emitDeclarationOnly": true,
+    "rootDirs": [],
+    "rootDir": "src",
     "outDir": "dist",
     "isolatedModules": false,
     "declaration": true,
@@ -13,7 +15,5 @@
   "exclude": [
     "dist/**",
     "src/**/*.test.ts",
-
     "src/**/__tests__/**"
-  ]
-}
+  ]}
