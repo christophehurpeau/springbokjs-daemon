@@ -1,9 +1,28 @@
+# [4.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.6.0...v4.0.0) (2019-12-15)
+
+
+### chore
+
+* update config and drop node 8 ([66a2dce](https://github.com/christophehurpeau/springbokjs-daemon/commit/66a2dce5aecb5b58815bcbc6ecfb19228b81e151))
+
+
+### Features
+
+* update nightingale-console ([f37331e](https://github.com/christophehurpeau/springbokjs-daemon/commit/f37331edf194fce89b4a54ffe7e1999abffe64ea))
+
+
+### BREAKING CHANGES
+
+* drop node 8
+
+
+
 # [3.6.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.5.0...v3.6.0) (2019-05-01)
 
 
 ### Features
 
-* support specific key and displayName for output ([08564d1](https://github.com/christophehurpeau/springbokjs-daemon/commit/08564d1))
+* support specific key and displayName for output ([08564d1](https://github.com/christophehurpeau/springbokjs-daemon/commit/08564d1a83e4c6e6623ab1ccb517b307e07e5adf))
 
 
 
@@ -12,7 +31,7 @@
 
 ### Features
 
-* add option env ([8fa2b7d](https://github.com/christophehurpeau/springbokjs-daemon/commit/8fa2b7d))
+* add option env ([8fa2b7d](https://github.com/christophehurpeau/springbokjs-daemon/commit/8fa2b7d7c72c321ca2423534df385060262dbc62))
 
 
 
@@ -21,7 +40,7 @@
 
 ### Features
 
-* update nightingale ([c55ad55](https://github.com/christophehurpeau/springbokjs-daemon/commit/c55ad55))
+* update nightingale ([c55ad55](https://github.com/christophehurpeau/springbokjs-daemon/commit/c55ad55589e858ba6a52044d15f91d7a4e59664b))
 
 
 
@@ -30,7 +49,7 @@
 
 ### Bug Fixes
 
-* also send message when ready ([fa69de3](https://github.com/christophehurpeau/springbokjs-daemon/commit/fa69de3))
+* also send message when ready ([fa69de3](https://github.com/christophehurpeau/springbokjs-daemon/commit/fa69de388c68f27aeb98ebc2107b18621c03d0e8))
 
 
 
@@ -39,7 +58,7 @@
 
 ### Features
 
-* add onMessage ([2bdd6cf](https://github.com/christophehurpeau/springbokjs-daemon/commit/2bdd6cf))
+* add onMessage ([2bdd6cf](https://github.com/christophehurpeau/springbokjs-daemon/commit/2bdd6cf892c1b53cf4ed430bf589ddbe5e693713))
 
 
 
@@ -48,7 +67,7 @@
 
 ### Bug Fixes
 
-* switch notice/info ([0fbc778](https://github.com/christophehurpeau/springbokjs-daemon/commit/0fbc778))
+* switch notice/info ([0fbc778](https://github.com/christophehurpeau/springbokjs-daemon/commit/0fbc778667c0d3368111ae794241e57dc4c9cbc2))
 
 
 
@@ -57,7 +76,7 @@
 
 ### Features
 
-* created log is now notice ([fb956ec](https://github.com/christophehurpeau/springbokjs-daemon/commit/fb956ec))
+* created log is now notice ([fb956ec](https://github.com/christophehurpeau/springbokjs-daemon/commit/fb956ec226425e38aa86ef4f1285e38f51599014))
 
 
 
@@ -66,8 +85,8 @@
 
 ### Features
 
-* pob update ([93e3daa](https://github.com/christophehurpeau/springbokjs-daemon/commit/93e3daa))
-* update nightingale deps ([09d22c7](https://github.com/christophehurpeau/springbokjs-daemon/commit/09d22c7))
+* pob update ([93e3daa](https://github.com/christophehurpeau/springbokjs-daemon/commit/93e3daab5bcec102cdb7781266da7baf1865eab9))
+* update nightingale deps ([09d22c7](https://github.com/christophehurpeau/springbokjs-daemon/commit/09d22c72c3ffdc3adea7c0aff1317fa09e165b4f))
 
 
 
@@ -76,7 +95,7 @@
 
 ### chore
 
-* update dependencies ([db6579f](https://github.com/christophehurpeau/springbokjs-daemon/commit/db6579f))
+* update dependencies ([db6579f](https://github.com/christophehurpeau/springbokjs-daemon/commit/db6579f3c10dec3cbffc83fb7d4cab1c52ad2a59))
 
 
 ### BREAKING CHANGES
@@ -90,7 +109,7 @@
 
 ### Features
 
-* add Daemon interface ([48683e8](https://github.com/christophehurpeau/springbokjs-daemon/commit/48683e8))
+* add Daemon interface ([48683e8](https://github.com/christophehurpeau/springbokjs-daemon/commit/48683e8d8d8af2cbf3df6f0259f9901e4132f668))
 
 
 
@@ -103,7 +122,7 @@
 
 ### Features
 
-* nightingale 7 ([207998a](https://github.com/christophehurpeau/springbokjs-daemon/commit/207998a))
+* nightingale 7 ([207998a](https://github.com/christophehurpeau/springbokjs-daemon/commit/207998a0085f5ba4f3f8417b1643e18a0d60e8c5))
 
 
 
@@ -112,7 +131,7 @@
 
 ### Bug Fixes
 
-* hasExited ([94f0605](https://github.com/christophehurpeau/springbokjs-daemon/commit/94f0605))
+* hasExited ([94f0605](https://github.com/christophehurpeau/springbokjs-daemon/commit/94f0605ecef4940290e6cf9ee83dc8549ec4c6a2))
 
 
 
@@ -121,7 +140,7 @@
 
 ### Features
 
-* add hasExited ([38019e9](https://github.com/christophehurpeau/springbokjs-daemon/commit/38019e9))
+* add hasExited ([38019e9](https://github.com/christophehurpeau/springbokjs-daemon/commit/38019e9274b6ee6cc0c0a95f5754cccbbd5925fd))
 
 
 
@@ -130,7 +149,7 @@
 
 ### Features
 
-* option "prefixStdout" ([8d4110b](https://github.com/christophehurpeau/springbokjs-daemon/commit/8d4110b))
+* option "prefixStdout" ([8d4110b](https://github.com/christophehurpeau/springbokjs-daemon/commit/8d4110b5f166d8f4b8bdae36a8645750b3524064))
 
 
 
@@ -139,8 +158,8 @@
 
 ### Features
 
-* update pob lib and flow-runtime ([1fa4f6c](https://github.com/christophehurpeau/springbokjs-daemon/commit/1fa4f6c))
-* use graceful-kill ([90cca07](https://github.com/christophehurpeau/springbokjs-daemon/commit/90cca07))
+* update pob lib and flow-runtime ([1fa4f6c](https://github.com/christophehurpeau/springbokjs-daemon/commit/1fa4f6c269dbeede9b65cac0e382d38b6409ea09))
+* use graceful-kill ([90cca07](https://github.com/christophehurpeau/springbokjs-daemon/commit/90cca073a27d3b7d74d460d29d53160e485d8d76))
 
 
 
@@ -149,7 +168,7 @@
 
 ### Bug Fixes
 
-* update dependencies and support node 8 ([574ba13](https://github.com/christophehurpeau/springbokjs-daemon/commit/574ba13))
+* update dependencies and support node 8 ([574ba13](https://github.com/christophehurpeau/springbokjs-daemon/commit/574ba135554268bd8097fa05b1907f883f14d598))
 
 
 
@@ -158,7 +177,7 @@
 
 ### Features
 
-* pob update, add cwd argument ([a8d9d8b](https://github.com/christophehurpeau/springbokjs-daemon/commit/a8d9d8b))
+* pob update, add cwd argument ([a8d9d8b](https://github.com/christophehurpeau/springbokjs-daemon/commit/a8d9d8ba3bb0e18ab6b3bfea403cdd22e5fcd5b5))
 
 
 
@@ -167,7 +186,7 @@
 
 ### Bug Fixes
 
-* missing stop return Promise ([f0fb991](https://github.com/christophehurpeau/springbokjs-daemon/commit/f0fb991))
+* missing stop return Promise ([f0fb991](https://github.com/christophehurpeau/springbokjs-daemon/commit/f0fb991e7dc4ac997de2699714e2b54fd4bfdebe))
 
 
 
@@ -176,7 +195,7 @@
 
 ### Bug Fixes
 
-* stop called but not started ([df12161](https://github.com/christophehurpeau/springbokjs-daemon/commit/df12161))
+* stop called but not started ([df12161](https://github.com/christophehurpeau/springbokjs-daemon/commit/df12161ac2bec89bcc754caa3219808fbd9a8ede))
 
 
 
@@ -185,19 +204,19 @@
 
 ### Bug Fixes
 
-* autorestart ([532727d](https://github.com/christophehurpeau/springbokjs-daemon/commit/532727d))
-* child message restart ([984adc8](https://github.com/christophehurpeau/springbokjs-daemon/commit/984adc8))
-* env ([b595fbb](https://github.com/christophehurpeau/springbokjs-daemon/commit/b595fbb))
-* nightingale config ([5d5fec7](https://github.com/christophehurpeau/springbokjs-daemon/commit/5d5fec7))
-* rename autoRestart and fix SIGTERMTimeout type ([9e98dc2](https://github.com/christophehurpeau/springbokjs-daemon/commit/9e98dc2))
-* spawn stdio use inherit ([27730ad](https://github.com/christophehurpeau/springbokjs-daemon/commit/27730ad))
+* autorestart ([532727d](https://github.com/christophehurpeau/springbokjs-daemon/commit/532727d0b5743a7a8ea14284d4e4c24a2fefe8c0))
+* child message restart ([984adc8](https://github.com/christophehurpeau/springbokjs-daemon/commit/984adc82e0bfdda841b26f63fe99b452fec8d869))
+* env ([b595fbb](https://github.com/christophehurpeau/springbokjs-daemon/commit/b595fbb68f16e3101ff358708f782c6557f5a178))
+* nightingale config ([5d5fec7](https://github.com/christophehurpeau/springbokjs-daemon/commit/5d5fec7de260c602529df85f82a5f4ef9413f540))
+* rename autoRestart and fix SIGTERMTimeout type ([9e98dc2](https://github.com/christophehurpeau/springbokjs-daemon/commit/9e98dc2e4a573f0487a5d9e79115b9235ec22b7f))
+* spawn stdio use inherit ([27730ad](https://github.com/christophehurpeau/springbokjs-daemon/commit/27730ad4ea2a0b8723944d730605b7db974b8adb))
 
 
 ### Features
 
-* 2.0.1 ([4612db5](https://github.com/christophehurpeau/springbokjs-daemon/commit/4612db5))
-* logger ready success and use lowercase ([b952710](https://github.com/christophehurpeau/springbokjs-daemon/commit/b952710))
-* reduce log when restarting ([9cfe5b1](https://github.com/christophehurpeau/springbokjs-daemon/commit/9cfe5b1))
+* 2.0.1 ([4612db5](https://github.com/christophehurpeau/springbokjs-daemon/commit/4612db5c95eb44f622091e4fbf31e811f5482848))
+* logger ready success and use lowercase ([b952710](https://github.com/christophehurpeau/springbokjs-daemon/commit/b95271036905a6a7dc8888df041c05157fe5a748))
+* reduce log when restarting ([9cfe5b1](https://github.com/christophehurpeau/springbokjs-daemon/commit/9cfe5b158b7270b9502bcff78f199de6f6ee6c07))
 
 
 
@@ -206,7 +225,7 @@
 
 ### Code Refactoring
 
-* new api ([ef7d7e6](https://github.com/christophehurpeau/springbokjs-daemon/commit/ef7d7e6))
+* new api ([ef7d7e6](https://github.com/christophehurpeau/springbokjs-daemon/commit/ef7d7e6bb870ac607bf3b7b58e46c0d03ea3b5db))
 
 
 ### BREAKING CHANGES
