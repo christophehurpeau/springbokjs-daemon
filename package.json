@@ -56,7 +56,7 @@
     "@pob/eslint-config-babel-node": "33.0.0",
     "@pob/eslint-config-typescript": "33.0.8",
     "@pob/repo-config": "1.2.0",
-    "@pob/version": "5.0.0",
+    "@pob/version": "5.2.0",
     "@types/split": "1.0.0",
     "babel-preset-latest-node": "4.0.1",
     "eslint": "6.7.2",
