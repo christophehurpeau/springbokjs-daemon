@@ -60,7 +60,7 @@
     "@types/split": "1.0.0",
     "babel-preset-latest-node": "4.0.1",
     "eslint": "6.7.2",
-    "husky": "3.1.0",
+    "husky": "4.2.3",
     "pob-babel": "24.0.1",
     "pob-release": "5.0.0",
     "prettier": "1.19.1",
