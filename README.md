@@ -41,6 +41,7 @@ daemon.stop(); // send SIGTERM then SIGKILL and returns a Promise when the child
 ## Message
 
 You can send these messages [using process.send](https://nodejs.org/api/process.html#process_process_send_message_sendhandle_options_callback):
+
 - ready: to notify that the instance has successfully started
 - restart: ask for a clean restart of the process
 
@@ -51,14 +52,14 @@ var gulp = require('gulp');
 var createDaemon = require('springbokjs-daemon');
 
 var daemon = createDaemon({ args: ['src/server/server.js'] });
-process.on('exit', function(code) {
-    daemon.stop();
+process.on('exit', function (code) {
+  daemon.stop();
 });
 
-gulp.task('watch', ['default'], function() {
-    daemon.start();
-    gulp.watch('src/server/**/*.js').on('change', function() {
-        daemon.restart();
-    });
+gulp.task('watch', ['default'], function () {
+  daemon.start();
+  gulp.watch('src/server/**/*.js').on('change', function () {
+    daemon.restart();
+  });
 });
 ```
