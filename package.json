@@ -53,8 +53,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.7.5",
-    "@pob/eslint-config-babel-node": "33.0.0",
-    "@pob/eslint-config-typescript": "33.0.8",
+    "@pob/eslint-config-babel-node": "37.0.0",
+    "@pob/eslint-config-typescript": "37.0.0",
     "@pob/repo-config": "1.2.0",
     "@pob/version": "5.0.0",
     "@types/split": "1.0.0",
@@ -63,7 +63,7 @@
     "husky": "3.1.0",
     "pob-babel": "24.0.1",
     "pob-release": "5.0.0",
-    "prettier": "1.19.1",
+    "prettier": "2.0.4",
     "repository-check-dirty": "1.0.3",
     "typescript": "3.7.3"
   }
