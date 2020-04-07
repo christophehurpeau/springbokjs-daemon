@@ -1,6 +1,6 @@
 {
   "name": "springbokjs-daemon",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Springbok Daemon, usable with Gulp and Grunt to restart your server on watch",
   "keywords": [
     "springbokjs",
