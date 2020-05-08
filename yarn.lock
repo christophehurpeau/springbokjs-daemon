@@ -656,10 +656,10 @@
     eslint-plugin-prettier "^3.1.2"
     eslint-plugin-unicorn "^18.0.1"
 
-"@pob/root@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@pob/root/-/root-1.4.1.tgz#2af34c6ef93eec802c1f1b7ea48c7367ba54e614"
-  integrity sha512-sTiVwDHH7wEWqQhyEfIYhAAxtFDNwnDdDy4pcs0N3ys+lE5yzwut9CYGEDI+67Mzk+z7cvaFb7zb4W1v/L9UYg==
+"@pob/root@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@pob/root/-/root-1.5.0.tgz#b858a16598f70f6a5c7e6d0d92ac56bd63479951"
+  integrity sha512-NzIX5vu9GmlOkdPVlclLwNtRMwLRmuhFrNSqtF4HdGHn64JviCtlm48zJ6lTkfnrkLhaA/FSHZT0L7jYcZxd6A==
   dependencies:
     "@commitlint/cli" "8.3.5"
     cross-env "^7.0.0"
