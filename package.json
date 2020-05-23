@@ -59,7 +59,7 @@
     "@types/node": ">=10.0.0",
     "graceful-kill": "^2.0.0",
     "nightingale": "^9.2.3",
-    "nightingale-console": "^6.1.1",
+    "nightingale-console": "^10.0.0",
     "nightingale-logger": "^6.2.2",
     "split": "^1.0.1"
   },
