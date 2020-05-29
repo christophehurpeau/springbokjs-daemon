@@ -56,11 +56,11 @@
     ]
   },
   "dependencies": {
-    "@types/node": ">=10.0.0",
-    "graceful-kill": "^2.0.0",
-    "nightingale": "^9.2.3",
-    "nightingale-console": "^6.1.1",
-    "nightingale-logger": "^6.2.2",
+    "@types/node": ">=14.0.5",
+    "graceful-kill": "^3.0.0",
+    "nightingale": "^10.0.1",
+    "nightingale-console": "^10.0.1",
+    "nightingale-logger": "^10.0.1",
     "split": "^1.0.1"
   },
   "devDependencies": {
