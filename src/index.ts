@@ -1,9 +1,9 @@
 import { spawn, ChildProcess } from 'child_process';
 import { Readable as ReadableStream } from 'stream';
 import gracefulKill from 'graceful-kill';
-import split from 'split';
 import Logger, { addConfig, Level } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
+import split from 'split';
 
 addConfig({
   pattern: /^springbokjs-daemon/,
@@ -94,7 +94,7 @@ export default function createDaemon({
         const logStreamInLogger = (
           stream: ReadableStream | null,
           loggerLevel: Level,
-        ) => {
+        ): void => {
           if (!stream) return;
           stream.pipe(split()).on('data', (line: string) => {
             if (line.length === 0) return;
