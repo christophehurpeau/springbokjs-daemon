@@ -69,7 +69,7 @@
     "@pob/eslint-config": "37.1.0",
     "@pob/eslint-config-babel-node": "37.0.2",
     "@pob/eslint-config-node": "37.0.2",
-    "@pob/eslint-config-typescript": "37.1.0",
+    "@pob/eslint-config-typescript": "37.2.0",
     "@pob/root": "2.2.0",
     "@types/split": "1.0.0",
     "@typescript-eslint/eslint-plugin": "2.34.0",
