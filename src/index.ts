@@ -26,12 +26,11 @@ export interface Options<Messages = any> {
 }
 
 export interface Daemon {
-  hasExited(): boolean;
-  start(): Promise<void>;
-  // eslint-disable-next-line no-restricted-globals
-  stop(): Promise<void>;
-  restart(): Promise<void>;
-  sendSIGUSR2(): void;
+  hasExited: () => boolean;
+  start: () => Promise<void>;
+  stop: () => Promise<void>;
+  restart: () => Promise<void>;
+  sendSIGUSR2: () => void;
 }
 
 export default function createDaemon({
@@ -100,10 +99,10 @@ export default function createDaemon({
             if (line.length === 0) return;
             if (line.startsWith('{') && line.endsWith('}')) {
               try {
-                const json: object = JSON.parse(line);
+                const json = JSON.parse(line) as Record<string, unknown>;
                 logger.log('', json, loggerLevel);
                 return;
-              } catch (err) {}
+              } catch {}
             }
 
             outputLogger.log(line, undefined, loggerLevel);
@@ -132,7 +131,10 @@ export default function createDaemon({
           resolve();
         } else if (message === 'restart') {
           logger.notice('restarting...');
-          stop().then(() => start());
+          stop().then(
+            () => start(),
+            () => {},
+          );
         } else if (onMessage) {
           onMessage(message);
         } else {
