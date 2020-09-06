@@ -862,10 +862,10 @@
     "@pob/use-eslint-plugin" "^39.0.0"
     eslint-plugin-node "^11.1.0"
 
-"@pob/eslint-config-typescript@39.0.3":
-  version "39.0.3"
-  resolved "https://registry.yarnpkg.com/@pob/eslint-config-typescript/-/eslint-config-typescript-39.0.3.tgz#d874ddc7ad694b83abea81f908663b062e18b5c3"
-  integrity sha512-auIWygA1RL284tlM5ZZ1m2f12HbZSuqbO2HNeO85MBA0/HbycDlLYR7ojnuTV/omVgcdIZKGiH79eAnJ7Tkefg==
+"@pob/eslint-config-typescript@39.0.4":
+  version "39.0.4"
+  resolved "https://registry.yarnpkg.com/@pob/eslint-config-typescript/-/eslint-config-typescript-39.0.4.tgz#dc1f649cf95ac4280a7f4d82c7cccdda58b11d42"
+  integrity sha512-5mUVQieWcX8qJySzXMF8nTEgRQOL4Cf1i9EaKk3RKM+EMfNl/0i9mV3W1lyu2WtAg6risi7Xf3QDLa+sWUI18w==
   dependencies:
     "@pob/eslint-config" "^39.0.0"
     "@pob/use-eslint-plugin" "^39.0.0"
