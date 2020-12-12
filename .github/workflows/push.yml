@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [12.x, 14.x, 15.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: v2-dependencies--${{ matrix.node-version }}-${{ runner.OS }}-${{ hashFiles('yarn.lock') }}
@@ -30,9 +30,13 @@ jobs:
       - name: Install Dependencies
         run: yarn install --prefer-offline --pure-lockfile
 
-      - name: Lint
-        run: yarn run lint
-        if: startsWith(matrix.node-version, '12.')
+      - name: Prettier
+        run: yarn run lint:prettier
+        if: startsWith(matrix.node-version, '14.')
+
+      - name: Eslint
+        run: yarn run lint:eslint
+        if: startsWith(matrix.node-version, '14.')
 
       - name: Test
         run: yarn run test
@@ -40,5 +44,5 @@ jobs:
           CI: true
 
       - name: Check nothing was forgotten before commit
-        if: startsWith(matrix.node-version, '12.')
+        if: startsWith(matrix.node-version, '14.')
         run: yarn run repository-check-dirty

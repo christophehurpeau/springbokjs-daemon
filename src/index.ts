@@ -1,5 +1,6 @@
-import { spawn, ChildProcess } from 'child_process';
-import { Readable as ReadableStream } from 'stream';
+import { spawn } from 'child_process';
+import type { ChildProcess } from 'child_process';
+import type { Readable as ReadableStream } from 'stream';
 import gracefulKill from 'graceful-kill';
 import Logger, { addConfig, Level } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
