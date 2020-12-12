@@ -6382,6 +6382,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nightingale-levels@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "nightingale-levels@npm:11.0.0"
+  checksum: 35d0a48b5c5548d9a82dd1bfc4f25f30ab022081805a7f2108b6840f1d607bb060688d358e182aae9681c3b02ff88c489f4a9214905fefda06ac95bb9ea35f6e
+  languageName: node
+  linkType: hard
+
 "nightingale-logger@npm:^10.0.1":
   version: 10.0.1
   resolution: "nightingale-logger@npm:10.0.1"
@@ -6390,6 +6397,17 @@ __metadata:
     nightingale-levels: ^10.0.1
     nightingale-types: ^10.0.1
   checksum: 1c7646a9968a67ea9e1093e667d3194aa24f33fc30a6894da08556fe15bfb71242acdc4bb6ffdce775a1622bb20f95d92073ca645fe00d952581692b3bc36a16
+  languageName: node
+  linkType: hard
+
+"nightingale-logger@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "nightingale-logger@npm:11.0.0"
+  dependencies:
+    "@types/node": ">=12.0.0"
+    nightingale-levels: ^11.0.0
+    nightingale-types: ^11.0.0
+  checksum: 0dfd029b9cb2f51b13184a08c2070e23bfe3d10dc528092d3e13191624271e9116e39f9ec6e02dafc4ce834a1fed493b61abc31942c5ae541d038c302a352fab
   languageName: node
   linkType: hard
 
@@ -6402,14 +6420,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "nightingale@npm:10.0.1"
+"nightingale-types@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "nightingale-types@npm:11.0.0"
   dependencies:
-    nightingale-levels: ^10.0.1
-    nightingale-logger: ^10.0.1
-    nightingale-types: ^10.0.1
-  checksum: 929d4d7b303c1aa6b44a6d568985cd8bbd1654f153ffd5b0c658953be24453e366ca5ce1e62dba7c8589c66bfe1bccee769ebced9eee6eeaabcd0530f3f880b4
+    nightingale-levels: ^11.0.0
+  checksum: d6354848b513808d8df28f0ffd1d30da4896875c267f937f692546b9e524d9a2bd58cf0193e5d36456eb527c50d505eb95abefb6296f4cbfcd005905200ca765
+  languageName: node
+  linkType: hard
+
+"nightingale@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "nightingale@npm:11.0.0"
+  dependencies:
+    "@types/node": ">=12.0.0"
+    nightingale-levels: ^11.0.0
+    nightingale-logger: ^11.0.0
+    nightingale-types: ^11.0.0
+  checksum: 1bb4dff473b5e46905bbd1a3894131ca3350208f3850bbf59cd0003eb87ee9a74f417d7e92872880bfa186eaa04666fba5fa7a6287c599c73f69aa7e79baea41
   languageName: node
   linkType: hard
 
@@ -8107,7 +8135,7 @@ __metadata:
     graceful-kill: ^3.0.1
     husky: 4.3.5
     jest: 26.6.3
-    nightingale: ^10.0.1
+    nightingale: ^11.0.0
     nightingale-console: ^10.0.1
     nightingale-logger: ^10.0.1
     pob-babel: 26.2.0
