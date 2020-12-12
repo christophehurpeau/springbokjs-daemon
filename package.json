@@ -39,7 +39,7 @@
     "lint:eslint": "eslint --ext .js,.ts --report-unused-disable-directives --quiet *.js src",
     "lint:prettier": "prettier --check .",
     "preversion": "yarn run lint && yarn run build && repository-check-dirty",
-    "release": "repository-check-dirty && standard-version -a -m 'chore(release): %s [skip ci]' && git push --follow-tags origin master && npm publish",
+    "release": "repository-check-dirty && yarn preversion && standard-version -a -m 'chore(release): %s [skip ci]' && git push --follow-tags origin master && npm publish",
     "test": "jest",
     "test:watch": "jest",
     "version": "pob-version",
