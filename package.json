@@ -94,7 +94,7 @@
     "graceful-kill": "^3.0.1",
     "nightingale": "^11.0.0",
     "nightingale-console": "^10.0.1",
-    "nightingale-logger": "^10.0.1",
+    "nightingale-logger": "^11.0.0",
     "split": "^1.0.1"
   },
   "devDependencies": {

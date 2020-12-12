@@ -8137,7 +8137,7 @@ __metadata:
     jest: 26.6.3
     nightingale: ^11.0.0
     nightingale-console: ^10.0.1
-    nightingale-logger: ^10.0.1
+    nightingale-logger: ^11.0.0
     pob-babel: 26.2.0
     pob-lcov-reporter: 4.0.1
     prettier: 2.2.1
