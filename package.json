@@ -101,7 +101,7 @@
     "@babel/core": "7.12.10",
     "@pob/commitlint-config": "2.0.1",
     "@pob/eslint-config": "41.0.4",
-    "@pob/eslint-config-node": "41.0.4",
+    "@pob/eslint-config-node": "41.1.0",
     "@pob/eslint-config-typescript": "41.0.4",
     "@pob/eslint-config-typescript-node": "41.0.4",
     "@pob/root": "3.0.3",
