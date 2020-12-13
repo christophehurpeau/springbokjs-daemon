@@ -1048,12 +1048,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/eslint-config-typescript@npm:41.0.4":
-  version: 41.0.4
-  resolution: "@pob/eslint-config-typescript@npm:41.0.4"
+"@pob/eslint-config-typescript@npm:41.1.0":
+  version: 41.1.0
+  resolution: "@pob/eslint-config-typescript@npm:41.1.0"
   dependencies:
-    "@pob/eslint-config": ^41.0.4
-    "@pob/use-eslint-plugin": ^41.0.4
+    "@pob/eslint-config": ^41.1.0
+    "@pob/use-eslint-plugin": ^41.1.0
     "@typescript-eslint/eslint-plugin": ^4.1.1
     "@typescript-eslint/parser": ^4.1.1
     eslint-config-airbnb-base: ^14.2.1
@@ -1071,11 +1071,11 @@ __metadata:
       optional: true
     eslint-plugin-import:
       optional: true
-  checksum: 087f09041c9a5859c123bb7f59852c5f98b1b2379bcc57982f5c4af8da7cb7eba95af4a77eb55a746135edd92b5a27fff3e0a9a55643bd1735c48f10c14183c6
+  checksum: 0796e7c11b4ade66083b7f8bac64f914b212cfe95d2f23a49348aa0c8a60005d335f8900bd49443da0887684fbf88c0c4b914fe56bf10052ebea3321257be1e3
   languageName: node
   linkType: hard
 
-"@pob/eslint-config@npm:41.1.0, @pob/eslint-config@npm:^41.0.4":
+"@pob/eslint-config@npm:41.1.0, @pob/eslint-config@npm:^41.1.0":
   version: 41.1.0
   resolution: "@pob/eslint-config@npm:41.1.0"
   dependencies:
@@ -8109,7 +8109,7 @@ __metadata:
     "@pob/commitlint-config": 2.0.1
     "@pob/eslint-config": 41.1.0
     "@pob/eslint-config-node": 41.1.0
-    "@pob/eslint-config-typescript": 41.0.4
+    "@pob/eslint-config-typescript": 41.1.0
     "@pob/eslint-config-typescript-node": 41.0.4
     "@pob/root": 3.0.3
     "@types/jest": 26.0.19
