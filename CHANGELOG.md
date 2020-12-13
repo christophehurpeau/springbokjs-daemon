@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v5.1.1...v6.0.0) (2020-12-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires node 12
+
+### Features
+
+* build ([6584872](https://github.com/christophehurpeau/springbokjs-daemon/commit/65848724c37b712f56be05ed2d023d0a5d0241c2))
+
+
+### Bug Fixes
+
+* **deps:** update dependency graceful-kill to v4 ([#93](https://github.com/christophehurpeau/springbokjs-daemon/issues/93)) ([d4fe336](https://github.com/christophehurpeau/springbokjs-daemon/commit/d4fe336595f1274c63f36e7e8f6b6286071a3d7e))
+* **deps:** update dependency nightingale to v11 ([#94](https://github.com/christophehurpeau/springbokjs-daemon/issues/94)) ([7625fbb](https://github.com/christophehurpeau/springbokjs-daemon/commit/7625fbb4fb9494474ca48865b7395636a7667a31))
+* **deps:** update dependency nightingale-console to v11 ([#95](https://github.com/christophehurpeau/springbokjs-daemon/issues/95)) ([90fa797](https://github.com/christophehurpeau/springbokjs-daemon/commit/90fa7973ef9ea0527a43e86d7217494d42c3cee8))
+* **deps:** update dependency nightingale-logger to v11 ([#96](https://github.com/christophehurpeau/springbokjs-daemon/issues/96)) ([04e96d4](https://github.com/christophehurpeau/springbokjs-daemon/commit/04e96d4386ce3c074bca066f769c48803b3bae06))
+
 ### [5.1.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v5.1.0...v5.1.1) (2020-12-12)
 
 # [4.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v3.6.0...v4.0.0) (2019-12-15)
