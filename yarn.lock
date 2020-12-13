@@ -1329,7 +1329,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>=10.0.0, @types/node@npm:>=12.0.0, @types/node@npm:>=14.0.23":
+"@types/node@npm:*, @types/node@npm:>=12.0.0":
   version: 14.14.12
   resolution: "@types/node@npm:14.14.12"
   checksum: def4a93f6ba9ea5ccbed7b403988b5e888dcde27c9d00f3f487500a26a36e13826e294fabc6d01ce563059d3567f27ea8c458edc39b502e38659c5154667602b
@@ -4282,13 +4282,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-kill@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "graceful-kill@npm:3.0.1"
+"graceful-kill@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "graceful-kill@npm:4.0.1"
   dependencies:
-    "@types/node": ">=14.0.23"
-    nightingale-logger: ^10.0.1
-  checksum: cba2b5dc23020e17ce5d4775fa0a48c351449fda2a1d6bbd7e22ddcd4d67a27697def781925927a14597dc4a58165aa5c29338d10d5898114b3207b8897d8b49
+    "@types/node": ">=12.0.0"
+    nightingale-logger: ^11.0.0
+  checksum: 1627a6e58ff00643426dd96a3ab27c6cb6552f431d92c9a10f4944d9c4b98939068917dd86fcfe8664fd9a59f1b54b9bc64c0c1ac92cb382f38431d51b22447b
   languageName: node
   linkType: hard
 
@@ -6389,17 +6389,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale-logger@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "nightingale-logger@npm:10.0.1"
-  dependencies:
-    "@types/node": ">=10.0.0"
-    nightingale-levels: ^10.0.1
-    nightingale-types: ^10.0.1
-  checksum: 1c7646a9968a67ea9e1093e667d3194aa24f33fc30a6894da08556fe15bfb71242acdc4bb6ffdce775a1622bb20f95d92073ca645fe00d952581692b3bc36a16
-  languageName: node
-  linkType: hard
-
 "nightingale-logger@npm:^11.0.0":
   version: 11.0.0
   resolution: "nightingale-logger@npm:11.0.0"
@@ -8132,7 +8121,7 @@ __metadata:
     eslint-plugin-import: 2.22.1
     eslint-plugin-node: 11.1.0
     eslint-plugin-unicorn: 23.0.0
-    graceful-kill: ^3.0.1
+    graceful-kill: ^4.0.0
     husky: 4.3.5
     jest: 26.6.3
     nightingale: ^11.0.0
