@@ -1029,11 +1029,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/eslint-config-typescript-node@npm:41.0.4":
-  version: 41.0.4
-  resolution: "@pob/eslint-config-typescript-node@npm:41.0.4"
+"@pob/eslint-config-typescript-node@npm:41.1.0":
+  version: 41.1.0
+  resolution: "@pob/eslint-config-typescript-node@npm:41.1.0"
   dependencies:
-    "@pob/use-eslint-plugin": ^41.0.4
+    "@pob/use-eslint-plugin": ^41.1.0
     eslint-plugin-node: ^11.1.0
   peerDependencies:
     eslint: ^7.5.0
@@ -1044,7 +1044,7 @@ __metadata:
       optional: true
     eslint-plugin-node:
       optional: true
-  checksum: 2525074f273fa77475497606ae1c9f539d4b5b151ec610c3a6410559222bec5fbee47a264ffe6434e62b04d37a3de28c913749b72a7650e86e718ad842fc4b12
+  checksum: e4371ea4f6920d9a4b58d6ccae736fcd829ffe304a4bc138429505310b18e2a0e7cd629177648e04f224cf10a7bef9aafd27baa15b20c58931e5c55118c6109b
   languageName: node
   linkType: hard
 
@@ -1118,7 +1118,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/use-eslint-plugin@npm:^41.0.4, @pob/use-eslint-plugin@npm:^41.1.0":
+"@pob/use-eslint-plugin@npm:^41.1.0":
   version: 41.1.0
   resolution: "@pob/use-eslint-plugin@npm:41.1.0"
   checksum: ac3e950bcc4c597edce97dac19f28f75c07067220149bed9e026b34203167fe77431b224e6b19be6ccd7b56fb680a95cbfb2d009663c80a66120ce6678abdef1
@@ -6378,13 +6378,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale-levels@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "nightingale-levels@npm:10.0.1"
-  checksum: e627f317839c6525ebf81e1735ff0655f253d5786d2943eac88050462769874acae5795307135b1f048e26113ff07c8f611911168822c41dd66aa18140138c79
-  languageName: node
-  linkType: hard
-
 "nightingale-levels@npm:^11.0.0":
   version: 11.0.0
   resolution: "nightingale-levels@npm:11.0.0"
@@ -6400,15 +6393,6 @@ __metadata:
     nightingale-levels: ^11.0.0
     nightingale-types: ^11.0.0
   checksum: 0dfd029b9cb2f51b13184a08c2070e23bfe3d10dc528092d3e13191624271e9116e39f9ec6e02dafc4ce834a1fed493b61abc31942c5ae541d038c302a352fab
-  languageName: node
-  linkType: hard
-
-"nightingale-types@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "nightingale-types@npm:10.0.1"
-  dependencies:
-    nightingale-levels: ^10.0.1
-  checksum: eecbdf45261af9913ce39285c4bb73c764fccab4944a77ed18ce22c1ad14898ed3a4d46e5f1541ff431d4fc763ced6eae380bf01dc5534e0ffaca3f03f3fa931
   languageName: node
   linkType: hard
 
@@ -8110,7 +8094,7 @@ __metadata:
     "@pob/eslint-config": 41.1.0
     "@pob/eslint-config-node": 41.1.0
     "@pob/eslint-config-typescript": 41.1.0
-    "@pob/eslint-config-typescript-node": 41.0.4
+    "@pob/eslint-config-typescript-node": 41.1.0
     "@pob/root": 3.0.3
     "@types/jest": 26.0.19
     "@types/node": ">=12.0.0"
