@@ -7049,9 +7049,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pob-babel@npm:26.2.0":
-  version: 26.2.0
-  resolution: "pob-babel@npm:26.2.0"
+"pob-babel@npm:26.2.1":
+  version: 26.2.1
+  resolution: "pob-babel@npm:26.2.1"
   dependencies:
     "@babel/plugin-transform-runtime": ^7.12.10
     "@rollup/plugin-babel": ^5.2.2
@@ -7071,7 +7071,7 @@ __metadata:
   bin:
     pob-build: bin/pob-build.js
     pob-watch: bin/pob-watch.js
-  checksum: a9b81ad4053064173aeba69a576bf133f816cfbc75598f932093c38f74673f36cb78bc47f7cc6dfe8bc77053e6192ddd9f6ffc57e60dcd7e488a71a08f57bfe9
+  checksum: 808e43e9052749715d1668de36cdfe5fbf11cf05657b4b80721a8494e0e6be418e9eacba338693bb4a25073d5bde0a9154a95714c3c8b52220b2c42863243a50
   languageName: node
   linkType: hard
 
@@ -7656,9 +7656,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.34.2, rollup@npm:^2.34.2":
-  version: 2.34.2
-  resolution: "rollup@npm:2.34.2"
+"rollup@npm:2.35.1, rollup@npm:^2.34.2":
+  version: 2.35.1
+  resolution: "rollup@npm:2.35.1"
   dependencies:
     fsevents: ~2.1.2
   dependenciesMeta:
@@ -7666,7 +7666,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: d1baf78ea29d561a88d2d19ffdf324b62177b916373f35953cec635fbd10184ba44d75bca36cc6a317477a9c439b43e287151bbde4b2bf20c8ef96feb60e1207
+  checksum: 01e8b621baf3b35e1a28e3679cf9bdd4c22c2e999a895343e0b1e02dfe735f92a9fe439042e1b35c981663e9a8b75c1d707e6c27d786170febbb503b83dfed39
   languageName: node
   linkType: hard
 
@@ -8114,10 +8114,10 @@ __metadata:
     nightingale: ^11.0.0
     nightingale-console: ^11.0.0
     nightingale-logger: ^11.0.0
-    pob-babel: 26.2.0
+    pob-babel: 26.2.1
     pob-lcov-reporter: 4.0.1
     prettier: 2.2.1
-    rollup: 2.34.2
+    rollup: 2.35.1
     split: ^1.0.1
     standard-version: 9.0.0
     typescript: 4.1.3
