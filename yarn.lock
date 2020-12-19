@@ -7028,9 +7028,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pob-babel@npm:26.2.1":
-  version: 26.2.1
-  resolution: "pob-babel@npm:26.2.1"
+"pob-babel@npm:26.3.0":
+  version: 26.3.0
+  resolution: "pob-babel@npm:26.3.0"
   dependencies:
     "@babel/plugin-transform-runtime": ^7.12.10
     "@rollup/plugin-babel": ^5.2.2
@@ -7050,7 +7050,7 @@ __metadata:
   bin:
     pob-build: bin/pob-build.js
     pob-watch: bin/pob-watch.js
-  checksum: 808e43e9052749715d1668de36cdfe5fbf11cf05657b4b80721a8494e0e6be418e9eacba338693bb4a25073d5bde0a9154a95714c3c8b52220b2c42863243a50
+  checksum: bd12e04f640f353c1e559aea48ce37c4a364040ac1967f35c18f60837cb35b4c0aec2e348f4e4236d0c02a7b95d2fc5848650643f0f4f26a44b44df85a2c9b66
   languageName: node
   linkType: hard
 
@@ -8082,7 +8082,7 @@ __metadata:
     nightingale: ^11.0.0
     nightingale-console: ^11.0.0
     nightingale-logger: ^11.0.0
-    pob-babel: 26.2.1
+    pob-babel: 26.3.0
     pob-lcov-reporter: 4.0.1
     prettier: 2.2.1
     rollup: 2.35.1
