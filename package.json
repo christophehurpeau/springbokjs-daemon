@@ -90,7 +90,7 @@
   },
   "dependencies": {
     "@types/node": "14.14.41",
-    "graceful-kill": "^4.0.0",
+    "graceful-kill": "^4.1.0",
     "nightingale": "^11.0.0",
     "nightingale-console": "^11.0.0",
     "nightingale-logger": "^11.0.0",
