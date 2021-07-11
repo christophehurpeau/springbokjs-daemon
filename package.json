@@ -122,6 +122,6 @@
     "prettier": "2.3.2",
     "rollup": "2.53.1",
     "standard-version": "9.3.0",
-    "typescript": "4.1.5"
+    "typescript": "4.3.5"
   }
 }
