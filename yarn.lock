@@ -30,29 +30,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.14.8":
-  version: 7.14.8
-  resolution: "@babel/core@npm:7.14.8"
-  dependencies:
-    "@babel/code-frame": ^7.14.5
-    "@babel/generator": ^7.14.8
-    "@babel/helper-compilation-targets": ^7.14.5
-    "@babel/helper-module-transforms": ^7.14.8
-    "@babel/helpers": ^7.14.8
-    "@babel/parser": ^7.14.8
-    "@babel/template": ^7.14.5
-    "@babel/traverse": ^7.14.8
-    "@babel/types": ^7.14.8
-    convert-source-map: ^1.7.0
-    debug: ^4.1.0
-    gensync: ^1.0.0-beta.2
-    json5: ^2.1.2
-    semver: ^6.3.0
-    source-map: ^0.5.0
-  checksum: cfb715d659b9e1ebaf9f11d87363171121d6e363b8b82766cbd4a723c04066d65d0f1ce12d6ef569a83dc5ee88efa3da0e5e6fac6945c5d627d8dc387a027b26
-  languageName: node
-  linkType: hard
-
 "@babel/core@npm:7.15.5, @babel/core@npm:^7.1.0, @babel/core@npm:^7.7.2, @babel/core@npm:^7.7.5":
   version: 7.15.5
   resolution: "@babel/core@npm:7.15.5"
@@ -76,7 +53,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/generator@npm:^7.14.8, @babel/generator@npm:^7.15.4, @babel/generator@npm:^7.7.2":
+"@babel/generator@npm:^7.15.4, @babel/generator@npm:^7.7.2":
   version: 7.15.4
   resolution: "@babel/generator@npm:7.15.4"
   dependencies:
@@ -96,7 +73,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-compilation-targets@npm:^7.14.5, @babel/helper-compilation-targets@npm:^7.15.4":
+"@babel/helper-compilation-targets@npm:^7.15.4":
   version: 7.15.4
   resolution: "@babel/helper-compilation-targets@npm:7.15.4"
   dependencies:
@@ -184,7 +161,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-transforms@npm:^7.13.0, @babel/helper-module-transforms@npm:^7.14.8, @babel/helper-module-transforms@npm:^7.15.4":
+"@babel/helper-module-transforms@npm:^7.13.0, @babel/helper-module-transforms@npm:^7.15.4":
   version: 7.15.4
   resolution: "@babel/helper-module-transforms@npm:7.15.4"
   dependencies:
@@ -269,7 +246,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helpers@npm:^7.14.8, @babel/helpers@npm:^7.15.4":
+"@babel/helpers@npm:^7.15.4":
   version: 7.15.4
   resolution: "@babel/helpers@npm:7.15.4"
   dependencies:
@@ -291,7 +268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.8, @babel/parser@npm:^7.15.4, @babel/parser@npm:^7.15.5, @babel/parser@npm:^7.7.0, @babel/parser@npm:^7.7.2":
+"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.15.4, @babel/parser@npm:^7.15.5, @babel/parser@npm:^7.7.0, @babel/parser@npm:^7.7.2":
   version: 7.15.5
   resolution: "@babel/parser@npm:7.15.5"
   bin:
@@ -580,7 +557,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/template@npm:^7.14.5, @babel/template@npm:^7.15.4, @babel/template@npm:^7.3.3":
+"@babel/template@npm:^7.15.4, @babel/template@npm:^7.3.3":
   version: 7.15.4
   resolution: "@babel/template@npm:7.15.4"
   dependencies:
@@ -591,7 +568,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/traverse@npm:^7.1.0, @babel/traverse@npm:^7.14.8, @babel/traverse@npm:^7.15.4, @babel/traverse@npm:^7.7.0, @babel/traverse@npm:^7.7.2":
+"@babel/traverse@npm:^7.1.0, @babel/traverse@npm:^7.15.4, @babel/traverse@npm:^7.7.0, @babel/traverse@npm:^7.7.2":
   version: 7.15.4
   resolution: "@babel/traverse@npm:7.15.4"
   dependencies:
@@ -608,7 +585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.12.1, @babel/types@npm:^7.12.13, @babel/types@npm:^7.14.8, @babel/types@npm:^7.15.4, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.12.1, @babel/types@npm:^7.12.13, @babel/types@npm:^7.15.4, @babel/types@npm:^7.3.0, @babel/types@npm:^7.3.3, @babel/types@npm:^7.7.0, @babel/types@npm:^7.8.3":
   version: 7.15.4
   resolution: "@babel/types@npm:7.15.4"
   dependencies:
@@ -7473,7 +7450,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "springbokjs-daemon@workspace:."
   dependencies:
-    "@babel/core": 7.14.8
+    "@babel/core": 7.15.5
     "@pob/commitlint-config": 2.2.0
     "@pob/eslint-config": 41.1.2
     "@pob/eslint-config-node": 41.1.2
