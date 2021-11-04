@@ -97,7 +97,7 @@
     "split": "^1.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.15.5",
+    "@babel/core": "7.16.0",
     "@pob/commitlint-config": "2.2.0",
     "@pob/eslint-config": "41.1.2",
     "@pob/eslint-config-node": "41.1.2",
