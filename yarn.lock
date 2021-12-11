@@ -621,12 +621,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:^12.0.1":
-  version: 12.1.4
-  resolution: "@commitlint/config-conventional@npm:12.1.4"
+"@commitlint/config-conventional@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "@commitlint/config-conventional@npm:15.0.0"
   dependencies:
     conventional-changelog-conventionalcommits: ^4.3.1
-  checksum: 3bcc963d88a130f50d3d2b12a29a11eff6c0a553ad945595fe1d9d36052be662a011c2a6784ce88ede8c91b5aaadf5517c3f533747e91c799e0fe3281338d98c
+  checksum: 48fc1f667a5a32f0fe52dbbdfb2871f5eb630f61fa462d7e82410adb0d899a41c99039c929bc7a22c287b06446db258544a4058c308321e85156ecae923c1425
   languageName: node
   linkType: hard
 
@@ -1069,12 +1069,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/commitlint-config@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@pob/commitlint-config@npm:2.2.0"
+"@pob/commitlint-config@npm:4.0.0":
+  version: 4.0.0
+  resolution: "@pob/commitlint-config@npm:4.0.0"
   dependencies:
-    "@commitlint/config-conventional": ^12.0.1
-  checksum: 9cdcd61c6edf42aab3fc51054245e478cb594234fb21f93e98fda2bcae9b439f1cb17bd2b19ca98c6ff0f0a198cac45264affe587f380c67053769c90b9a8fbe
+    "@commitlint/config-conventional": ^15.0.0
+  checksum: 0b38a15d059a84708e736fed7a44fab5bbb8e04a3ddccdea682d232878325e9b0ac00d3ef34055705c7c7d6b7755c366a8d994256280c4eb02507c669d7890c1
   languageName: node
   linkType: hard
 
@@ -7493,7 +7493,7 @@ __metadata:
   resolution: "springbokjs-daemon@workspace:."
   dependencies:
     "@babel/core": 7.16.0
-    "@pob/commitlint-config": 2.2.0
+    "@pob/commitlint-config": 4.0.0
     "@pob/eslint-config": 41.1.2
     "@pob/eslint-config-node": 41.1.2
     "@pob/eslint-config-typescript": 41.1.3
