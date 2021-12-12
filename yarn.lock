@@ -1454,10 +1454,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:14.18.0, @types/node@npm:>=12.0.0":
-  version: 14.18.0
-  resolution: "@types/node@npm:14.18.0"
-  checksum: a9b90e7bf48821c8626496d75d2f2a090fc5776c7630c9256f199209e7a2b690561ab9e9a9e9ad19f1b065300266f24be85eb93e57d14f96137ce5f48a80cba3
+"@types/node@npm:*, @types/node@npm:16.11.12, @types/node@npm:>=12.0.0":
+  version: 16.11.12
+  resolution: "@types/node@npm:16.11.12"
+  checksum: 6b9d35e0e9a9c3d0d82bc114ba0457661be70aeaabbc85efaf31f78f5fa1c27d6214a32f3f03ddb1d7710753fa2fb77ddc417c4948eb72b22b1456527dc04263
   languageName: node
   linkType: hard
 
@@ -7500,7 +7500,7 @@ __metadata:
     "@pob/eslint-config-typescript-node": 41.1.2
     "@pob/root": 3.3.0
     "@types/jest": 26.0.24
-    "@types/node": 14.18.0
+    "@types/node": 16.11.12
     "@types/split": 1.0.0
     "@typescript-eslint/eslint-plugin": 4.33.0
     "@typescript-eslint/parser": 4.33.0
