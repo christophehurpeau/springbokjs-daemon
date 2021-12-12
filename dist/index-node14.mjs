@@ -1,12 +1,12 @@
 import { spawn } from 'child_process';
-import {gracefulKill} from 'graceful-kill';
-import Logger, { addConfig, Level } from 'nightingale';
-import ConsoleLogger from 'nightingale-console';
+import { gracefulKill } from 'graceful-kill';
+import { addConfig, Level, Logger } from 'nightingale';
+import { ConsoleHandler } from 'nightingale-console';
 import split from 'split';
 
 addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Level.INFO)
+  handler: new ConsoleHandler(Level.INFO)
 });
 function createDaemon({
   key,

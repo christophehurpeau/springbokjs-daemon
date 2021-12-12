@@ -4,20 +4,17 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 const child_process = require('child_process');
 const gracefulKill = require('graceful-kill');
-const Logger = require('nightingale');
-const ConsoleLogger = require('nightingale-console');
+const nightingale = require('nightingale');
+const nightingaleConsole = require('nightingale-console');
 const split = require('split');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e["default"] : e; }
 
-const gracefulKill__default = /*#__PURE__*/_interopDefaultLegacy(gracefulKill);
-const Logger__default = /*#__PURE__*/_interopDefaultLegacy(Logger);
-const ConsoleLogger__default = /*#__PURE__*/_interopDefaultLegacy(ConsoleLogger);
 const split__default = /*#__PURE__*/_interopDefaultLegacy(split);
 
-Logger.addConfig({
+nightingale.addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger__default(Logger.Level.INFO)
+  handler: new nightingaleConsole.ConsoleHandler(nightingale.Level.INFO)
 });
 function createDaemon({
   key,
@@ -35,19 +32,19 @@ function createDaemon({
 } = {}) {
   let process = null;
   let stopPromise;
-  const logger = new Logger__default(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
+  const logger = new nightingale.Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
   logger.info('created', {
     command,
     args
   });
-  const outputLogger = prefixStdout ? new Logger__default(`springbokjs-daemon${outputKey ? `:${outputKey}` : ''}`, outputDisplayName) : undefined;
+  const outputLogger = prefixStdout ? new nightingale.Logger(`springbokjs-daemon${outputKey ? `:${outputKey}` : ''}`, outputDisplayName) : undefined;
 
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
     const runningProcess = process;
     process = null;
     runningProcess.removeAllListeners();
-    stopPromise = gracefulKill__default(runningProcess, SIGTERMTimeout).then(() => {
+    stopPromise = gracefulKill.gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
       stopPromise = undefined;
     });
     return stopPromise;
@@ -84,8 +81,8 @@ function createDaemon({
           });
         };
 
-        logStreamInLogger(process.stdout, Logger.Level.NOTICE);
-        logStreamInLogger(process.stderr, Logger.Level.ERROR);
+        logStreamInLogger(process.stdout, nightingale.Level.NOTICE);
+        logStreamInLogger(process.stderr, nightingale.Level.ERROR);
       }
 
       process.on('exit', (code, signal) => {
