@@ -34,7 +34,7 @@ export interface Daemon {
   sendSIGUSR2: () => void;
 }
 
-export default function createDaemon({
+export function createDaemon({
   key,
   displayName,
   prefixStdout = false,
@@ -74,7 +74,7 @@ export default function createDaemon({
       stopPromise = undefined;
     });
 
-    return stopPromise as Promise<void>;
+    return stopPromise ;
   };
 
   const start = (): Promise<void> => {
@@ -172,3 +172,6 @@ export default function createDaemon({
     },
   };
 }
+
+/** @deprecated use named export instead */
+export default createDaemon;

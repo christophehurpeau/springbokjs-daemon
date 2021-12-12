@@ -3,16 +3,17 @@
     "renovate": {
       "enable": true
     },
-    "project": {
-      "type": "lib",
-      "yarn2": true
-    },
     "lib": {
       "documentation": false,
       "testing": {
         "codecov": false,
         "ci": true
       }
+    },
+    "project": {
+      "type": "lib",
+      "yarnNodeLinker": "node-modules",
+      "packageManager": "yarn"
     }
   },
   "springbokjs-daemon": {}
