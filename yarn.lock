@@ -5473,6 +5473,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nightingale-levels@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "nightingale-levels@npm:12.0.0"
+  checksum: 805b3c50ca9670352a9b437e7bc36534aaaf02071d2ae456d5ac7cd2f03c9a115392bb7e19cc6cd04ead4dc43fb7d45ca00ecaba95cce20176565a764bc9842e
+  languageName: node
+  linkType: hard
+
 "nightingale-logger@npm:^11.0.0":
   version: 11.0.0
   resolution: "nightingale-logger@npm:11.0.0"
@@ -5484,12 +5491,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nightingale-logger@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "nightingale-logger@npm:12.0.0"
+  dependencies:
+    "@types/node": ">=14.0.0"
+    nightingale-levels: ^12.0.0
+    nightingale-types: ^12.0.0
+  checksum: 8133cbdec06ce0f3e4232fdfe2fad0a5397c2b80dc93dbbff93c91a39de1bf30ebc997097cdbda1a99934c99ebe0f80c40fd9dd957687ac8be3f46d8e0f68990
+  languageName: node
+  linkType: hard
+
 "nightingale-types@npm:^11.0.0":
   version: 11.0.0
   resolution: "nightingale-types@npm:11.0.0"
   dependencies:
     nightingale-levels: ^11.0.0
   checksum: 55462f24db6d5f533edaeaaf4892e31824da9828b430df3f55946db829c7734bbe95b6f1ad836047f4e6c96ee0adb15754727043e35ee23f259a6b1f254d61f7
+  languageName: node
+  linkType: hard
+
+"nightingale-types@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "nightingale-types@npm:12.0.0"
+  dependencies:
+    nightingale-levels: ^12.0.0
+  checksum: 3f01863ce0bb323041dda112488868e99a40b9b3c87f928bc74c6736b1047e1701c72d3e563f23da4acdfe1f80fbb265a4d87ce069b2e9f4c2fc0e63e3f4dffb
   languageName: node
   linkType: hard
 
@@ -6594,7 +6621,7 @@ __metadata:
     jest: 27.4.4
     nightingale: ^11.0.0
     nightingale-console: ^11.0.0
-    nightingale-logger: ^11.0.0
+    nightingale-logger: ^12.0.0
     pob-babel: 29.4.2
     pob-lcov-reporter: 6.0.0
     prettier: 2.5.1
