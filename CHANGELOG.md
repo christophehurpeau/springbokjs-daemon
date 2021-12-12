@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://www.github.com/christophehurpeau/springbokjs-daemon/compare/v6.0.0...v7.0.0) (2021-12-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires node 14
+
+### Features
+
+* **deps:** update dependency @types/node to v14.14.41 ([#194](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/194)) ([d6a86e6](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/d6a86e66292820a2abcd5a5199e20f1a523edbcc))
+* **deps:** update dependency @types/node to v14.14.42 ([#199](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/199)) ([9cfdcd0](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/9cfdcd01d28946938a8766bbd4b3c0acfa9b923a))
+* **deps:** update dependency @types/node to v14.14.43 ([#200](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/200)) ([4113012](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/4113012c2e5e3eda1be6a091856bd66e9debe0c5))
+* **deps:** update dependency @types/node to v14.14.44 ([#206](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/206)) ([7a57973](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/7a57973d5d0214781006e4eba401c12b56c628b8))
+* **deps:** update dependency @types/node to v14.17.1 ([#216](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/216)) ([4edc898](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/4edc8984848a94f025ccb64acb74230deebceec1))
+* **deps:** update dependency @types/node to v14.18.0 ([#308](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/308)) ([76ad7ee](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/76ad7ee7c567da695bcebd6b25937d57b0d9b4e6))
+* update nightingale and graceful-kill ([1409d85](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/1409d85dbc511f8804b87f08f5138769b3e9c29b))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/node to v14.14.45 ([#212](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/212)) ([e7b1663](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/e7b16633bc1fc24ecc82cba3054a29330c1c6794))
+* **deps:** update dependency @types/node to v14.17.15 ([#283](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/283)) ([4b62d25](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/4b62d25e6f76834baa541a611e080934956606e6))
+* **deps:** update dependency @types/node to v14.17.2 ([#228](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/228)) ([3149988](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/3149988434286968ac7dd5bfd2773e660686a721))
+* **deps:** update dependency @types/node to v14.17.3 ([#234](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/234)) ([fd1635a](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/fd1635a66fdd2b91289c0753916fe3e47758326f))
+* **deps:** update dependency @types/node to v14.17.32 ([#290](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/290)) ([ef12bcd](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/ef12bcdc41e0de53195de33473f4fe4778f465af))
+* **deps:** update dependency @types/node to v14.17.33 ([#299](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/299)) ([a77885d](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/a77885dff5291ceae71303c989582977d4bf2ac6))
+* **deps:** update dependency @types/node to v14.17.4 ([#245](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/245)) ([e8de5b8](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/e8de5b8d2fcc5d9a941d3cb98872c2dc51dc4d7d))
+* **deps:** update dependency @types/node to v14.17.5 ([#264](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/264)) ([62576ba](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/62576baaad59a81020fc9379cff47cb341ee0540))
+* **deps:** update dependency @types/node to v14.17.7 ([#277](https://www.github.com/christophehurpeau/springbokjs-daemon/issues/277)) ([1b03fc0](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/1b03fc04eb76df4d5db64ecc28cfbbb2a73fc09e))
+
+
+### Code Refactoring
+
+* update dev deps, drop node 12 ([ee600cc](https://www.github.com/christophehurpeau/springbokjs-daemon/commit/ee600cc6617ebc7a0bd0e0da930c5e1f920aae32))
+
 ## [6.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v5.1.1...v6.0.0) (2020-12-13)
 
 
