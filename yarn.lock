@@ -5493,7 +5493,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale@npm:^12.0.1":
+"nightingale@npm:^12.0.0":
   version: 12.0.1
   resolution: "nightingale@npm:12.0.1"
   dependencies:
@@ -6592,7 +6592,7 @@ __metadata:
     eslint: 8.4.1
     graceful-kill: 5.0.0
     jest: 27.4.4
-    nightingale: ^12.0.1
+    nightingale: ^12.0.0
     nightingale-console: ^12.0.1
     pob-babel: 29.4.2
     pob-lcov-reporter: 6.0.0
