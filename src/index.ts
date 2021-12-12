@@ -1,14 +1,14 @@
 import { spawn } from 'child_process';
 import type { ChildProcess } from 'child_process';
 import type { Readable as ReadableStream } from 'stream';
-import gracefulKill from 'graceful-kill';
-import Logger, { addConfig, Level } from 'nightingale';
-import ConsoleLogger from 'nightingale-console';
+import { gracefulKill } from 'graceful-kill';
+import { Logger, addConfig, Level } from 'nightingale';
+import { ConsoleHandler } from 'nightingale-console';
 import split from 'split';
 
 addConfig({
   pattern: /^springbokjs-daemon/,
-  handler: new ConsoleLogger(Level.INFO),
+  handler: new ConsoleHandler(Level.INFO),
 });
 
 export interface Options<Messages = any> {
@@ -74,7 +74,7 @@ export function createDaemon({
       stopPromise = undefined;
     });
 
-    return stopPromise ;
+    return stopPromise;
   };
 
   const start = (): Promise<void> => {

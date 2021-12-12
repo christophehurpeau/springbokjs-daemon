@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import gracefulKill from 'graceful-kill';
+import {gracefulKill} from 'graceful-kill';
 import Logger, { addConfig, Level } from 'nightingale';
 import ConsoleLogger from 'nightingale-console';
 import split from 'split';
