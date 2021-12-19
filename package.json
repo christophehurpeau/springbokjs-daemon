@@ -101,8 +101,8 @@
     "@types/split": "1.0.0",
     "eslint": "8.5.0",
     "jest": "27.4.5",
-    "pob-babel": "29.4.2",
-    "pob-lcov-reporter": "6.0.0",
+    "pob-babel": "29.5.1",
+    "pob-lcov-reporter": "6.0.1",
     "prettier": "2.5.1",
     "typescript": "4.5.4"
   }
