@@ -3778,13 +3778,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-kill@npm:5.0.0":
-  version: 5.0.0
-  resolution: "graceful-kill@npm:5.0.0"
+"graceful-kill@npm:5.0.1":
+  version: 5.0.1
+  resolution: "graceful-kill@npm:5.0.1"
   dependencies:
     "@types/node": ">=14.0.0"
-    nightingale-logger: ^12.0.0
-  checksum: 8734bfe0b07752ea0b08e2724d0ead6b41cf92ac5db9e969d10d3742e2f56529c76678d6dacd518dc9fb2c2cce37ae4143c5f6dc3da56a306ed570c08f5c88b5
+    nightingale-logger: ^12.1.1
+  checksum: a28176a769b35849ed526f7ee033bbdf344b036040d2ba75cb68c4ba8269b0a2a8ad33559a4b2aa41a6dca33a7966dfdf092ca4c23e020fca3e2c330d7ee180a
   languageName: node
   linkType: hard
 
@@ -5526,7 +5526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nightingale-logger@npm:12.1.1, nightingale-logger@npm:^12.0.0":
+"nightingale-logger@npm:12.1.1, nightingale-logger@npm:^12.1.1":
   version: 12.1.1
   resolution: "nightingale-logger@npm:12.1.1"
   dependencies:
@@ -6610,7 +6610,7 @@ __metadata:
     "@types/node": ">=14.0.0"
     "@types/split": 1.0.0
     eslint: 8.6.0
-    graceful-kill: 5.0.0
+    graceful-kill: 5.0.1
     jest: 27.4.5
     nightingale: ^12.1.1
     nightingale-console: ^12.1.1
