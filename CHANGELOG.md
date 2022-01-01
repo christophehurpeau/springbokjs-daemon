@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v7.0.0...v7.1.0) (2022-01-01)
+
+
+### Features
+
+* update nightingale ([ea44e70](https://github.com/christophehurpeau/springbokjs-daemon/commit/ea44e704a711f7fa5be21f2ea5a787f46cf403de))
+
 ## [7.0.0](https://www.github.com/christophehurpeau/springbokjs-daemon/compare/v6.0.0...v7.0.0) (2021-12-12)
 
 
