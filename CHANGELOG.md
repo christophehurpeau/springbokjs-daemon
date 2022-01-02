@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v7.1.0...v8.0.0) (2022-01-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires node with esm
+
+### Features
+
+* drop cjs support ([d54e85f](https://github.com/christophehurpeau/springbokjs-daemon/commit/d54e85fea619499a1574bd689222b78011046ad6))
+
 ## [7.1.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v7.0.0...v7.1.0) (2022-01-01)
 
 
