@@ -97,7 +97,7 @@
     "@pob/root": "6.3.2",
     "@types/jest": "27.4.0",
     "@types/split": "1.0.0",
-    "eslint": "8.6.0",
+    "eslint": "8.7.0",
     "jest": "27.4.7",
     "pob-babel": "29.6.1",
     "pob-lcov-reporter": "6.0.1",
