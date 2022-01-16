@@ -94,13 +94,12 @@
     "@pob/commitlint-config": "4.1.0",
     "@pob/eslint-config": "48.0.5",
     "@pob/eslint-config-typescript": "48.0.6",
-    "@pob/root": "6.3.2",
+    "@pob/root": "6.4.0",
     "@types/jest": "27.4.0",
     "@types/split": "1.0.0",
     "eslint": "8.6.0",
     "jest": "27.4.7",
-    "pob-babel": "29.6.1",
-    "pob-lcov-reporter": "6.0.1",
+    "pob-babel": "29.7.0",
     "prettier": "2.5.1",
     "typescript": "4.5.4"
   }
