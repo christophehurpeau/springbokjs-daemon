@@ -93,14 +93,14 @@
   "devDependencies": {
     "@babel/core": "7.17.5",
     "@pob/commitlint-config": "4.1.0",
-    "@pob/eslint-config": "48.1.1",
-    "@pob/eslint-config-typescript": "48.1.1",
-    "@pob/root": "6.7.0",
+    "@pob/eslint-config": "49.0.0",
+    "@pob/eslint-config-typescript": "49.0.0",
+    "@pob/root": "6.9.0",
     "@types/jest": "27.4.0",
     "@types/split": "1.0.0",
     "eslint": "8.9.0",
     "jest": "27.5.1",
-    "pob-babel": "31.0.0",
+    "pob-babel": "32.2.0",
     "prettier": "2.5.1",
     "typescript": "4.5.5"
   }
