@@ -1192,9 +1192,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pob/root@npm:6.14.0":
-  version: 6.14.0
-  resolution: "@pob/root@npm:6.14.0"
+"@pob/root@npm:6.14.1":
+  version: 6.14.1
+  resolution: "@pob/root@npm:6.14.1"
   dependencies:
     "@commitlint/cli": 16.2.3
     "@pob/pretty-eslint-config": 3.0.2
@@ -1202,8 +1202,8 @@ __metadata:
     husky: ^7.0.0
     json5: ^2.2.0
     lint-staged: 12.3.7
-    pob-dependencies: 6.21.0
-    prettier: 2.6.0
+    pob-dependencies: 6.22.0
+    prettier: 2.6.2
     repository-check-dirty: ^4.0.0
     semver: ^7.1.2
     which-pm-runs: 1.1.0
@@ -1215,7 +1215,7 @@ __metadata:
     pretty-pkg: bin/pretty-pkg.mjs
     repository-check-dirty: bin/repository-check-dirty.js
     yarnhook: bin/yarnhook.js
-  checksum: ec7b9c7ded1a2a36cda3dc571da322ff83bc0dc2783b94b26e3b52ff7b30688f6a1fc3aea516495e8474f3efd821fe86d3bac273696d7d39878c22ca1fbd4e42
+  checksum: 4a86310b4da1f4c2badee61190132ce1bf65c8cd03916dfe8ea40fc7f045c652a28dc7bc7ff7685583e4d73bd2cb2b074c6bbdbbd7cb422f382718e6f4d8640c
   languageName: node
   linkType: hard
 
@@ -6016,10 +6016,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pob-dependencies@npm:6.21.0":
-  version: 6.21.0
-  resolution: "pob-dependencies@npm:6.21.0"
-  checksum: 60375b5db073810f8daa26b6ee360f970f3545d57adb916df8478bb80e23b0ab3d0847c4be148a3c8c454b5ba7d01e13180afbca1a21534935b4f6a64d92e1ed
+"pob-dependencies@npm:6.22.0":
+  version: 6.22.0
+  resolution: "pob-dependencies@npm:6.22.0"
+  checksum: 1126d36a53464e0108c41f364661257eda38e3d20e10e5e7bcf73b9c41d88a08f673a776e0484aba19188021a697622e8dff7e143dcbc8233b36670e5e8eb9a7
   languageName: node
   linkType: hard
 
@@ -6034,15 +6034,6 @@ __metadata:
   version: 1.1.2
   resolution: "prelude-ls@npm:1.1.2"
   checksum: c4867c87488e4a0c233e158e4d0d5565b609b105d75e4c05dc760840475f06b731332eb93cc8c9cecb840aa8ec323ca3c9a56ad7820ad2e63f0261dadcb154e4
-  languageName: node
-  linkType: hard
-
-"prettier@npm:2.6.0":
-  version: 2.6.0
-  resolution: "prettier@npm:2.6.0"
-  bin:
-    prettier: bin-prettier.js
-  checksum: 3e527ad62279676778a8404d18174d7ca2365ada4caba6eebbcdd9907d1187afd3bc6ade5b4e5f5d4549bb9fb71e45ca8930d71500017635524f8fc05bc52e93
   languageName: node
   linkType: hard
 
@@ -6654,7 +6645,7 @@ __metadata:
     "@pob/commitlint-config": 4.1.0
     "@pob/eslint-config": 49.0.0
     "@pob/eslint-config-typescript": 49.0.0
-    "@pob/root": 6.14.0
+    "@pob/root": 6.14.1
     "@types/jest": 27.4.1
     "@types/node": ">=14.0.0"
     "@types/split": 1.0.1
