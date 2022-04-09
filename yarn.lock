@@ -6644,7 +6644,6 @@ __metadata:
     nightingale: ^12.1.2
     nightingale-console: ^12.1.2
     pob-babel: 32.2.0
-    prettier: 2.6.2
     split: ^1.0.1
     typescript: 4.6.3
   languageName: unknown
