@@ -95,13 +95,12 @@
     "@pob/commitlint-config": "4.1.0",
     "@pob/eslint-config": "49.1.0",
     "@pob/eslint-config-typescript": "49.2.1",
-    "@pob/root": "6.14.1",
+    "@pob/root": "6.15.0",
     "@types/jest": "27.4.1",
     "@types/split": "1.0.1",
     "eslint": "8.13.0",
     "jest": "27.5.1",
     "pob-babel": "32.2.0",
-    "prettier": "2.6.2",
     "typescript": "4.6.3"
   }
 }
