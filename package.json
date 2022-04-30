@@ -86,7 +86,7 @@
   },
   "dependencies": {
     "@types/node": ">=14.0.0",
-    "graceful-kill": "6.1.0",
+    "graceful-kill": "6.0.0",
     "nightingale": "^12.1.4",
     "nightingale-console": "^12.1.4",
     "split": "^1.0.1"
