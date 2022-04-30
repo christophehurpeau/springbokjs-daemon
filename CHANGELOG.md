@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v8.0.0...v8.1.0) (2022-04-30)
+
+
+### Features
+
+* update graceful-kill ([aac7e85](https://github.com/christophehurpeau/springbokjs-daemon/commit/aac7e8547a550f301cc2464eaa8dbbbcf6d57abd))
+* update nightingale ([4b9f65e](https://github.com/christophehurpeau/springbokjs-daemon/commit/4b9f65e040f87c0f690fe309aa7f96bb6d3cb45f))
+
 ## [8.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v7.1.0...v8.0.0) (2022-01-02)
 
 
