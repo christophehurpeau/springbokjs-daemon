@@ -8,6 +8,9 @@
 
 <p align="center">
   <a href="https://npmjs.org/package/springbokjs-daemon"><img src="https://img.shields.io/npm/v/springbokjs-daemon.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/springbokjs-daemon"><img src="https://img.shields.io/npm/dw/springbokjs-daemon.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/springbokjs-daemon"><img src="https://img.shields.io/node/v/springbokjs-daemon.svg?style=flat-square"></a>
+  <a href="https://npmjs.org/package/springbokjs-daemon"><img src="https://img.shields.io/npm/types/springbokjs-daemon.svg?style=flat-square"></a>
 </p>
 
 ## Install
