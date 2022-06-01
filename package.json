@@ -97,7 +97,7 @@
     "@pob/eslint-config": "49.1.0",
     "@pob/eslint-config-typescript": "49.3.0",
     "@pob/root": "6.20.0",
-    "@types/jest": "27.5.1",
+    "@types/jest": "27.5.2",
     "@types/split": "1.0.1",
     "eslint": "8.16.0",
     "jest": "28.1.0",
