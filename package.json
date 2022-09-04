@@ -33,7 +33,7 @@
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.build.json",
     "clean": "yarn clean:build",
-    "clean:build": "rm -Rf dist",
+    "clean:build": "pob-babel-clean-out dist",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_ENV=production BABEL_ENV=test jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
     "lint": "yarn run lint:prettier && tsc && yarn run lint:eslint",
     "lint:eslint": "eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet *.{js,cjs,mjs} src",
@@ -96,12 +96,12 @@
     "@pob/commitlint-config": "4.3.0",
     "@pob/eslint-config": "49.3.2",
     "@pob/eslint-config-typescript": "49.3.3",
-    "@pob/root": "6.21.1",
+    "@pob/root": "6.22.0",
     "@types/jest": "28.1.8",
     "@types/split": "1.0.1",
     "eslint": "8.23.0",
     "jest": "28.1.3",
-    "pob-babel": "34.0.0",
+    "pob-babel": "34.1.0",
     "typescript": "4.8.2"
   }
 }
