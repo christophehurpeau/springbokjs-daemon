@@ -30,7 +30,6 @@ function createDaemon({
     args
   });
   const outputLogger = prefixStdout ? new Logger(`springbokjs-daemon${outputKey ? `:${outputKey}` : ''}`, outputDisplayName) : undefined;
-
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
     const runningProcess = process;
@@ -41,12 +40,10 @@ function createDaemon({
     });
     return stopPromise;
   };
-
   const start = () => {
     if (process) {
       throw new Error('Process already started');
     }
-
     return new Promise((resolve, reject) => {
       const stdoutOption = outputLogger ? 'pipe' : 'inherit';
       process = spawn(command, args, {
@@ -54,13 +51,11 @@ function createDaemon({
         env,
         stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
       });
-
       if (outputLogger) {
         const logStreamInLogger = (stream, loggerLevel) => {
           if (!stream) return;
           stream.pipe(split()).on('data', line => {
             if (line.length === 0) return;
-
             if (line.startsWith('{') && line.endsWith('}')) {
               try {
                 const json = JSON.parse(line);
@@ -68,22 +63,18 @@ function createDaemon({
                 return;
               } catch {}
             }
-
             outputLogger.log(line, undefined, loggerLevel);
           });
         };
-
         logStreamInLogger(process.stdout, Level.NOTICE);
         logStreamInLogger(process.stderr, Level.ERROR);
       }
-
       process.on('exit', (code, signal) => {
         logger.warn('exited', {
           code,
           signal
         });
         process = null;
-
         if (autoRestart) {
           logger.debug('autorestart');
           start().then(resolve, reject);
@@ -109,35 +100,29 @@ function createDaemon({
       });
     });
   };
-
   return {
     hasExited() {
       return process === null;
     },
-
     start() {
       logger.notice('starting...');
       return start();
     },
-
     stop() {
       if (!process) logger.notice('stopping...');
       return stop();
     },
-
     restart() {
       logger.notice('restarting...');
       return stop().then(() => start());
     },
-
     sendSIGUSR2() {
       if (process) {
         process.kill('SIGUSR2');
       }
     }
-
   };
 }
 
 export { createDaemon, createDaemon as default };
-//# sourceMappingURL=index-node14.mjs.map
+//# sourceMappingURL=index-node16.mjs.map
