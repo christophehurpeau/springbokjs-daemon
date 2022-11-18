@@ -97,7 +97,7 @@
     "@types/split": "1.0.2",
     "eslint": "8.27.0",
     "jest": "29.3.1",
-    "pob-babel": "34.3.0",
+    "pob-babel": "35.0.0",
     "typescript": "4.8.4"
   }
 }
