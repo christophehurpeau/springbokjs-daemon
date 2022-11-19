@@ -8,7 +8,7 @@ module.exports = function babelConfig(api) {
   return {
     only: ['src'],
     presets: [
-      [require.resolve('pob-babel/preset.cjs'), { modules: 'commonjs' }],
+      [require.resolve('pob-babel/preset.js'), { modules: 'commonjs' }],
     ],
   };
 };
