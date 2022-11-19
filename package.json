@@ -12,7 +12,7 @@
   "license": "ISC",
   "repository": "https://github.com/christophehurpeau/springbokjs-daemon.git",
   "homepage": "http://springbokjs.org",
-  "type": "commonjs",
+  "type": "module",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -31,16 +31,17 @@
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
+    "checks": "node scripts/check-package.js",
     "clean": "yarn clean:build",
     "clean:build": "pob-babel-clean-out dist",
     "generate:test-coverage": "rm -Rf docs/coverage/ ; NODE_ENV=production BABEL_ENV=test jest --coverage --coverageReporters=pob-lcov-reporter --coverageDirectory=docs/coverage/",
     "lint": "yarn run lint:prettier && tsc && yarn run lint:eslint",
-    "lint:eslint": "eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet *.{js,cjs,mjs} src",
+    "lint:eslint": "eslint --report-unused-disable-directives --resolve-plugins-relative-to . --quiet *.{js,cjs,mjs} src scripts",
     "lint:prettier": "pob-root-prettier --check .",
     "lint:prettier:fix": "pob-root-prettier --write .",
     "postinstallDev": "pob-root-postinstall",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "watch": "yarn clean:build && rollup --config rollup.config.mjs --watch"
   },
   "prettier": "@pob/root/prettier-config",
@@ -63,7 +64,10 @@
       "js",
       "json"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ]
   },
   "pob": {
     "babelEnvs": [
@@ -91,6 +95,7 @@
     "@pob/root": "7.2.0",
     "@types/jest": "29.2.3",
     "@types/split": "1.0.2",
+    "check-package-dependencies": "3.10.0",
     "eslint": "8.28.0",
     "jest": "29.3.1",
     "pob-babel": "35.3.0",
