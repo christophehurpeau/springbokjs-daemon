@@ -18,7 +18,7 @@ export interface Options<Messages = any> {
   outputKey?: string;
   outputDisplayName?: string;
   command?: string;
-  args?: (string | number)[];
+  args?: (number | string)[];
   cwd?: string;
   env?: NodeJS.ProcessEnv;
   autoRestart?: boolean;

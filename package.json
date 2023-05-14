@@ -90,8 +90,8 @@
   "devDependencies": {
     "@babel/core": "7.20.12",
     "@pob/commitlint-config": "5.1.1",
-    "@pob/eslint-config": "50.0.0",
-    "@pob/eslint-config-typescript": "50.0.0",
+    "@pob/eslint-config": "50.0.5",
+    "@pob/eslint-config-typescript": "50.0.5",
     "@pob/root": "7.5.0",
     "@types/jest": "29.5.1",
     "@types/split": "1.0.2",
