@@ -97,7 +97,7 @@
     "@types/split": "1.0.2",
     "check-package-dependencies": "6.4.1",
     "eslint": "8.44.0",
-    "jest": "29.5.0",
+    "jest": "29.6.0",
     "pob-babel": "35.8.0",
     "typescript": "5.1.6"
   }
