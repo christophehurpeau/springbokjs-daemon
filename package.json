@@ -83,8 +83,8 @@
   "dependencies": {
     "@types/node": ">=16.0.0",
     "graceful-kill": "7.0.0",
-    "nightingale": "^13.0.0",
-    "nightingale-console": "^13.0.0",
+    "nightingale": "^14.0.0",
+    "nightingale-console": "^14.0.0",
     "split": "^1.0.1"
   },
   "devDependencies": {
