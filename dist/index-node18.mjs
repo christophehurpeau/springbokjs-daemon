@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { spawn } from 'node:child_process';
 import { gracefulKill } from 'graceful-kill';
 import { addConfig, Level, Logger } from 'nightingale';
 import { ConsoleHandler } from 'nightingale-console';
