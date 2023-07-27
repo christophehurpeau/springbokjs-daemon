@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v9.0.0...v10.0.0) (2023-07-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires node 18 lts
+
+### Code Refactoring
+
+* drop node 16 ([70df775](https://github.com/christophehurpeau/springbokjs-daemon/commit/70df7755cf151a5b2309502c6205404e3f521860))
+
 ## [9.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v8.1.0...v9.0.0) (2022-11-20)
 
 
