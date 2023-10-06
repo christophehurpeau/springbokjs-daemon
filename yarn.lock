@@ -2384,9 +2384,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-preset-pob-env@npm:10.1.2":
-  version: 10.1.2
-  resolution: "babel-preset-pob-env@npm:10.1.2"
+"babel-preset-pob-env@npm:10.1.3":
+  version: 10.1.3
+  resolution: "babel-preset-pob-env@npm:10.1.3"
   dependencies:
     "@babel/plugin-proposal-nullish-coalescing-operator": ^7.16.7
     "@babel/plugin-proposal-optional-chaining": ^7.16.7
@@ -2397,7 +2397,7 @@ __metadata:
     babel-preset-optimizations: ^2.0.0
   peerDependencies:
     "@babel/core": ^7.11.6
-  checksum: 363b8fba07d644d92deab0ae2813c08b412fe3fa817ecb79256cc6aaad812bed0f9d357e2c733b85bd70cf9e8dfedf9cffe610400986cccf5cce8170996634da
+  checksum: 8c573231adbccc7c289d765dcf5793cf08ce0a171d03a933aaf23df0f2eef1a3000b6528d0d9592f4b831cab143a9eb7b23b32b8ad9a8d5b79defb4f2f7c0057
   languageName: node
   linkType: hard
 
@@ -6150,9 +6150,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pob-babel@npm:36.4.1":
-  version: 36.4.1
-  resolution: "pob-babel@npm:36.4.1"
+"pob-babel@npm:36.4.2":
+  version: 36.4.2
+  resolution: "pob-babel@npm:36.4.2"
   dependencies:
     "@babel/core": ^7.17.10
     "@babel/plugin-transform-runtime": 7.22.15
@@ -6160,13 +6160,13 @@ __metadata:
     "@rollup/plugin-json": 6.0.0
     "@rollup/plugin-node-resolve": 15.2.1
     "@rollup/plugin-run": 3.0.1
-    babel-preset-pob-env: 10.1.2
-    rollup: 3.29.2
+    babel-preset-pob-env: 10.1.3
+    rollup: 3.29.4
     rollup-config-external-dependencies: ^2.0.0
     semver: ^7.3.7
   peerDependencies:
     "@babel/core": ^7.17.10
-    rollup: 3.29.2
+    rollup: 3.29.4
     typescript: ^4.0.3 || ^5.0.0
   peerDependenciesMeta:
     rollup:
@@ -6174,7 +6174,7 @@ __metadata:
   bin:
     pob-babel-clean-out: ./bin/pob-babel-clean-out.js
     rollup: ./bin/rollup.cjs
-  checksum: d42f1ef71b5f27ed78df535e917be2f20000d81dc66905307981d2e4439017fdcb7b9e4f5d1c2414697c699a56e0d92d6c7f5d9882d288da05557f708d36bfc6
+  checksum: 9c05e4074f91c070c311766c9a4c8d25502a61cc3b35cbc289a87b9b6245c73ce71b444fdb54b0435a08c7f301969401aabffb80a227fe6fc911e64b2df5e1d6
   languageName: node
   linkType: hard
 
@@ -6500,9 +6500,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:3.29.2":
-  version: 3.29.2
-  resolution: "rollup@npm:3.29.2"
+"rollup@npm:3.29.4":
+  version: 3.29.4
+  resolution: "rollup@npm:3.29.4"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -6510,7 +6510,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 2eacb5a2522cb41e46e0bd78cca2c2da29b09b1fbd5b7c6ebb0afb3864af125a06fba528dfd6699704e49384e106ff58b359ce4abef61d7db12a7840d3b56e54
+  checksum: 8bb20a39c8d91130825159c3823eccf4dc2295c9a0a5c4ed851a5bf2167dbf24d9a29f23461a54c955e5506395e6cc188eafc8ab0e20399d7489fb33793b184e
   languageName: node
   linkType: hard
 
@@ -6790,7 +6790,7 @@ __metadata:
     jest: 29.7.0
     nightingale: ^14.1.0
     nightingale-console: ^14.1.0
-    pob-babel: 36.4.1
+    pob-babel: 36.4.2
     split: ^1.0.1
     typescript: 5.2.2
   languageName: unknown
