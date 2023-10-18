@@ -1658,13 +1658,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/split@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@types/split@npm:1.0.3"
+"@types/split@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@types/split@npm:1.0.4"
   dependencies:
     "@types/node": "*"
     "@types/through": "*"
-  checksum: 314385537b086b95aa81d604a9274136cd83ad7b3a70fc0a5fcaa625e0535c22a2de0428ac2508f22bc1fab5cc4e26967129fd6fb1f03a0d91fd4d485bc5987d
+  checksum: 248763141156687fbfa8dbbd2d94afe816396e437beca61538ecb141c5e9bc60ecf6d886ae1a0fa7c19b3593d6b9986dce53c515626989523e2104251446793a
   languageName: node
   linkType: hard
 
@@ -6783,7 +6783,7 @@ __metadata:
     "@pob/root": 8.2.2
     "@types/jest": 29.5.6
     "@types/node": ">=18.0.0"
-    "@types/split": 1.0.3
+    "@types/split": 1.0.4
     check-package-dependencies: 6.8.0
     eslint: 8.51.0
     graceful-kill: 8.0.1
