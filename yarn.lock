@@ -3959,13 +3959,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-kill@npm:8.0.1":
-  version: 8.0.1
-  resolution: "graceful-kill@npm:8.0.1"
+"graceful-kill@npm:8.0.3":
+  version: 8.0.3
+  resolution: "graceful-kill@npm:8.0.3"
   dependencies:
     "@types/node": ">=18.0.0"
     nightingale-logger: ^14.0.2
-  checksum: 23eb1a546e1c8637aa34bea7e46aea78f302f8233c6e8e9f9c1de0e616eb58d10b55fde7e99a624ddfb64c7a533e8d4c39340307d19c9dd989d7525c2b49a7bd
+  checksum: e588c1d0a36429f71754810c484e2c7e46036cbaf1ba6556d0a03ab6290c92df5bd864e749ff409b82ae82b8d137bfe8d39b618a78d5a0bcdcfb94f938102901
   languageName: node
   linkType: hard
 
@@ -6794,7 +6794,7 @@ __metadata:
     "@types/split": 1.0.4
     check-package-dependencies: 6.8.0
     eslint: 8.52.0
-    graceful-kill: 8.0.1
+    graceful-kill: 8.0.3
     jest: 29.7.0
     nightingale: ^14.1.0
     nightingale-console: ^14.1.0
