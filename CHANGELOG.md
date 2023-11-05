@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.1](https://github.com/christophehurpeau/springbokjs-daemon/compare/v10.0.0...v10.0.1) (2023-11-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency graceful-kill to v8.0.3 ([#624](https://github.com/christophehurpeau/springbokjs-daemon/issues/624)) ([4ff50af](https://github.com/christophehurpeau/springbokjs-daemon/commit/4ff50af7beebb8075824157c3b3e63110be6e24b))
+
 ## [10.0.0](https://github.com/christophehurpeau/springbokjs-daemon/compare/v9.0.0...v10.0.0) (2023-07-27)
 
 
