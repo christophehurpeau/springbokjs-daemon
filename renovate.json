@@ -1,5 +1,5 @@
 {
-  "extends": ["config:js-lib", "@pob"],
+  "extends": ["config:js-lib", "github>christophehurpeau/renovate-presets"],
   "packageRules": [
     {
       "updateTypes": ["patch", "minor"],

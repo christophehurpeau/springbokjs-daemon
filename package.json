@@ -16,7 +16,7 @@
   "engines": {
     "node": ">=18.12.0"
   },
-  "packageManager": "yarn@3.6.4",
+  "packageManager": "yarn@4.0.1",
   "main": "./dist/index-node18.mjs",
   "types": "./dist/definitions/index.d.ts",
   "exports": {
@@ -29,6 +29,10 @@
     }
   },
   "sideEffects": false,
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "yarn clean:build && rollup --config rollup.config.mjs && yarn run build:definitions",
     "build:definitions": "tsc -p tsconfig.json",
@@ -51,25 +55,6 @@
     "extends": [
       "@pob/commitlint-config"
     ]
-  },
-  "jest": {
-    "cacheDirectory": "./node_modules/.cache/jest",
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.ts",
-      "<rootDir>/src/**/*.test.ts"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.ts"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json"
-    ],
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
-    "testEnvironment": "node"
   },
   "pob": {
     "babelEnvs": [
@@ -94,13 +79,13 @@
     "@pob/commitlint-config": "6.2.0",
     "@pob/eslint-config": "51.1.2",
     "@pob/eslint-config-typescript": "51.1.2",
-    "@pob/root": "8.2.2",
+    "@pob/root": "8.6.0",
     "@types/jest": "29.5.7",
     "@types/split": "1.0.4",
     "check-package-dependencies": "6.8.0",
     "eslint": "8.53.0",
     "jest": "29.7.0",
-    "pob-babel": "36.4.4",
+    "pob-babel": "36.6.1",
     "typescript": "5.2.2"
   }
 }
