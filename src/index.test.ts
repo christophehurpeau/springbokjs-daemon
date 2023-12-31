@@ -1,5 +1,6 @@
-export {};
+import assert from 'node:assert/strict';
+import { it } from 'node:test';
 
 it('should be ok', () => {
-  expect('ok').toBe('ok');
+  assert.equal('ok', 'ok');
 });

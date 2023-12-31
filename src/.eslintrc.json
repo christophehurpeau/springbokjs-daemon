@@ -15,10 +15,8 @@
     {
       "files": ["**/*.test.ts", "__tests__/**/*.ts"],
       "extends": ["@pob/eslint-config-typescript/test"],
-      "env": {
-        "jest": true
-      },
       "rules": {
+        "@typescript-eslint/no-floating-promises": "warn",
         "import/no-extraneous-dependencies": [
           "error",
           {
