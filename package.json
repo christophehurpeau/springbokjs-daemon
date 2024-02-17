@@ -81,7 +81,7 @@
     "@pob/commitlint-config": "6.3.1",
     "@pob/eslint-config": "53.0.0",
     "@pob/eslint-config-typescript": "53.1.0",
-    "@pob/root": "9.1.0",
+    "@pob/root": "9.2.0",
     "@types/split": "1.0.5",
     "check-package-dependencies": "7.0.0",
     "eslint": "8.56.0",
