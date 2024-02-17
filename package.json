@@ -85,7 +85,7 @@
     "@types/split": "1.0.5",
     "check-package-dependencies": "7.0.0",
     "eslint": "8.56.0",
-    "pob-babel": "38.0.2",
+    "pob-babel": "38.0.3",
     "ts-node": "11.0.0-beta.1",
     "typescript": "5.3.3"
   }
