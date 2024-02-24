@@ -79,7 +79,7 @@ function createDaemon({
           logger.debug('autorestart');
           start().then(resolve, reject);
         } else {
-          reject();
+          reject(new Error('Exited'));
         }
       });
       process.on('message', message => {
