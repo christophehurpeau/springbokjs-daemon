@@ -16,6 +16,5 @@
       "yarnNodeLinker": "node-modules",
       "packageManager": "yarn"
     }
-  },
-  "springbokjs-daemon": {}
+  }
 }

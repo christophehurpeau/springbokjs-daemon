@@ -19,83 +19,90 @@ function createDaemon({
   cwd,
   env,
   autoRestart = false,
-  SIGTERMTimeout = 4000,
+  SIGTERMTimeout = 4e3,
   onMessage
 } = {}) {
   let process = null;
   let stopPromise;
-  const logger = new Logger(`springbokjs-daemon${key ? `:${key}` : ''}`, displayName);
-  logger.info('created', {
-    command,
-    args
-  });
-  const outputLogger = prefixStdout ? new Logger(`springbokjs-daemon${outputKey ? `:${outputKey}` : ''}`, outputDisplayName) : undefined;
+  const logger = new Logger(
+    `springbokjs-daemon${key ? `:${key}` : ""}`,
+    displayName
+  );
+  logger.info("created", { command, args });
+  const outputLogger = prefixStdout ? new Logger(
+    `springbokjs-daemon${outputKey ? `:${outputKey}` : ""}`,
+    outputDisplayName
+  ) : void 0;
   const stop = () => {
-    if (!process) return Promise.resolve(stopPromise);
+    if (!process)
+      return Promise.resolve(stopPromise);
     const runningProcess = process;
     process = null;
     runningProcess.removeAllListeners();
     stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
-      stopPromise = undefined;
+      stopPromise = void 0;
     });
     return stopPromise;
   };
   const start = () => {
     if (process) {
-      throw new Error('Process already started');
+      throw new Error("Process already started");
     }
     return new Promise((resolve, reject) => {
-      const stdoutOption = outputLogger ? 'pipe' : 'inherit';
+      const stdoutOption = outputLogger ? "pipe" : "inherit";
       process = spawn(command, args, {
         cwd,
         env,
-        stdio: ['ignore', stdoutOption, stdoutOption, 'ipc']
+        stdio: ["ignore", stdoutOption, stdoutOption, "ipc"]
       });
       if (outputLogger) {
         const logStreamInLogger = (stream, loggerLevel) => {
-          if (!stream) return;
-          stream.pipe(split()).on('data', line => {
-            if (line.length === 0) return;
-            if (line.startsWith('{') && line.endsWith('}')) {
+          if (!stream)
+            return;
+          stream.pipe(split()).on("data", (line) => {
+            if (line.length === 0)
+              return;
+            if (line.startsWith("{") && line.endsWith("}")) {
               try {
                 const json = JSON.parse(line);
-                logger.log('', json, loggerLevel);
+                logger.log("", json, loggerLevel);
                 return;
-              } catch {}
+              } catch {
+              }
             }
-            outputLogger.log(line, undefined, loggerLevel);
+            outputLogger.log(line, void 0, loggerLevel);
           });
         };
         logStreamInLogger(process.stdout, Level.NOTICE);
         logStreamInLogger(process.stderr, Level.ERROR);
       }
-      process.on('exit', (code, signal) => {
-        logger.warn('exited', {
-          code,
-          signal
-        });
+      process.on("exit", (code, signal) => {
+        logger.warn("exited", { code, signal });
         process = null;
         if (autoRestart) {
-          logger.debug('autorestart');
+          logger.debug("autorestart");
           start().then(resolve, reject);
         } else {
-          reject(new Error('Exited'));
+          reject(new Error("Exited"));
         }
       });
-      process.on('message', message => {
-        if (message === 'ready') {
-          logger.success('ready');
-          if (onMessage) onMessage('ready');
+      process.on("message", (message) => {
+        if (message === "ready") {
+          logger.success("ready");
+          if (onMessage)
+            onMessage("ready");
           resolve();
-        } else if (message === 'restart') {
-          logger.notice('restarting...');
-          stop().then(() => start(), () => {});
+        } else if (message === "restart") {
+          logger.notice("restarting...");
+          stop().then(
+            () => start(),
+            () => {
+            }
+          );
         } else if (onMessage) {
           onMessage(message);
         } else {
-          logger.notice('message', {
-            message
-          });
+          logger.notice("message", { message });
         }
       });
     });
@@ -105,20 +112,21 @@ function createDaemon({
       return process === null;
     },
     start() {
-      logger.notice('starting...');
+      logger.notice("starting...");
       return start();
     },
     stop() {
-      if (!process) logger.notice('stopping...');
+      if (!process)
+        logger.notice("stopping...");
       return stop();
     },
     restart() {
-      logger.notice('restarting...');
+      logger.notice("restarting...");
       return stop().then(() => start());
     },
     sendSIGUSR2() {
       if (process) {
-        process.kill('SIGUSR2');
+        process.kill("SIGUSR2");
       }
     }
   };
