@@ -83,7 +83,7 @@
     "@pob/eslint-config": "55.2.1",
     "@pob/eslint-config-typescript": "55.2.1",
     "@pob/rollup-esbuild": "1.0.1",
-    "@pob/root": "9.3.2",
+    "@pob/root": "9.4.3",
     "@types/split": "1.0.5",
     "check-package-dependencies": "7.1.1",
     "eslint": "8.57.0",
