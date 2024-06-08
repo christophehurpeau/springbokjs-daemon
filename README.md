@@ -24,12 +24,12 @@ npm install --save-dev springbokjs-daemon
 All arguments are optional, but you should at least provide `command` or `args`.
 
 ```js
-import createDaemon from 'springbokjs-daemon';
+import createDaemon from "springbokjs-daemon";
 
 const daemon = createDaemon({
-  key: '', // logger key
-  displayName: '', // logger displayName
-  command: 'node', // default to process.argv[0]
+  key: "", // logger key
+  displayName: "", // logger displayName
+  command: "node", // default to process.argv[0]
   args: [],
   autorestart: false, // autorestart when the child kills itself
   SIGTERMTimeout: 4000, // time to wait before sending SIGKILL
@@ -50,17 +50,17 @@ You can send these messages [using process.send](https://nodejs.org/api/process.
 ## Use case with Gulp
 
 ```js
-var gulp = require('gulp');
-var createDaemon = require('springbokjs-daemon');
+var gulp = require("gulp");
+var createDaemon = require("springbokjs-daemon");
 
-var daemon = createDaemon({ args: ['src/server/server.js'] });
-process.on('exit', function (code) {
+var daemon = createDaemon({ args: ["src/server/server.js"] });
+process.on("exit", function (code) {
   daemon.stop();
 });
 
-gulp.task('watch', ['default'], function () {
+gulp.task("watch", ["default"], function () {
   daemon.start();
-  gulp.watch('src/server/**/*.js').on('change', function () {
+  gulp.watch("src/server/**/*.js").on("change", function () {
     daemon.restart();
   });
 });

@@ -34,8 +34,7 @@ function createDaemon({
     outputDisplayName
   ) : void 0;
   const stop = () => {
-    if (!process)
-      return Promise.resolve(stopPromise);
+    if (!process) return Promise.resolve(stopPromise);
     const runningProcess = process;
     process = null;
     runningProcess.removeAllListeners();
@@ -57,11 +56,9 @@ function createDaemon({
       });
       if (outputLogger) {
         const logStreamInLogger = (stream, loggerLevel) => {
-          if (!stream)
-            return;
+          if (!stream) return;
           stream.pipe(split()).on("data", (line) => {
-            if (line.length === 0)
-              return;
+            if (line.length === 0) return;
             if (line.startsWith("{") && line.endsWith("}")) {
               try {
                 const json = JSON.parse(line);
@@ -89,8 +86,7 @@ function createDaemon({
       process.on("message", (message) => {
         if (message === "ready") {
           logger.success("ready");
-          if (onMessage)
-            onMessage("ready");
+          if (onMessage) onMessage("ready");
           resolve();
         } else if (message === "restart") {
           logger.notice("restarting...");
@@ -116,8 +112,7 @@ function createDaemon({
       return start();
     },
     stop() {
-      if (!process)
-        logger.notice("stopping...");
+      if (!process) logger.notice("stopping...");
       return stop();
     },
     restart() {
