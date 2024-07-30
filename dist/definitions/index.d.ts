@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export interface Options<Messages = any> {
     key?: string;
     displayName?: string;
