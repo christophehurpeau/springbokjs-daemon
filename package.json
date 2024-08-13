@@ -86,7 +86,7 @@
     "@pob/root": "13.0.0",
     "@types/split": "1.0.5",
     "check-package-dependencies": "7.2.0",
-    "eslint": "8.57.0",
+    "eslint": "9.9.0",
     "ts-node": "npm:ts-node-lite@11.0.0-beta.1",
     "typescript": "5.5.4"
   }
