@@ -80,13 +80,13 @@
   },
   "devDependencies": {
     "@pob/commitlint-config": "7.0.0",
-    "@pob/eslint-config": "57.3.0",
-    "@pob/eslint-config-typescript": "57.3.1",
+    "@pob/eslint-config": "58.0.0",
+    "@pob/eslint-config-typescript": "58.0.0",
     "@pob/rollup-esbuild": "4.0.0",
     "@pob/root": "13.1.0",
     "@types/split": "1.0.5",
     "check-package-dependencies": "7.2.0",
-    "eslint": "8.57.0",
+    "eslint": "9.9.0",
     "ts-node": "npm:ts-node-lite@11.0.0-beta.1",
     "typescript": "5.5.4"
   }
