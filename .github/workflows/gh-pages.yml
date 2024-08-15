@@ -20,6 +20,9 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable
 
+      - name: Generate Coverage
+        run: NODE_V8_COVERAGE=./docs/coverage yarn test:coverage
+
       - name: Create nojekyll
         run: touch docs/.nojekyll
 
