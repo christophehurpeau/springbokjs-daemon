@@ -13,7 +13,7 @@
   "repository": "https://github.com/christophehurpeau/springbokjs-daemon.git",
   "homepage": "http://springbokjs.org",
   "type": "module",
-  "packageManager": "yarn@4.4.0",
+  "packageManager": "yarn@4.4.1",
   "engines": {
     "node": ">=18.12.0"
   },
