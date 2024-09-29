@@ -82,7 +82,7 @@
     "@pob/commitlint-config": "7.0.0",
     "@pob/eslint-config": "58.1.0",
     "@pob/eslint-config-typescript": "58.1.0",
-    "@pob/rollup-esbuild": "4.0.0",
+    "@pob/rollup-esbuild": "4.1.0",
     "@pob/root": "13.2.0",
     "@types/split": "1.0.5",
     "check-package-dependencies": "7.2.0",
