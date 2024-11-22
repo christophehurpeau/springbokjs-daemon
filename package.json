@@ -15,7 +15,7 @@
   "type": "module",
   "packageManager": "yarn@4.5.1",
   "engines": {
-    "node": ">=18.12.0"
+    "node": ">=20.9.0"
   },
   "sideEffects": false,
   "main": "./dist/index-node18.mjs",
@@ -65,25 +65,25 @@
     "envs": [
       {
         "target": "node",
-        "version": "18"
+        "version": "20"
       }
     ],
     "typescript": true
   },
   "prettier": "@pob/root/prettier-config",
   "dependencies": {
-    "@types/node": ">=18.0.0",
+    "@types/node": ">=20.0.0",
     "graceful-kill": "8.1.0",
     "nightingale": "^15.0.0",
     "nightingale-console": "^15.0.0",
     "split": "^1.0.1"
   },
   "devDependencies": {
-    "@pob/commitlint-config": "7.0.0",
+    "@pob/commitlint-config": "8.0.0",
     "@pob/eslint-config": "58.1.0",
     "@pob/eslint-config-typescript": "58.1.0",
-    "@pob/rollup-esbuild": "4.1.0",
-    "@pob/root": "13.4.1",
+    "@pob/rollup-esbuild": "5.0.0",
+    "@pob/root": "14.1.0",
     "@types/split": "1.0.5",
     "check-package-dependencies": "7.2.0",
     "eslint": "9.14.0",
