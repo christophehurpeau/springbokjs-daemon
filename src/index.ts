@@ -2,7 +2,7 @@ import { spawn } from "node:child_process";
 import type { ChildProcess } from "node:child_process";
 import type { Readable as ReadableStream } from "node:stream";
 import { gracefulKill } from "graceful-kill";
-import { Logger, addConfig, Level } from "nightingale";
+import { Level, Logger, addConfig } from "nightingale";
 import { ConsoleHandler } from "nightingale-console";
 import split from "split";
 
