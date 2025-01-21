@@ -32,14 +32,14 @@ function createDaemon({
   const outputLogger = prefixStdout ? new Logger(
     `springbokjs-daemon${outputKey ? `:${outputKey}` : ""}`,
     outputDisplayName
-  ) : void 0;
+  ) : undefined;
   const stop = () => {
     if (!process) return Promise.resolve(stopPromise);
     const runningProcess = process;
     process = null;
     runningProcess.removeAllListeners();
     stopPromise = gracefulKill(runningProcess, SIGTERMTimeout).then(() => {
-      stopPromise = void 0;
+      stopPromise = undefined;
     });
     return stopPromise;
   };
@@ -67,7 +67,7 @@ function createDaemon({
               } catch {
               }
             }
-            outputLogger.log(line, void 0, loggerLevel);
+            outputLogger.log(line, undefined, loggerLevel);
           });
         };
         logStreamInLogger(process.stdout, Level.NOTICE);
