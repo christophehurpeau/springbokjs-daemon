@@ -19,7 +19,7 @@
   // jest
   "jest.jestCommandLine": "NODE_OPTIONS=--experimental-vm-modules node_modules/.bin/jest",
 
-  // extension eslint config
+  // eslint config
   "eslint.workingDirectories": ["."],
   "eslint.useFlatConfig": true,
   "eslint.lintTask.enable": true,
@@ -30,7 +30,7 @@
     "typescriptreact"
   ],
 
-  // format config
+  // eslint & prettier formatter
   "eslint.format.enable": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
