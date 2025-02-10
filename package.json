@@ -85,7 +85,7 @@
     "@pob/rollup-esbuild": "6.2.0",
     "@pob/root": "16.3.1",
     "@types/split": "1.0.5",
-    "check-package-dependencies": "9.1.0",
+    "check-package-dependencies": "9.2.0",
     "eslint": "9.19.0",
     "ts-node": "npm:ts-node-lite@11.0.0-beta.1",
     "typescript": "5.7.3"
