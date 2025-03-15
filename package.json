@@ -79,7 +79,7 @@
     "split": "^1.0.1"
   },
   "devDependencies": {
-    "@pob/commitlint-config": "9.1.0",
+    "@pob/commitlint-config": "9.1.2",
     "@pob/eslint-config": "59.6.0",
     "@pob/eslint-config-typescript": "59.6.0",
     "@pob/rollup-esbuild": "6.2.0",
