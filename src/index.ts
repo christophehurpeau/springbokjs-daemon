@@ -40,7 +40,7 @@ export function createDaemon({
   prefixStdout = false,
   outputKey = key,
   outputDisplayName = displayName,
-  command = global.process.argv[0],
+  command = global.process.argv[0]!,
   args = [],
   cwd,
   env,

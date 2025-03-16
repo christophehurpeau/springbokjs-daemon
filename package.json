@@ -13,7 +13,7 @@
   "repository": "https://github.com/christophehurpeau/springbokjs-daemon.git",
   "homepage": "http://springbokjs.org",
   "type": "module",
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@4.7.0",
   "engines": {
     "node": ">=20.9.0"
   },
@@ -72,22 +72,22 @@
   },
   "prettier": "@pob/root/prettier-config",
   "dependencies": {
-    "@types/node": ">=20.0.0",
+    "@types/node": "^22.13.10",
     "graceful-kill": "8.1.0",
     "nightingale": "^15.0.0",
     "nightingale-console": "^15.0.0",
     "split": "^1.0.1"
   },
   "devDependencies": {
-    "@pob/commitlint-config": "9.1.0",
-    "@pob/eslint-config": "59.6.0",
-    "@pob/eslint-config-typescript": "59.6.0",
-    "@pob/rollup-esbuild": "6.2.0",
-    "@pob/root": "16.3.1",
+    "@pob/commitlint-config": "9.1.2",
+    "@pob/eslint-config": "59.8.1",
+    "@pob/eslint-config-typescript": "59.8.1",
+    "@pob/rollup-esbuild": "6.4.0",
+    "@pob/root": "16.9.0",
     "@types/split": "1.0.5",
-    "check-package-dependencies": "9.1.0",
-    "eslint": "9.19.0",
+    "check-package-dependencies": "10.1.0",
+    "eslint": "9.22.0",
     "ts-node": "npm:ts-node-lite@11.0.0-beta.1",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   }
 }
